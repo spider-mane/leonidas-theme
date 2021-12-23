@@ -1,0 +1,115 @@
+{% extends "base.twig" %}
+{% import "modules/fields.twig" as fields %}
+{% import "modules/icons.twig" as icons %}
+
+{# define form fields #}
+
+{# global field values #}
+{% set fieldIdBase = "form--" %}
+{% set fieldClasslist = ['form-control', 'form-control-lg'] %}
+
+{# name #}
+{% set nameField = field('text', {
+  name: form.fields.full_name.name,
+  required: form.fields.full_name.required,
+  id: fieldIdBase ~ "first-name",
+  classlist: fieldClasslist,
+  placeholder: 'Your Name',
+}) %}
+
+{# phone number #}
+{% set phoneField = field('tel', {
+  name: form.fields.phone_number.name,
+  required: form.fields.phone_number.required,
+  id: fieldIdBase ~ "phone-number",
+  classlist: fieldClasslist,
+  placeholder: 'Phone Number',
+}) %}
+
+{# email address #}
+{% set emailField = field('email', {
+  name: form.fields.email_address.name,
+  required: form.fields.email_address.required,
+  id: fieldIdBase ~ "email-address",
+  classlist: fieldClasslist,
+  placeholder: 'Email Address',
+}) %}
+
+{# message #}
+{% set messageField = field('textarea', {
+  name: form.fields.message.name,
+  required: form.fields.message.required,
+  id: fieldIdBase ~ "message",
+  classlist: fieldClasslist,
+  placeholder: 'How can we help?',
+  label: 'Message',
+  rows: 7,
+  value: ''
+}) %}
+
+{# begin template #}
+
+{% block header %}
+  {% include "components/header--simple.twig" %}
+{% endblock %}
+
+{% block content %}
+
+  <main class="py-5 bg-quaternary contact-form contact-form--footer">
+    <div class="container">
+      <div class="row">
+
+        {# info #}
+        <div class="col-lg pb-5">
+          <div class="mt-4 h5 font-weight-normal">
+
+            <div>
+              <span class="d-block h4 0d-md-none">Call:</span>
+              <a href="{{ entity.phone | phone_link }}">{{ entity.phone | us_phone }}</a>
+            </div>
+
+            <div class="py-2"></div>
+
+            <div>
+              <span class="d-block h4 0d-md-none">Email:</span>
+              <a href="mailto:{{ entity.email }}">{{ entity.email }}</a>
+            </div>
+
+          </div>
+        </div>
+
+        {# form #}
+        <div class="col-lg">
+          <form id="contact-form" action="{{ form.action }}" method="{{ form.method }}">
+
+            {% for validation_field in form.security %}
+              {{ validation_field }}
+            {% endfor %}
+
+            {# fields with appended icons #}
+            {% set icons = ['user', 'mobile-alt', 'at', 'building', 'globe'] %}
+            {% set styles = ['fas', 'fas', 'fas', 'fas', 'fas'] %}
+            {% set fields = [nameField, phoneField, emailField] %}
+
+            {% for field in fields %}
+
+              {% set icon = icons[loop.index0] %}
+              {% set style = styles[loop.index0] %}
+
+              {{ fields.bsAppended(field, field.getPlaceHolder(), field.getId(), icons.fa(icon, style)) }}
+
+            {% endfor %}
+
+            {# message field #}
+            {{ fields.bsSimple(messageField, messageField.getLabel(), messageField.getId()) }}
+
+            <button class="btn btn-color-2" type="submit">Request Proposal</button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+{% endblock %}

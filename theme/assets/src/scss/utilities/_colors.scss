@@ -1,0 +1,56 @@
+
+// opacity
+@each $level, $opacityValue in $opacity-levels {
+  // transparency
+  .opacity-#{$level} {
+    opacity: $opacityValue;
+  }
+
+  // background
+  .bg-transparent-dark-#{$level} {
+    background-color: rgba(black, $opacityValue);
+  }
+
+  .bg-transparent-light-#{$level} {
+    background-color: rgba(white, $opacityValue);
+  }
+
+  // transparent background
+  @each $color, $colorValue in $theme-colors {
+
+    // background color
+    .bg-#{$color}-opacity-#{$level} {
+      background-color: rgba($colorValue, $opacityValue);
+    }
+
+    // text color
+    @if $level == 50 or $level == 70 or $level == 90 {
+
+      .text-#{$color}-#{$level} {
+        color: rgba($colorValue, $opacityValue);
+      }
+    }
+  }
+
+  // add to text
+  @if $level == 70 or $level == 90 {
+    .text-white-#{$level} {
+      color: rgba(white, $opacityValue);
+    }
+
+    .text-black-#{$level} {
+      color: rgba(black, $opacityValue);
+    }
+  }
+}
+
+// vendor colors
+@each $vendor, $vendorColor in $vendor-colors {
+  .vendor-#{$vendor} {
+    color: $vendorColor;
+  }
+
+  .vendor-#{$vendor}-hover:hover {
+    color: $vendorColor;
+  }
+}

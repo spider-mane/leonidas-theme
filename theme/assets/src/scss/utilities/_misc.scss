@@ -1,0 +1,56 @@
+
+//
+.focus-keep:focus {
+  background-color: default;
+}
+
+//
+.fill-container {
+  height: 100%;
+  width: 100%;
+}
+
+//
+.contain-background {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+//
+.background-fixed {
+  background-attachment: fixed;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+//
+.border-highlight {
+  border-color: rgba(black, .3) !important;
+}
+
+//
+.border-out {
+  background-clip: content-box;
+}
+
+//
+.cursor-pointer {
+  cursor: pointer;
+}
+
+//
+.link-no-decor {
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+//
+.gutter-row:not(:last-of-type) {
+  padding-bottom: 5rem;
+}

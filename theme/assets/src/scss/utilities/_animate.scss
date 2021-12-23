@@ -1,0 +1,15 @@
+//
+@each $animation in $animations {
+
+  .animate-hover-#{$animation}:hover {
+    @extend .animated;
+    @extend .#{$animation};
+  }
+
+  .animate-child-hover:hover {
+    .animated-child-#{$animation} {
+      @extend .animated;
+      @extend .#{$animation};
+    }
+  }
+}

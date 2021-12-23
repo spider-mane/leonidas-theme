@@ -1,0 +1,22 @@
+<header id="header" class="hero hero--{{base}}">
+  <div class="hero__bg-img"></div>
+
+  <div class="container text-center text-white-90">
+    <div class="row no-gutters">
+      <div class="col">
+
+        <h1 class="hero__title mr-auto text-lg-left font-weight-normal">
+          {{ hero.statement ? include(hero.statement) }}
+        </h1>
+
+        {% if hero.brief is not empty %}
+          <p class="hero__statement pt-4 mx-lg-9">
+            {{ include(hero.brief) }}
+          </p>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+</header>

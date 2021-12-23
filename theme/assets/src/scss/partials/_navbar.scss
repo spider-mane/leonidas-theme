@@ -1,0 +1,52 @@
+.navbar {
+  height: $navbar-height-xs;
+
+  .navbar-toggler {
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &.navbar--mobile-expanded {
+    //
+  }
+}
+
+//
+@mixin navbar-xs {
+  .navbar {
+    //
+  }
+}
+
+//
+@mixin navbar-sm {
+  .navbar {
+    //
+  }
+}
+
+//
+@mixin navbar-md {
+  .navbar {
+    //
+  }
+}
+
+//
+@mixin navbar-lg {
+  .navbar {
+    height: $navbar-height-md;
+
+    .navbar-brand {
+      font-size: $h1-font-size;
+    }
+  }
+}
+
+//
+@mixin navbar-xl {
+  .navbar {
+    //
+  }
+}

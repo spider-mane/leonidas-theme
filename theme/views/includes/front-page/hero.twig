@@ -1,0 +1,20 @@
+<header id="header" class="hero hero--front">
+  <div class="hero__bg-img animated infinite pulse"></div>
+
+  <div class="container text-center text-white-90">
+    <div class="row no-gutters">
+      <div class="col">
+
+        <h1 class="hero__title mr-auto 0text-lg-left font-weight-normal">
+          {{ hero.statement ? include(hero.statement) }}
+        </h1>
+
+        <p class="hero__statement pt-4 mx-lg-9 0text-lg-left font-weight-light">
+          {{ hero.brief ? include(hero.brief)}}
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+</header>

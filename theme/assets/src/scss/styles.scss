@@ -1,0 +1,51 @@
+// functions
+@import "functions/#misc";
+@import "functions/#assets";
+
+// mixins
+@import "mixins/@misc";
+@import "mixins/@hero";
+@import "mixins/@navigation";
+
+// variables
+@import "variables/$colors";
+@import "variables/$typography";
+@import "variables/$animations";
+@import "variables/$base";
+@import "variables/$libraries";
+@import "variables/$bootstrap";
+
+// libraries
+// @import "node_modules/aos/src/sass/aos";
+@import "node_modules/animate.css/animate";
+// @import "node_modules/loaders.css/loaders";
+// @import "node_modules/magic.css/dist/magic";
+// @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+@import "bootstrap";
+@import "node_modules/rfs/scss";
+
+// components
+@import "components/card";
+@import "components/masonry";
+@import "components/hero";
+@import "components/forms";
+@import "components/section";
+@import "components/media-queries";
+
+// utilities
+@import "utilities/misc";
+@import "utilities/animate";
+@import "utilities/font-awesome";
+@import "utilities/colors";
+@import "utilities/positioning";
+@import "utilities/spacing";
+@import "utilities/typography";
+
+// partials
+@import "partials/defaults";
+@import "partials/typography";
+@import "partials/navbar";
+@import "partials/hero";
+@import "partials/footer";
+@import "partials/content";
+@import "partials/media-queries";

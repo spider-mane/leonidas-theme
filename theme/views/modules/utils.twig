@@ -1,0 +1,8 @@
+{#  #}
+{% macro between(loop, count, output) %}
+
+  {% if not loop.last and loop.index is divisible by(count) %}
+    {{ output }}
+  {% endif %}
+
+{% endmacro %}

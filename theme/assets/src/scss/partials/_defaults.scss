@@ -1,0 +1,12 @@
+body,
+html {
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+  }
+}

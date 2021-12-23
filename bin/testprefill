@@ -1,0 +1,107 @@
+#!/usr/bin/env php
+<?php
+
+use Faker\Factory;
+
+require_once dirname(__DIR__, 1) . '/vendor/autoload.php';
+
+ini_set('xdebug.var_display_max_depth', 10);
+ini_set('xdebug.var_display_max_children', 256);
+ini_set('xdebug.var_display_max_data', 1024);
+
+################################################################################
+# Config
+################################################################################
+$root = dirname(__DIR__, 1);
+$testDir = $root . '/build/test-prefill';
+$prefill = $testDir . '/bin/prefill';
+$faker = Factory::create();
+
+$exclude = array_merge(
+  [
+    '.env',
+    '.idea',
+    '.project',
+    '.vscode',
+    'assets/build',
+    'assets/dist',
+    'assets/node_modules',
+    'assets/package-lock.json',
+    'build',
+    'logs',
+    'composer.lock',
+    'vendor',
+    'wordpress',
+  ],
+  glob("*.code-workspace"),
+  glob("**/*.code-workspace"),
+);
+
+$answers = [
+  'authorName' => 'Method Man',
+  'authorEmail' => 'methodman@wutangfinancial.wu',
+  'authorGithub' => 'fake-method-man-420',
+
+  'themeName' => 'Tical',
+  'themeSlug' => 'tical',
+  'themePrefix' => 'tcl',
+  'themeVersion' => '4.2.0',
+  'themeWebsite' => 'https://github.com/method-man-420/tical',
+  'themeDescription' => "Here comes the ruckus, the motherf*cking ruckus. Thousands of cut-throats and crumb-snatching f*ckers Straight from the brain, I'll be giving you the pain, anger Coming from the 36th Chamber, bang! Tical, hitting with the Buddha-Fist style. Shotgun slamming in your chestpiece, plow! Frame is blown all over the terrain. Like a man without no arms you can't hang. Time for a change of the guard. You've been arrested for lyric fraud now you barred. For real, check it, I pull strings like B.B. King on guitar I'm the true Fist of the North Star!",
+
+  'psr4Namespace' => "MethodMan\\Tical",
+];
+
+################################################################################
+# Functions (as closures to avoid potential collisions with prefill script)
+################################################################################
+$copyContents = function (
+  string $dir,
+  string $copyDir,
+  array $exclude = [],
+  ?string $sub = null
+) use (&$copyContents): void {
+  $currentDir = $sub ?? $dir;
+  $files = array_filter(scandir($currentDir), function ($file) {
+    return !in_array($file, ['.', '..']);
+  });
+
+  foreach ($files as $file) {
+    $file = "$currentDir/$file";
+    $copy = $copyDir . '/' . str_replace("$dir", '', $file);
+
+    if (in_array($file, $exclude)) {
+      continue;
+    }
+
+    if (is_dir($file)) {
+      mkdir($copy);
+      $copyContents($dir, $copyDir, $exclude, $file);
+
+      continue;
+    }
+
+    copy($file, $copy);
+  }
+};
+
+################################################################################
+# Run
+################################################################################
+$exclude = array_map(function ($file) use ($root) {
+  return "$root/$file";
+}, $exclude);
+
+if (file_exists($testDir)) {
+  shell_exec("chmod -R 777 $testDir && rm -rf -f $testDir");
+}
+
+mkdir($testDir, 0777, true);
+$copyContents($root, $testDir, $exclude);
+
+chdir($testDir);
+
+(function ($__prefill__, $__answers__) {
+  extract($__answers__);
+  require $__prefill__;
+})($prefill, $answers);

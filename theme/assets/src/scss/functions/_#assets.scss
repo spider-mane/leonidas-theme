@@ -1,0 +1,29 @@
+///
+@function image($image) {
+  @return url("../images/#{$image}");
+}
+
+///
+@function video($video) {
+  @return url("../videos/#{$video}");
+}
+
+///
+@function audio($audio) {
+  @return url("../audio/#{$audio}");
+}
+
+///
+@function icon($icon) {
+  @return url("../icons/#{$icon}");
+}
+
+///
+@function logo($logo) {
+  @return url("../logos/#{$logo}");
+}
+
+///
+@function unsplash-src($image) {
+  @return url("https://source.unsplash.com/#{$image}");
+}

@@ -1,0 +1,16 @@
+{# page intro #}
+{% macro pageIntro(content, alignment = 'center', padding = 6, bg = 'transparent') %}
+
+  <section id="page-intro" class="section section--intro bg-{{bg}} py-{{padding}}">
+    <div class="container px-xl-9">
+      <div class="row">
+        <div class="col">
+          <div class="lead text-{{alignment}} text-black-70">
+            {{ content }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endmacro %}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }}>
+
+  <head>
+    {% block head %}
+
+      {% include "includes/base/google-tag-manager--head.twig" %}
+
+      <title>{{ site.title }}</title>
+
+      <meta charset="{{ site.charset }}">
+      <meta name="description" content="{{ site.description }}">
+      <meta content="ie=edge" http-equiv="X-UA-Compatible">
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+      <link rel="icon" href="{{ favicons.default }}" type="image/png">
+      <link rel="icon" type="image/png" sizes="32x32" href="{{ favicons.i32 }}">
+      <link rel="icon" type="image/png" sizes="16x16" href="{{ favicons.i16 }}">
+      <link rel="apple-touch-icon" sizes="180x180" href="{{ favicons.apple }}">
+
+      <link rel="manifest" href="{{ site.webmanifest }}">
+
+    {% endblock %}
+    {{ wp_head }}
+  </head>
+
+  <body id="body" class="{{ body.class }} bg-quaternary" {{ body.attributes }}>
+
+    {% include "includes/base/google-tag-manager--body.twig" %}
+
+    {% block navbar %}
+      {% include('components/navbar.twig') %}
+    {% endblock %}
+
+    {% block header %}
+      {% include('components/header.twig') %}
+    {% endblock %}
+
+    {% block main %}
+      {% include('components/main.twig') %}
+    {% endblock %}
+
+    {% block footer %}
+      {% include('components/footer.twig') %}
+    {% endblock %}
+
+    {{ wp_footer }}
+
+  </body>
+
+</html>

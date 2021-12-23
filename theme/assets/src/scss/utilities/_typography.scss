@@ -1,0 +1,16 @@
+
+// // font sizes
+// @each $ds, $dsValues in $customDisplaySizes {
+//   .display-#{$ds} {
+//     @include font-size(map-get($dsValues, size));
+//     font-weight: map-get($dsValues, weight);
+//     line-height: $display-line-height;
+//   }
+// }
+
+// line height
+.lh {
+  &-1 {
+    line-height: 1;
+  }
+}

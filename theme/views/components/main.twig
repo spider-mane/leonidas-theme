@@ -1,0 +1,17 @@
+<main class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        {% block content %}
+
+          {% for post in posts %}
+            <div>{{ post.content }}</div>
+          {% endfor %}
+
+        {% endblock %}
+
+      </div>
+    </div>
+  </div>
+</main>

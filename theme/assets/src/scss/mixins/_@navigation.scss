@@ -1,0 +1,26 @@
+@mixin site_nav_item_activate {
+    margin-top: -3px;
+    margin-bottom: -3px;
+    margin-right: -3px;
+    margin-left: -3px;
+    border-top: solid 3px;
+    border-bottom: solid 3px;
+    border-right: solid 3px transparent;
+    border-left: solid 3px transparent;
+    transition-property:
+        border-top,
+        border-bottom,
+        margin-top,
+        margin-bottom;
+    transform: translateZ(0);
+    transition-duration: .3s;
+    transition-timing-function: ease;
+}
+
+@mixin psuedo_bar($height, $bg_color) {
+    position: absolute;
+    height: $height;
+    width: 100%;
+    background-color: $bg_color;
+    content: '';
+}

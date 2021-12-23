@@ -1,0 +1,34 @@
+//
+@media screen and (min-width: map-get($grid-breakpoints, "xs")) {
+  @include navbar-xs;
+  @include hero-xs;
+  @include footer-xs;
+}
+
+//
+@media screen and (min-width: map-get($grid-breakpoints, "sm")) {
+  @include navbar-sm;
+  @include hero-sm;
+  @include footer-sm;
+}
+
+//
+@media screen and (min-width: map-get($grid-breakpoints, "md")) {
+  @include navbar-md;
+  @include hero-md;
+  @include footer-md;
+}
+
+//
+@media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+  @include navbar-lg;
+  @include hero-lg;
+  @include footer-lg;
+}
+
+//
+@media screen and (min-width: map-get($grid-breakpoints, "xl")) {
+  @include navbar-xl;
+  @include hero-xl;
+  @include footer-xl;
+}

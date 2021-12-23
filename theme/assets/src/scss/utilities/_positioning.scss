@@ -1,0 +1,24 @@
+
+// positioning
+.absolute-top {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+// z-index
+@each $index in 5,10,15,10,25 {
+  .z-#{$index} {
+    z-index: $index;
+  }
+
+  .z-n#{$index} {
+    z-index: -$index;
+  }
+
+  .border-radius-#{$index} {
+    border-radius: #{$index}px;
+  }
+}

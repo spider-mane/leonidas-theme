@@ -1,0 +1,33 @@
+.gallery {
+
+    .cornerstone,
+    .gallery__item-1 {
+        width: 12.5%;
+    }
+
+    [class^=gallery__item-] {
+
+        // height: auto;
+        img {
+            min-width: 100%;
+        }
+    }
+
+    .gallery__item-1 {
+        img {
+            height: 300px;
+        }
+    }
+
+    .gallery__item-2 {
+        width: 25%;
+
+        img {
+            height: 150px
+        }
+    }
+
+    .gallery__content {
+        max-width: 100%;
+    }
+}

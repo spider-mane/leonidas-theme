@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<ruleset name="pseudo-theme">
+  <description>Coding standard for the Pseudo Plugin WordPress theme</description>
+
+  <!-- File paths -->
+  <file>./src</file>
+
+  <!-- Args -->
+  <arg value="p"/>
+  <arg value="s"/>
+  <arg name="colors"/>
+
+  <!-- Config -->
+  <config name="ignore_warnings_on_exit"
+    value="1"/>
+
+  <config name="ignore_errors_on_exit"
+    value="1"/>
+
+  <config name="default_standard"
+    value="PSR12"/>
+
+  <!-- Use the PSR-12 Standard-->
+  <rule ref="PSR12"/>
+
+  <!-- Disable Default Squiz Checks -->
+  <rule ref="Squiz">
+    <exclude name="Squiz"/>
+  </rule>
+
+</ruleset>

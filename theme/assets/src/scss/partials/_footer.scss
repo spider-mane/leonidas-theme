@@ -1,0 +1,42 @@
+.footer {
+  .sm-icons {
+    font-size: 2.5rem;
+
+    a:hover {
+      color: rgba(white, 0.7);
+    }
+  }
+}
+
+@mixin footer-xs {
+  .footer {
+  }
+}
+
+@mixin footer-sm {
+  .footer {
+    .sm-icons {
+      font-size: 3rem;
+    }
+  }
+}
+
+@mixin footer-md {
+  .footer {
+    //
+  }
+}
+
+@mixin footer-lg {
+  .footer {
+    //
+  }
+}
+
+@mixin footer-xl {
+  .footer {
+    .sm-icons {
+      font-size: 2rem;
+    }
+  }
+}

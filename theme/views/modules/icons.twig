@@ -1,0 +1,8 @@
+{# font awesome fas icon #}
+{% macro fa(icon, style = 'fas') %}
+  <i class="{{ style }} fa-{{ icon }}"></i>
+{% endmacro %}
+
+{% macro material(icon) %}
+  <i class="material-icons">{{ icon }}</i>
+{% endmacro %}

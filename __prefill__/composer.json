@@ -1,0 +1,25 @@
+{
+  "name": ":vendor_name/:theme_slug",
+  "description": ":theme_description",
+  "type": "wordpress-theme",
+  "homepage": ":theme_website",
+  "keywords": [
+    ":theme_name",
+    ":vendor_name",
+    "wordpress",
+    "theme"
+  ],
+  "authors": [
+    {
+      "name": ":theme_author",
+      "email": ":author_email",
+      "homepage": ":author_website",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "PseudoVendor\\PseudoPlugin\\": "src/"
+    }
+  }
+}

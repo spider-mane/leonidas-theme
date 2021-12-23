@@ -1,0 +1,8 @@
+{# split a card deck at different breakpoints #}
+{% macro splitDeck(min = 'md', max = null, margin = 4) %}
+
+  {% set max = max ? "d-#{max}-none" %}
+
+  <div class="w-100 d-none d-{{ min }}-block {{ max }} mb-{{ margin }}"></div>
+
+{% endmacro %}

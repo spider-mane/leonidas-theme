@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+  backupGlobals="false"
+  backupStaticAttributes="false"
+  beStrictAboutCoversAnnotation="true"
+  beStrictAboutOutputDuringTests="false"
+  beStrictAboutTodoAnnotatedTests="true"
+  bootstrap="tests/bootstrap.php"
+  cacheResult="true"
+  cacheResultFile="build/phpunit/.phpunit.result.cache"
+  colors="true"
+  convertDeprecationsToExceptions="true"
+  convertErrorsToExceptions="true"
+  convertNoticesToExceptions="true"
+  convertWarningsToExceptions="true"
+  executionOrder="depends,defects"
+  forceCoversAnnotation="false"
+  printerClass="NunoMaduro\Collision\Adapters\Phpunit\Printer"
+  processIsolation="false"
+  stopOnFailure="true"
+  testdox="true"
+  verbose="true">
+
+  <testsuites>
+    <testsuite name="unit">
+      <directory>tests/Suites/Unit</directory>
+    </testsuite>
+
+    <testsuite name="wpunit">
+      <directory>tests/Suites/WpUnit</directory>
+    </testsuite>
+
+    <testsuite name="integration">
+      <directory>tests/Suites/Integration</directory>
+    </testsuite>
+
+    <testsuite name="extension">
+      <directory>tests/Suites/Extension</directory>
+    </testsuite>
+
+    <testsuite name="functional">
+      <directory>tests/Suites/Functional</directory>
+    </testsuite>
+
+    <testsuite name="acceptance">
+      <directory>tests/Suites/Acceptance</directory>
+    </testsuite>
+  </testsuites>
+
+  <coverage cacheDirectory="build/phpunit/coverage/.cache">
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+    <report>
+      <html outputDirectory="build/phpunit/coverage/html"/>
+      <clover outputFile="build/phpunit/coverage/coverage.clover.xml"/>
+      <text outputFile="build/phpunit/coverage/coverage.txt"/>
+    </report>
+  </coverage>
+
+  <logging>
+    <junit outputFile="build/phpunit/logs/report.junit.xml"/>
+    <teamcity outputFile="build/phpunit/logs/teamcity.txt"/>
+    <testdoxHtml outputFile="build/phpunit/logs/testdox.html"/>
+    <testdoxText outputFile="build/phpunit/logs/testdox.txt"/>
+    <testdoxXml outputFile="build/phpunit/logs/testdox.xml"/>
+    <text outputFile="build/phpunit/logs/logfile.txt"/>
+  </logging>
+
+  <php>
+    <env name="RUNNING_TESTS" value="true"/>
+    <env name="DB_NAME" value=""/>
+  </php>
+
+</phpunit>

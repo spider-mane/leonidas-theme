@@ -1,0 +1,41 @@
+{% import "modules/cards.twig" as card %}
+{% import "modules/utils.twig" as util %}
+
+<section class="services-section services-section--services pt-0 pb-5 pb-lg-7 bg-quaternary">
+  <div class="container">
+
+    <div class="row">
+      <div class="col">
+        <div class="card-deck">
+
+          {% for service in highlights[0 : 6] %}
+
+            <div class="card bg-quaternary">
+
+              <img src="{{ service.image }}" class="card-img-top img-fluid">
+
+              <div class="card-body">
+
+                <div class="card-title text-center h3 font-weight-light">
+                  {{ service.title ?? lorem(2) }}
+                </div>
+
+                <div class="card-text">
+                  {{ service.text ? include(service.text) : lorem(45) }}
+                </div>
+
+              </div>
+            </div>
+
+            {{ util.between(loop, 1, card.splitDeck('sm', 'md', 4)) }}
+            {{ util.between(loop, 2, card.splitDeck('md', 'lg', 4)) }}
+            {{ util.between(loop, 3, card.splitDeck('lg', null, 5)) }}
+
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

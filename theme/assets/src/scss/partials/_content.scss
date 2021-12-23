@@ -1,0 +1,79 @@
+// BASE ########################################################################
+
+.content-container {
+  position: relative;
+}
+
+//
+.page-intro {
+  @include media-breakpoint-up(lg) {
+    font-size: 2rem;
+  }
+}
+
+//
+.card-columns {
+  @include media-breakpoint-up(xs) {
+    column-count: 1;
+  }
+
+  @include media-breakpoint-up(sm) {
+    column-count: 2;
+  }
+
+  @include media-breakpoint-up(lg) {
+    column-count: 3;
+  }
+}
+
+// FRONT PAGE ##################################################################
+
+//
+.front-page-notes {
+  background-image: image("texture-1909992_1920w.jpg");
+  // background-image: image("graphics-954343_1920w.jpg");
+  // background-image: image("colour-1885352_1920w.jpg");
+}
+
+//
+.front-page-closer {
+  background-image: image("binary-1327493_1920w.jpg");
+  min-height: 700px;
+  background-position: center;
+
+  @include media-breakpoint-down(sm) {
+    @include overlay(rgba(black, 0.7));
+    // @include overlay(rgba(theme-color("color-2"), 0.8));
+  }
+
+  // @include media-breakpoint-up(xl) {
+  //   box-shadow: 0 0 15px 10px rgba(black, 0.9);
+  // }
+
+  .box-thing {
+    @include media-breakpoint-up(md) {
+      background-color: rgba(black, 0.7);
+    }
+  }
+}
+
+//
+.space-thing {
+  box-shadow: 0 0 40px 20px inset theme-color("quaternary"), 0 0 20px 10px inset theme-color("quaternary"),
+    0 0 10px 5px inset theme-color("quaternary");
+  border-radius: 40%;
+
+  img {
+    position: relative;
+    animation-duration: 10s;
+    z-index: -5;
+  }
+}
+
+// SERVICES ####################################################################
+
+// WORK ########################################################################
+
+// ABOUT #######################################################################
+
+// CONTACT #####################################################################

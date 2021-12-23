@@ -1,0 +1,32 @@
+{% set expanded = 'lg' %}
+
+<nav id="navbar" class="navbar navbar--site navbar-expand-{{ expanded }} absolute-top bg-transparent">
+  <div class="container text-white-90">
+
+    {# brand/ logo #}
+    <a href="{{ site.url }}" class="navbar-brand entity-style">
+      {{ entity.styled_title }}
+    </a>
+
+    {# dropdown button #}
+    <button class="navbar-toggler text-white-90">
+      <i id="toggler-icon" class="fas fa-bars"></i>
+    </button>
+
+    {# nav menu #}
+    <div id="navbar-menu" class="collapse navbar-collapse justify-content-{{ expanded }}-end">
+      <ul class="navbar-nav entity-style h4 font-weight-normal">
+
+        {% for slug, title in navbar.menu %}
+          <li class="nav-item">
+            <a href="{{ slug | url }}" class="nav-link animate-child-hover">
+              <span class="d-block animated-child-fadeIn">{{ title }}</span>
+            </a>
+          </li>
+        {% endfor %}
+
+      </ul>
+    </div>
+
+  </div>
+</nav>

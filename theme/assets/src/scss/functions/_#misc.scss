@@ -1,0 +1,17 @@
+///
+@function remify($px) {
+  @if (unitless($px)) {
+    $px: $px * 1px;
+  }
+
+  @return ($px / 16px) * 1rem;
+}
+
+///
+@function pixelfy($rem) {
+  @if (unitless($rem)) {
+    $rem: $rem * 1rem;
+  }
+
+  @return (($rem * 16) / 1rem) * 1px;
+}

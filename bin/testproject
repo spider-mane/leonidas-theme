@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * This script takes 3 command line options: "s", "x", and "i".
+ *
+ * -s: This option will have composer install the latest stable release of the
+ * project, otherwise it will install from dev.
+ *
+ * -x: By default, this script will pass the "--no-scripts" argument to
+ * "create-project" command. Pass this option if you want composer to execute
+ * the scripts/commands listed under "post-create-project-cmd" in the project's
+ * composer.json manifest.
+ *
+ * -i: Use this option if you want composer to install dependencies.
+ */
+
+$root = dirname(__DIR__, 1);
+$testDir = "$root/build/test-project";
+$project = json_decode(file_get_contents("$root/composer.json"))->name;
+
+$options = getopt('sxi');
+$args = [];
+
+$stability = isset($options['s']) ? 'stable' : 'dev';
+$args[] = "--stability $stability";
+
+if (!isset($options['x'])) {
+  $args[] = '--no-scripts';
+}
+if (!isset($options['i'])) {
+  $args[] = '--no-install';
+}
+
+$args = implode(' ', $args);
+
+if (file_exists($testDir)) {
+  shell_exec("chmod -R 777 $testDir && rm -rf -f $testDir");
+}
+shell_exec("composer create-project $project $testDir $args");

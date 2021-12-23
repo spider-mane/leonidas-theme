@@ -1,0 +1,18 @@
+# Development
+/dist/
+/build/
+/logs/
+*.log
+.eslintcache
+
+# NPM/ Yarn
+node_modules/
+package-lock.json
+npm-debug.log
+yarn-error.log
+
+# Sass
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map

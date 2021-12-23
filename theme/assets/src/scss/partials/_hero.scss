@@ -1,0 +1,153 @@
+//
+.hero {
+  display: flex;
+  position: relative;
+  min-height: 70vh;
+  height: auto;
+  padding-top: $hero-padding-top-xs;
+  overflow: hidden;
+
+  .hero__bg-img {
+    @include overlay(rgba(black, 0.5));
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -5;
+  }
+
+  .container {
+    // margin-top: -#{$hero-padding-top-xs};
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero__title {
+    @include font-size(3.5rem);
+  }
+
+  .hero__statement {
+    @extend .lead;
+    // @include font-size(1.5rem);
+  }
+
+  // hero for front page
+  &.hero--front {
+    min-height: 100vh;
+
+    .hero__title {
+      // animation-duration: 2.5s;
+    }
+
+    .hero__statement {
+      animation-duration: 2s;
+      // animation-delay: 2.5s;
+    }
+
+    .hero__bg-img {
+      background-attachment: fixed;
+      background-image: image($hero-front-bg-img);
+      animation-duration: 25s;
+    }
+  }
+
+  // hero for services page
+  &.hero--services {
+    .hero__bg-img {
+      background-image: image($hero-services-bg-img);
+    }
+  }
+
+  // hero for contact page
+  &.hero--contact {
+    min-height: 0;
+
+    .hero__bg-img {
+      background-image: image($hero-contact-bg-img);
+      // background-size: 100% auto;
+    }
+  }
+
+  // hero for about page
+  &.hero--about {
+    .hero__bg-img {
+      background-image: image($hero-about-bg-img);
+    }
+  }
+
+  &.hero--privacy-policy {
+    min-height: 50vh;
+    .hero__bg-img {
+      background-image: image($hero-page-bg-img);
+    }
+  }
+
+  &.hero-404 {
+    min-height: 100vh;
+
+    .hero__bg-img {
+      background-image: image($hero-404-bg-img);
+    }
+  }
+}
+
+// media queries
+
+//
+@mixin hero-xs {
+  //
+}
+
+//
+@mixin hero-sm {
+  .hero {
+    &.hero--front {
+      min-height: 70vh;
+    }
+  }
+}
+
+//
+@mixin hero-md {
+  .hero {
+    //
+  }
+}
+
+//
+@mixin hero-lg {
+  .hero {
+    max-height: 70vh;
+    padding-top: $hero-padding-top-md;
+
+    &.hero--front {
+      min-height: 80vh;
+      max-height: 80vh;
+    }
+
+    &.hero--contact {
+      height: auto;
+    }
+  }
+}
+
+//
+@mixin hero-xl {
+}
+
+//
+@mixin hero-portrait {
+  //
+}
+
+//
+@mixin hero-landscape {
+  //
+}

@@ -1,0 +1,82 @@
+{% set expanded = 'lg' %}
+
+<footer id="footer" class="footer text-white-70 0bg-color-6 bg-tertiary pt-5">
+
+  <section id="footer-body" class="pb-{{expanded}}-5">
+    <div class="container">
+      <div class="row">
+
+        {# logo #}
+        <section class="col-{{ expanded }}-3 mr-{{ expanded }}-6 p-0 px-5 px-sm-7 px-md-9 px-{{expanded}}-0">
+          <img class="img-fluid d-block mx-auto opacity-70" src="{{ footer.logo }}" alt="">
+        </section>
+
+        {# info #}
+        <section class="col-{{ expanded }} pt-4 pt-{{ expanded }}-0 text-center text-{{expanded}}-left">
+
+          <div>
+            {{ entity.full_title }}
+            <br>
+            {{ entity.owner }}
+          </div>
+
+          <div class="mt-2">
+            <a href="{{ entity.phone | phone_link }}">{{ entity.phone | us_phone('(') }}</a>
+            <br>
+            <a href="mailto:{{ entity.email }}">{{ entity.email }}</a>
+          </div>
+        </section>
+
+        {# links #}
+        <section class="col-{{ expanded }} pt-4 pt-{{ expanded }}-0 text-center">
+
+          {% for slug, link in footer.links %}
+            <a href="{{ slug | url }}" class="d-block">{{ link }}</a>
+          {% endfor %}
+
+        </section>
+
+        {# social media #}
+        <section class="col-{{ expanded }} text-center pt-4 pt-{{ expanded }}-0">
+
+          <p class="h5">Connect On Social Media</p>
+
+          <div class="link-no-decor sm-icons text-color-2-70">
+
+            {% for platform, config in footer.social_media %}
+              <a href="{{ config.url }}" title="{{ config.name }}" class="sm-link mx-1">
+                <i class="fab {{ config.icon }}"></i>
+              </a>
+            {% endfor %}
+
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+  </section>
+
+  {# copyright #}
+  <section id="footer-footer" class="text-left mt-3 py-2">
+    <div class="container text-center text-lg-left">
+      <small class="h6 d-block mx-auto font-weight-normal opacity-100">
+
+        <span class="d-block d-md-inline">
+          &copy;
+          {{ 'now' | date('Y') }}
+          {{ entity.full_title }}
+        </span>
+
+        <span class="d-none d-md-inline">{{ separator(2) }}</span>
+
+        <span class="d-block d-md-inline pt-2 pt-md-0">
+          <a href="{{ developer.link }}">Design by
+            {{ developer.name }}</a>
+        </span>
+
+      </small>
+    </div>
+  </section>
+
+</footer>

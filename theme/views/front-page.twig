@@ -1,0 +1,10 @@
+{% extends "base.twig" %}
+{% from "modules/content.twig" import pageIntro %}
+{% import "modules/icons.twig" as icons %}
+
+{% set includes = "includes/front-page/" %}
+{% set sections = includes ~ "section--" %}
+
+{% block header %}
+  {{ include(includes ~ 'hero.twig') }}
+{% endblock %}

@@ -1,0 +1,19 @@
+{
+  "bootstrap": "vendor/autoload.php",
+  "path": "tests/benchmarks",
+  "progress": "dots",
+  "retry_threshold": 5,
+  "reports": {
+    "my_report": {
+      "extends": "aggregate",
+      "exclude": ["benchmark"]
+    }
+  },
+  "outputs": {
+    "my_output": {
+      "extends": "html",
+      "file": "my_report.html",
+      "title": "Hello World"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+// ########## FONT AWESOME OVERRIDES, ADD-ONS, AND EXTENTIONS ##########
+
+// Extend Font-Awesome to allow text to be inserted within tag the icon is
+// applied to and inherit the font family of its parent. Basically apply the
+// exact CSS rules of the default fa* declaration but only to the :before
+.far-wtext::before {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 400;
+}
+
+.fas-wtext::before {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+}
+
+.fab-wtext,
+.fal-wtext,
+.far-wtext,
+.fas-wtext {
+  &::before {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+  }
+}

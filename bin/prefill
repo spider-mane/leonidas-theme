@@ -1,0 +1,342 @@
+#!/usr/bin/env php
+<?php
+
+define('ROOT_DIRECTORY', dirname(__DIR__, 1));
+define('PREFILL_DIRECTORY', ROOT_DIRECTORY . '/__prefill__');
+
+################################################################################
+# Config
+################################################################################
+
+$root = ROOT_DIRECTORY;
+$prefill = PREFILL_DIRECTORY;
+
+// allow defaults to be passed to script for testing
+$authorName = $authorName ?? trim(shell_exec('git config user.name'));
+$authorEmail = $authorEmail ?? trim(shell_exec('git config user.email'));
+$themeSlug = $themeSlug ?? strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', basename($root)));;
+$themeName = $themeName ?? ucwords(str_replace(['-', '_'], ' ', basename($root)));
+
+$authorGithub = $authorGithub ?? '';
+$themePrefix = $themePrefix ?? '';
+$themeDescription = $themeDescription ?? '';
+$themeVersion = $themeVersion ?? '0.1.0';
+$psr4Namespace = $psr4Namespace ?? '';
+
+$fields = [
+  'author_name' => ['Your name', '', $authorName],
+  'author_email' => ['Your email address', '', $authorEmail],
+  'author_github_username' => ['Your Github username', '<username> in https://github.com/username', $authorGithub],
+  'author_website' => ['Your website', '', 'https://github.com/{author_github_username}'],
+
+  'vendor_name' => ['Vendor name', '', '{author_github_username}'],
+  'vendor_github' => ['Vendor Github username', '<username> in https://github.com/username', '{vendor_name}'],
+  'vendor_website' => ['Vendor website', '', 'https://github.com/{vendor_name}'],
+
+  'theme_name' => ['Plugin name', '', $themeName],
+  'theme_slug' => ['Plugin slug (textdomain)', '', $themeSlug],
+  'theme_prefix' => ['Plugin prefix', 'Abbreviated shorthand ideally 3-5 characters', $themePrefix],
+  'theme_version' => ['Plugin version', '', $themeVersion],
+  'theme_website' => ['Plugin website', '', 'https://github.com/{vendor_github}/{theme_slug}'],
+  'theme_description' => ['Brief description of theme', '', $themeDescription],
+
+  'psr4_namespace' => ['PSR-4 namespace', 'Vendor\\Plugin', $psr4Namespace],
+];
+
+$replacements = [
+  // code
+  ':vendor_name\\\\:theme_name\\\\' => function ($values) {
+    return str_replace('\\', '\\\\', $values['psr4_namespace']) . '\\\\';
+  },
+  'PseudoVendor\\\\PseudoPlugin\\\\' => function ($values) {
+    return str_replace('\\', '\\\\', $values['psr4_namespace']) . '\\\\';
+  },
+  'PseudoVendor\\PseudoPlugin' => function ($values) {
+    return $values['psr4_namespace'];
+  },
+  'PseudoPlugin' => function ($values) {
+    return str_replace(['-', '_'], '', str_replace(['_', '-', ' '], '', ucwords($values['theme_name'])));
+  },
+  'PseudoVersion' => function ($values) {
+    return str_replace('.', '_', $values['theme_version']);
+  },
+  'PSEUDO_CONSTANT' => function ($values) {
+    return str_replace('-', '_', strtoupper($values['theme_slug']));
+  },
+
+  // data
+  ':theme_name' => function ($values) {
+    return $values['theme_name'];
+  },
+  'Pseudo Plugin' => function ($values) {
+    return $values['theme_name'];
+  },
+  ':theme_slug' => function ($values) {
+    return $values['theme_slug'];
+  },
+  'pseudo-theme' => function ($values) {
+    return $values['theme_slug'];
+  },
+  ':theme_prefix' => function ($values) {
+    return $values['theme_prefix'];
+  },
+  ':theme_version' => function ($values) {
+    return $values['theme_version'];
+  },
+  ':theme_website' => function ($values) {
+    return $values['theme_website'];
+  },
+  ':theme_description' => function ($values) {
+    return $values['theme_description'];
+  },
+  ':theme_author' => function ($values) {
+    return $values['author_name'];
+  },
+  ':author_username' => function ($values) {
+    return $values['author_github_username'];
+  },
+  ':author_website' => function ($values) {
+    return $values['author_website'];
+  },
+  ':author_email' => function ($values) {
+    return $values['author_email'];
+  },
+  ':vendor_name' => function ($values) {
+    return $values['vendor_name'];
+  },
+  ':vendor_github' => function ($values) {
+    return $values['vendor_github'];
+  },
+  ':system_year' => function () {
+    return date('Y');
+  }
+];
+
+$files = array_merge(
+  // misc boilerplate
+  glob($prefill . '/*'),
+  [
+    $root . '/.env.example',
+    $root . '/phpcs.xml.dist',
+    $root . '/wp-cli.yml',
+  ],
+
+  // php boilerplate
+  glob($root . '/boot/*.php'),
+  glob($root . '/boot/development/*.php'),
+  glob($root . '/config/*.php'),
+  glob($root . '/config/development/*.php'),
+  glob($root . '/src/*.php'),
+  glob($root . '/src/**/*.php'),
+  glob($root . '/src/**/**/*.php'),
+  glob($root . '/tests/*.php'),
+  glob($root . '/tests/**/*.php'),
+  glob($root . '/tests/**/**/*.php'),
+  [
+    $root . '/theme.php',
+  ]
+
+  // js boilerplate
+
+  // css boilerplate
+);
+
+// files whose output target is not in the root directory
+$locate = [
+  'package.json' => '/assets'
+];
+
+// files where user input needs to be further refined
+$filter = [
+  $root . '/config/theme.php' => function ($values) {
+    $values['theme_description'] = addslashes($values['theme_description']);
+    return $values;
+  }
+];
+
+// json files whose contents should be merged with a functional counterpart
+$mergeJsonData = [
+  'composer.json' => function (array $old, array $new): array {
+    $composer = array_replace_recursive($old, $new);
+    $composer['authors'] = $new['authors'];
+    $composer['keywords'] = $new['keywords'];
+    $composer['autoload']['psr-4'] = $new['autoload']['psr-4'];
+    unset(
+      $composer['scripts']['post-create-project-cmd'],
+      $composer['scripts']['fill'],
+    );
+    return $composer;
+  },
+  'package.json' => function (array $old, array $new): array {
+    $package = array_replace_recursive($old, $new);
+    return $package;
+  }
+];
+
+// files to rename
+$rename = [
+  'src/PseudoPlugin.php' => function ($values) use ($replacements) {
+    return ($replacements['PseudoPlugin'])($values) . '.php';
+  },
+  'src/Activation/vPseudoVersion.php' => function ($values) use ($replacements) {
+    return 'v' . ($replacements['PseudoVersion'])($values) . '.php';
+  },
+  '.example.gitattributes' => function () {
+    return '.gitattributes';
+  },
+  'assets/.example.gitattributes' => function () {
+    return '.gitattributes';
+  },
+];
+
+// files to delete
+$delete = [
+  'bin/composer-prefill',
+  'bin/testprefill',
+  'bin/testproject',
+  'bin/.gitattributes',
+  'prefill',
+];
+
+################################################################################
+# Process
+################################################################################
+
+define('COL_DESCRIPTION', 0);
+define('COL_HELP', 1);
+define('COL_DEFAULT', 2);
+
+$root = ROOT_DIRECTORY;
+$prefill = PREFILL_DIRECTORY;
+$consent = 'Modify files with these values and create new git repository?';
+
+$modify = 'n';
+do {
+  if ($modify == 'q') {
+    exit;
+  }
+
+  $values = [];
+
+  echo "----------------------------------------------------------------------\n";
+  echo "Please provide the following information:\n";
+  echo "----------------------------------------------------------------------\n";
+  foreach ($fields as $key => $field) {
+    $default = isset($field[COL_DEFAULT]) ? interpolate($field[COL_DEFAULT], $values) : '';
+    $prompt = sprintf(
+      '%s%s%s: ',
+      $field[COL_DESCRIPTION],
+      $field[COL_HELP] ? ' (' . $field[COL_HELP] . ')' : '',
+      $field[COL_DEFAULT] !== '' ? ' [' . $default . ']' : ''
+    );
+    $values[$key] = read_from_console($prompt);
+    if (empty($values[$key])) {
+      $values[$key] = $default;
+    }
+  }
+  echo "\n";
+
+  echo "----------------------------------------------------------------------\n";
+  echo "Please check that everything is correct:\n";
+  echo "----------------------------------------------------------------------\n";
+  foreach ($fields as $key => $field) {
+    echo $field[COL_DESCRIPTION] . ": $values[$key]\n";
+  }
+  echo "\n";
+} while (($modify = strtolower(read_from_console($consent . ' [y/N/q] '))) != 'y');
+echo "\n";
+
+// delete files
+foreach ($delete as $file) {
+  shell_exec("rm -f $root/$file");
+}
+// update and relocate boilerplate
+foreach ($files as $file) {
+  $contents = file_get_contents($file);
+  $filtered = isset($filter[$file]) ? ($filter[$file])($values) : $values;
+  foreach ($replacements as $str => $update) {
+    $contents = str_replace($str, $update($filtered), $contents);
+  }
+
+  // resolve absolute path
+  $base = basename($file);
+  $path = $locate[$base] ?? str_replace([$prefill, $root, $base], '', $file);
+  $file = cleanpath("$root/$path/$base");
+
+  // merge json files
+  if (isset($mergeJsonData[$base])) {
+    $merged = ($mergeJsonData[$base])(
+      json_decode(file_get_contents($file), true),
+      json_decode($contents, true)
+    );
+    $contents = encode_format_json($merged);
+  }
+
+  file_put_contents($file, $contents);
+}
+// rename files
+foreach ($rename as $file => $renameFile) {
+  $file = realpath("$root/$file");
+  rename($file, dirname($file) . '/' . $renameFile($values));
+}
+
+// delete prefill files and add .gitkeep if bin is left empty
+shell_exec('rm ' . __FILE__ . " && rm -rf $prefill");
+$bin = array_filter(scandir("$root/bin"), function ($file) {
+  return !in_array($file, ['.', '..']);
+});
+if (empty($bin)) {
+  touch("$root/bin/.gitkeep");
+}
+
+// refresh git repository
+shell_exec("rm -rf -f $root/.git && git init $root");
+
+// refresh composer autoload
+shell_exec("composer dump-autoload -d $root");
+
+echo "Done! Thanks for using Leonidas!\n";
+
+################################################################################
+# Functions
+################################################################################
+
+function read_from_console($prompt)
+{
+  if (function_exists('readline')) {
+    $line = trim(readline($prompt));
+    if (!empty($line)) {
+      readline_add_history($line);
+    }
+  } else {
+    echo $prompt;
+    $line = trim(fgets(STDIN));
+  }
+  return $line;
+}
+
+function interpolate($text, $values)
+{
+  if (!preg_match_all('/\{(\w+)\}/', $text, $m)) {
+    return $text;
+  }
+  foreach ($m[0] as $k => $str) {
+    $f = $m[1][$k];
+    $text = str_replace($str, $values[$f], $text);
+  }
+  return $text;
+}
+
+function encode_format_json(array $json): string
+{
+  $flags = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES;
+  $json = json_encode($json, $flags);
+  $default = '    ';
+  $preferred = '  ';
+  return str_replace($default, $preferred, $json) . "\n";
+}
+
+function cleanpath(string $path): string
+{
+  return preg_replace('/\/+/', DIRECTORY_SEPARATOR, $path);
+}
