@@ -100,7 +100,7 @@
       "@inspect",
       "@test"
     ],
-    "setup": [
+    "wordpress": [
       "@wp core download",
       "@link"
     ],
@@ -109,10 +109,8 @@
       "@wp db clean --yes",
       "@wp core install"
     ],
-    "post-update-cmd": [
-      "@setup"
-    ],
     "post-create-project-cmd": [
+      "@wordpress",
       "bin/composer-prefill"
     ]
   },
