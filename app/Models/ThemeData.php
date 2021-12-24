@@ -1,6 +1,6 @@
 <?php
 
-namespace Theme\Models;
+namespace PseudoVendor\PseudoTheme\Models;
 
 class ThemeData
 {

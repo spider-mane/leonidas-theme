@@ -13,7 +13,7 @@ core download:
 
 core install:
   url: http://pseudo-theme.test
-  title: Pseudo Plugin
+  title: Pseudo Theme
   admin_user: admin
   admin_password: password
   admin_email: user@example.com

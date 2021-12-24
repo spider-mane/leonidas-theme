@@ -14,8 +14,17 @@ return [
      * reusable between projects.
      */
     'modules' => [
-        PseudoVendor\PseudoPlugin\Modules\AdminAssets::class,
-        PseudoVendor\PseudoPlugin\Modules\Setup::class,
+
+        // Leonidas modules
+        Leonidas\Framework\Theme\Modules\TemplateRouter::class,
+        // Leonidas\Framework\Theme\Modules\TimberEnvironment::class,
+        // Leonidas\Framework\Theme\Modules\TimberContext::class,
+
+        // Theme modules
+        PseudoVendor\PseudoTheme\Modules\AdminAssets::class,
+        PseudoVendor\PseudoTheme\Modules\TimberEnvironment::class,
+
+        // Third-party modules
     ],
 
     /**

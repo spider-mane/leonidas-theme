@@ -1,13 +1,13 @@
 <?php
 
-namespace PseudoVendor\PseudoPlugin;
+namespace PseudoVendor\PseudoTheme;
 
 use Leonidas\Contracts\Extension\WpExtensionInterface;
 use Leonidas\Enum\ExtensionType;
-use Leonidas\Framework\Exceptions\InvalidCallToPluginMethodException;
+use Leonidas\Framework\Exceptions\InvalidCallToThemeMethodException;
 use Leonidas\Framework\ModuleInitializer;
 use Leonidas\Framework\WpExtension;
-use PseudoVendor\PseudoPlugin\Facades\_Facade;
+use PseudoVendor\PseudoTheme\Facades\_Facade;
 use Psr\Container\ContainerInterface;
 
 final class Launcher
@@ -15,7 +15,7 @@ final class Launcher
     /**
      * @var string
      */
-    private $base;
+    private $base = '';
 
     /**
      * @var string
@@ -81,7 +81,7 @@ final class Launcher
             ->bindContainerToFacades()
             ->initializeModules()
             ->requestAssistance()
-            ->launchPseudoPlugin();
+            ->launchPseudoTheme();
     }
 
     private function bindContainerToFacades(): Launcher
@@ -110,9 +110,9 @@ final class Launcher
         return $this;
     }
 
-    private function launchPseudoPlugin(): Launcher
+    private function launchPseudoTheme(): Launcher
     {
-        PseudoPlugin::launch($this->extension);
+        PseudoTheme::launch($this->extension);
 
         return $this;
     }
@@ -139,7 +139,7 @@ final class Launcher
 
     private static function throwAlreadyLoadedException(callable $method): void
     {
-        throw new InvalidCallToPluginMethodException(
+        throw new InvalidCallToThemeMethodException(
             self::$instance->extension->getName(),
             $method
         );

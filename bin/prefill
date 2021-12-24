@@ -33,14 +33,14 @@ $fields = [
   'vendor_github' => ['Vendor Github username', '<username> in https://github.com/username', '{vendor_name}'],
   'vendor_website' => ['Vendor website', '', 'https://github.com/{vendor_name}'],
 
-  'theme_name' => ['Plugin name', '', $themeName],
-  'theme_slug' => ['Plugin slug (textdomain)', '', $themeSlug],
-  'theme_prefix' => ['Plugin prefix', 'Abbreviated shorthand ideally 3-5 characters', $themePrefix],
-  'theme_version' => ['Plugin version', '', $themeVersion],
-  'theme_website' => ['Plugin website', '', 'https://github.com/{vendor_github}/{theme_slug}'],
+  'theme_name' => ['Theme name', '', $themeName],
+  'theme_slug' => ['Theme slug (textdomain)', '', $themeSlug],
+  'theme_prefix' => ['Theme prefix', 'Abbreviated shorthand ideally 3-5 characters', $themePrefix],
+  'theme_version' => ['Theme version', '', $themeVersion],
+  'theme_website' => ['Theme website', '', 'https://github.com/{vendor_github}/{theme_slug}'],
   'theme_description' => ['Brief description of theme', '', $themeDescription],
 
-  'psr4_namespace' => ['PSR-4 namespace', 'Vendor\\Plugin', $psr4Namespace],
+  'psr4_namespace' => ['PSR-4 namespace', 'Vendor\\Theme', $psr4Namespace],
 ];
 
 $replacements = [
@@ -48,13 +48,13 @@ $replacements = [
   ':vendor_name\\\\:theme_name\\\\' => function ($values) {
     return str_replace('\\', '\\\\', $values['psr4_namespace']) . '\\\\';
   },
-  'PseudoVendor\\\\PseudoPlugin\\\\' => function ($values) {
+  'PseudoVendor\\\\PseudoTheme\\\\' => function ($values) {
     return str_replace('\\', '\\\\', $values['psr4_namespace']) . '\\\\';
   },
-  'PseudoVendor\\PseudoPlugin' => function ($values) {
+  'PseudoVendor\\PseudoTheme' => function ($values) {
     return $values['psr4_namespace'];
   },
-  'PseudoPlugin' => function ($values) {
+  'PseudoTheme' => function ($values) {
     return str_replace(['-', '_'], '', str_replace(['_', '-', ' '], '', ucwords($values['theme_name'])));
   },
   'PseudoVersion' => function ($values) {
@@ -68,7 +68,7 @@ $replacements = [
   ':theme_name' => function ($values) {
     return $values['theme_name'];
   },
-  'Pseudo Plugin' => function ($values) {
+  'Pseudo Theme' => function ($values) {
     return $values['theme_name'];
   },
   ':theme_slug' => function ($values) {
@@ -175,8 +175,8 @@ $mergeJsonData = [
 
 // files to rename
 $rename = [
-  'src/PseudoPlugin.php' => function ($values) use ($replacements) {
-    return ($replacements['PseudoPlugin'])($values) . '.php';
+  'src/PseudoTheme.php' => function ($values) use ($replacements) {
+    return ($replacements['PseudoTheme'])($values) . '.php';
   },
   'src/Activation/vPseudoVersion.php' => function ($values) use ($replacements) {
     return 'v' . ($replacements['PseudoVersion'])($values) . '.php';

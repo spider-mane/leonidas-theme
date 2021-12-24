@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `Leonidas Plugin Starter` will be documented in this file.
+All notable changes to `Leonidas Theme Starter` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 

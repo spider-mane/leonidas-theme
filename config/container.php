@@ -9,7 +9,7 @@ return [
      * Selection
      *==========================================================================
      *
-     * Leonidas Plugin is a di-container agnostic framework.
+     * Leonidas Theme is a di-container agnostic framework.
      *
      */
     'selection' => 'league',
@@ -57,7 +57,7 @@ return [
      *
      */
     'providers' => [
-        PseudoVendor\PseudoPlugin\Providers\League\PhoneNumberUtilServiceProvider::class
+        PseudoVendor\PseudoTheme\Providers\League\PhoneNumberUtilServiceProvider::class
     ],
 
     /**

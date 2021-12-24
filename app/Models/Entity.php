@@ -1,8 +1,8 @@
 <?php
 
-namespace Theme\Models;
+namespace PseudoVendor\PseudoTheme\Models;
 
-use Theme\Models\SocialMedia;
+use PseudoVendor\PseudoTheme\Models\SocialMedia;
 
 class Entity
 {

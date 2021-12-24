@@ -1,11 +1,11 @@
 <?php
 
-namespace PseudoVendor\PseudoPlugin;
+namespace PseudoVendor\PseudoTheme;
 
 use Leonidas\Contracts\Extension\WpExtensionInterface;
-use Leonidas\Framework\Exceptions\InvalidCallToPluginMethodException;
+use Leonidas\Framework\Exceptions\InvalidCallToThemeMethodException;
 
-final class PseudoPlugin
+final class PseudoTheme
 {
     /**
      * @var WpExtensionInterface
@@ -13,13 +13,18 @@ final class PseudoPlugin
     protected $base;
 
     /**
-     * @var PseudoPlugin
+     * @var PseudoTheme
      */
     private static $instance;
 
     private function __construct(WpExtensionInterface $base)
     {
         $this->base = $base;
+    }
+
+    public static function getInstance(): WpExtensionInterface
+    {
+        return static::$instance->base;
     }
 
     public static function launch(WpExtensionInterface $base): void
@@ -43,7 +48,7 @@ final class PseudoPlugin
 
     private static function throwAlreadyLoadedException(callable $method): void
     {
-        throw new InvalidCallToPluginMethodException(
+        throw new InvalidCallToThemeMethodException(
             self::$instance->base->getName(),
             $method
         );

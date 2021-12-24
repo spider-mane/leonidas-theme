@@ -1,81 +1,165 @@
 <?php
 
-use Theme\Asset;
-use WebTheory\GuctilityBelt\Phone;
+namespace PseudoVendor\PseudoTheme\Asset;
+
+use PseudoVendor\PseudoTheme\Asset;
+use PseudoVendor\PseudoTheme\Facades\Phone;
 use WebTheory\Html\Attributes\Classlist;
 use WebTheory\Saveyour\Factories\FormFieldFactory;
 use joshtronic\LoremIpsum;
+use Noodlehaus\Parser\Php;
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Filters
-    |--------------------------------------------------------------------------
-    |
-    | Specify filters to add to twig when loaded.
-    |
-    */
+    /**
+     *==========================================================================
+     * Paths
+     *==========================================================================
+     *
+     *
+     */
+    'paths' => [
+
+        '/theme/views'
+    ],
+
+
+    /**
+     *==========================================================================
+     * Filters
+     *==========================================================================
+     *
+     *
+     */
     'filters' => [
 
         'url' => 'home_url',
         'us_phone' => [Phone::class, 'formatUs'],
-        'phone_link' => [Phone::class, 'getPhoneLink'],
+        'phone_link' => [Phone::class, 'getHref'],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Functions
-    |--------------------------------------------------------------------------
-    |
-    | Specify functions to add to twig when loaded.
-    |
-    */
+
+    /**
+     *==========================================================================
+     * Functions
+     *==========================================================================
+     *
+     *
+     */
     'functions' => [
 
         'format_us_phone' => 'phone_format_us',
+
         'image' => [Asset::class, 'image'],
+
         'video' => [Asset::class, 'video'],
+
         'audio' => [Asset::class, 'audio'],
+
         'logo' => [Asset::class, 'logo'],
+
         'icon' => [Asset::class, 'icon'],
 
-        'lorem' => function (int $count, string $what = 'words', bool $tags = false) {
+        'lorem' => static function (int $count, string $what = 'words', bool $tags = false) {
             return (new LoremIpsum)->$what($count, $tags, false);
         },
 
-        'spaces' => function (int $spaces) {
+        'spaces' => static function (int $spaces) {
             return str_repeat('&nbsp;', $spaces);
         },
 
-        'separator' => function (int $spaces) {
+        'separator' => static function (int $spaces) {
             $spaces = str_repeat('&nbsp;', $spaces);
 
             return $spaces . '|' . $spaces;
         },
 
-        'class' => function () {
+        'class' => static function () {
             return new Classlist();
         },
 
-        'field' => function (string $type, array $args) {
+        'field' => static function (string $type, array $args) {
             return (new FormFieldFactory)->create($type, $args);
         },
 
-        'dump' => function (...$values) {
+        'dump' => static function (...$values) {
             function_exists('dump') ? dump(...$values) : var_dump(...$values);
         },
 
-        'dd' => function (...$values) {
+        'dd' => static function (...$values) {
             function_exists('dd') ? dd(...$values) : exit(var_dump(...$values));
         },
     ],
 
-    'globals' => [],
 
-    'tests' => [],
+    /**
+     *==========================================================================
+     * Globals
+     *==========================================================================
+     *
+     *
+     */
+    'globals' => [
 
-    'components' => [],
+        //
+    ],
 
-    'extensions' => [],
+
+    /**
+     *==========================================================================
+     * Tests
+     *==========================================================================
+     *
+     *
+     */
+    'tests' => [
+
+        //
+    ],
+
+
+    /**
+     *==========================================================================
+     * Components
+     *==========================================================================
+     *
+     *
+     */
+    'components' => [
+
+        //
+    ],
+
+
+    /**
+     *==========================================================================
+     * Extensions
+     *==========================================================================
+     *
+     *
+     */
+    'extensions' => [
+
+        //
+    ],
+
+
+    /**
+     *==========================================================================
+     * Default Context
+     *==========================================================================
+     *
+     *
+     */
+    'context' => '/theme/context.php',
+
+
+    /**
+     *==========================================================================
+     * Cache
+     *==========================================================================
+     *
+     *
+     */
+    'cache' => [],
 ];

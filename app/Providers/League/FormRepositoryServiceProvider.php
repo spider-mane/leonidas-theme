@@ -1,6 +1,6 @@
 <?php
 
-namespace PseudoVendor\PseudoPlugin\Providers;
+namespace PseudoVendor\PseudoTheme\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Leonidas\Framework\App\Forms\FormRepository;

@@ -1,6 +1,6 @@
 <?php
 
-namespace PseudoVendor\PseudoPlugin\Facades;
+namespace PseudoVendor\PseudoTheme\Facades;
 
 use libphonenumber\NumberFormat;
 use libphonenumber\PhoneNumberFormat;

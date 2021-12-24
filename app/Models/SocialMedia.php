@@ -1,53 +1,37 @@
 <?php
 
-namespace Theme\Models;
+namespace PseudoVendor\PseudoTheme\Models;
 
-use WebTheory\GuctilityBelt\ContextView;
+use WebTheory\Context\Selector;
 
 class SocialMedia
 {
     /**
-     * Instance of context view object populated with socialmedia data
+     * @var Selector
      */
-    protected static $contextView;
+    protected static $selector;
 
-    /**
-     * Retrieves the social media data
-     *
-     * Pass null to retrieve the ContextView instance
-     *
-     * @return mixed|ContextView
-     */
     public static function for(string $context = '')
     {
-        if (!isset(static::$contextView)) {
-            static::setContextView();
+        if (!isset(static::$selector)) {
+            static::setSelector();
         }
-
-        /** @var ContextView $socialMedia */
-        $socialMedia = static::$contextView;
 
         if (empty($context)) {
-            return $socialMedia->getItems();
+            return static::$selector->getItems();
         }
 
-        return $socialMedia->getContextItems($context);
+        return static::$selector->getContextItems($context);
     }
 
-    /**
-     *
-     */
-    protected static function setContextView()
+    protected static function setSelector()
     {
         $accounts = static::getAccounts();
         $contexts = ThemeData::get('social_media.contexts');
 
-        static::$contextView = new ContextView($accounts, $contexts);
+        static::$selector = new Selector($accounts, $contexts);
     }
 
-    /**
-     *
-     */
     public static function getLink(string $account)
     {
         $format = ThemeData::get('entity.option_key_formats.social_media');
@@ -55,9 +39,6 @@ class SocialMedia
         return get_option(sprintf($format, $account), null);
     }
 
-    /**
-     *
-     */
     public static function getAccounts()
     {
         $accounts = ThemeData::get('social_media.accounts');

@@ -1,6 +1,6 @@
 <?php
 
-namespace PseudoVendor\PseudoPlugin\Providers\League;
+namespace PseudoVendor\PseudoTheme\Providers\League;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use libphonenumber\PhoneNumberUtil;

@@ -11,15 +11,16 @@ $config = require_once __DIR__ . '/setup.php';
  * WordPress debug settings
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress
+ * @link http://github.com/spider-mane/wpdmc
  */
-define('WP_DEBUG_MODE_CHECKS', false); // used by webtheory/wpdmc
-define('WP_DEBUG', $config->get('debug.enable'));
-define('WP_DEBUG_DISPLAY', $config->get('debug.display'));
-define('WP_DEBUG_LOG', $config->get('debug.log'));
-define('WP_DISABLE_FATAL_ERROR_HANDLER', true);
-define('SCRIPT_DEBUG', true);
-define('WP_CACHE', false);
-define('SAVEQUERIES', true);
+define('WP_DEBUG',                       $config->get('debug.enable', true));
+define('WP_DEBUG_DISPLAY',               $config->get('debug.display', true));
+define('WP_DEBUG_LOG',                   $config->get('debug.log', true));
+define('SCRIPT_DEBUG',                   $config->get('debug.wp.scripts', true));
+define('WP_CACHE',                       $config->get('debug.wp.cache', false));
+define('SAVEQUERIES',                    $config->get('debug.wp.queries', true));
+define('WP_DISABLE_FATAL_ERROR_HANDLER', $config->get('debug.wp.handler', true));
+define('WP_DEBUG_MODE_CHECKS',           $config->get('debug.wp.checks', false));
 
 /**
  * Other helpful settings for use in development

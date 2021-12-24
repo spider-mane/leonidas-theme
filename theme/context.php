@@ -1,9 +1,11 @@
 <?php
 
-use Theme\Asset;
-use Theme\Models\Entity;
-use Theme\Models\SocialMedia;
-use Theme\Models\ThemeData;
+namespace PseudoVendor\PseudoTheme;
+
+use PseudoVendor\PseudoTheme\Models\Entity;
+use PseudoVendor\PseudoTheme\Models\SocialMedia;
+use PseudoVendor\PseudoTheme\Models\ThemeData;
+use PseudoVendor\PseudoTheme\Asset;
 use WebTheory\Html\Attributes\Classlist;
 
 /*

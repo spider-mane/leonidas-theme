@@ -1,6 +1,6 @@
 <?php
 
-namespace Theme;
+namespace PseudoVendor\PseudoTheme;
 
 /**
  * @method static string audio(string $file)

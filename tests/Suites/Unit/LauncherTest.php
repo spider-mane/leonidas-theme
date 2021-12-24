@@ -1,6 +1,6 @@
 <?php
 
-use PseudoVendor\PseudoPlugin\Launcher;
+use PseudoVendor\PseudoTheme\Launcher;
 use Tests\Support\TestCase;
 
 class LauncherTest extends TestCase

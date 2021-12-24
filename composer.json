@@ -23,7 +23,7 @@
     }
   ],
   "require": {
-    "php": "^7.4",
+    "php": "^7.4 || ^8.0",
     "giggsey/libphonenumber-for-php": "^8.12",
     "guzzlehttp/psr7": "^1.6",
     "league/container": "^4.2",
@@ -31,14 +31,15 @@
     "symfony/asset": "^4.3",
     "symfony/polyfill-php80": "^1.23",
     "symfony/polyfill-php81": "^1.23",
-    "timber/timber": "@stable",
+    "timber/timber": "^1.19",
     "webtheory/config": "@stable",
+    "webtheory/context": "@stable",
     "webtheory/facade": "@stable",
     "webtheory/html": "@stable",
     "webtheory/saveyour": "@stable"
   },
   "require-dev": {
-    "composer/installers": "@stable",
+    "composer/installers": "^1.0 || ^2.0",
     "fakerphp/faker": "^1.17",
     "filp/whoops": "^2.5",
     "friendsofphp/php-cs-fixer": "^2.15",
@@ -69,7 +70,7 @@
   },
   "autoload": {
     "psr-4": {
-      "PseudoVendor\\PseudoPlugin\\": "src/"
+      "PseudoVendor\\PseudoTheme\\": "app/"
     }
   },
   "autoload-dev": {
@@ -108,9 +109,8 @@
       "@wp db clean --yes",
       "@wp core install"
     ],
-    "post-root-package-install": [
-      "@wp core download",
-      "@link"
+    "post-update-cmd": [
+      "@setup"
     ],
     "post-create-project-cmd": [
       "bin/composer-prefill"
@@ -118,11 +118,11 @@
   },
   "extra": {
     "installer-paths": {
-      "wordpress/wp-content/themes/{$name}": [
-        "type:wordpress-theme"
+      "wordpress/wp-content/plugins/{$name}": [
+        "type:wordpress-plugin"
       ],
-      "wordpress/wp-content/mu-themes/{$name}/": [
-        "type:wordpress-mutheme"
+      "wordpress/wp-content/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
       ],
       "wordpress/wp-content/themes/{$name}/": [
         "type:wordpress-theme"

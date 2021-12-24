@@ -16,6 +16,9 @@ $config = $container
     ->addShared('config', new Config("$root/config"))
     ->getConcrete();
 
+# register data
+$container->addShared('data', fn () => new Config("$root/data"));
+
 # register services from config
 foreach ($config->get('container.services', []) as $service) {
 

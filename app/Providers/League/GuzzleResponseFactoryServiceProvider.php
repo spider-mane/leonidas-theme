@@ -1,6 +1,6 @@
 <?php
 
-namespace PseudoVendor\PseudoPlugin\Providers;
+namespace PseudoVendor\PseudoTheme\Providers;
 
 use Http\Factory\Guzzle\ResponseFactory;
 use League\Container\ServiceProvider\AbstractServiceProvider;

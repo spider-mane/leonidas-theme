@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="pseudo-theme">
-  <description>Coding standard for the Pseudo Plugin WordPress theme</description>
+  <description>Coding standard for the Pseudo Theme WordPress theme</description>
 
   <!-- File paths -->
   <file>./src</file>
