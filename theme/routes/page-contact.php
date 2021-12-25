@@ -3,7 +3,7 @@
 use PseudoVendor\PseudoTheme\Theme;
 
 /**
- * Render template
+ * Render page
  */
 Theme::render('contact.twig', [
     'form' => [

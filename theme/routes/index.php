@@ -3,6 +3,6 @@
 use PseudoVendor\PseudoTheme\Theme;
 
 /**
- * Render template
+ * Render page
  */
 Theme::render('index.twig', []);
