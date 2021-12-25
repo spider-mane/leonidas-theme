@@ -18,11 +18,7 @@ use PseudoVendor\PseudoTheme\Launcher;
 
 defined('ABSPATH') || exit;
 
-call_user_func(function () {
-    require __DIR__ . '/boot/init.php';
-
-    Launcher::init(
-        Theme::path(''),
-        Theme::url('')
-    );
-});
+Launcher::init(
+    Theme::path(),
+    Theme::url()
+);

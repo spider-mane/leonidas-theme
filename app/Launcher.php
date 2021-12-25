@@ -133,6 +133,8 @@ final class Launcher
 
     private static function reallyInit(string $path, string $url): void
     {
+        require $path . '/boot/init.php';
+
         self::$instance = new self($path, $url);
         self::$instance->reallyReallyInit();
     }
