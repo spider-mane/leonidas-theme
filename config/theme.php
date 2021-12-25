@@ -75,7 +75,7 @@ return [
      *
      * Directory where templates are located.
      */
-    'templates' => 'theme/routes',
+    'templates' => '/theme/routes',
 
     /**
      *==========================================================================
@@ -85,7 +85,7 @@ return [
      * The directory, relative to the root directory where theme assets are
      * located.
      */
-    'assets' => 'assets/dist/',
+    'assets' => '/theme/assets/dist',
 
     /**
      *==========================================================================

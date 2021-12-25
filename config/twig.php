@@ -82,13 +82,13 @@ return [
             return (new FormFieldFactory)->create($type, $args);
         },
 
-        'dump' => static function (...$values) {
-            function_exists('dump') ? dump(...$values) : var_dump(...$values);
-        },
+        // 'dump' => static function (...$values) {
+        //     function_exists('dump') ? dump(...$values) : var_dump(...$values);
+        // },
 
-        'dd' => static function (...$values) {
-            function_exists('dd') ? dd(...$values) : exit(var_dump(...$values));
-        },
+        // 'dd' => static function (...$values) {
+        //     function_exists('dd') ? dd(...$values) : exit(var_dump(...$values));
+        // },
     ],
 
 

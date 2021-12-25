@@ -1,29 +1,14 @@
 <?php
 
-use Timber\Timber;
+use PseudoVendor\PseudoTheme\PseudoTheme;
 
-/**
- * Get context
- */
-$global = Timber::context();
+PseudoTheme::render('contact.twig', [
 
-/**
- * Do things maybe
- */
-
-/**
- * Build context
- */
-$context = [
     'form' => [
         'method' => 'post',
         'action' => '',
         'security' => [],
         'fields' => [],
     ]
-];
 
-/**
- * Render template
- */
-Timber::render('contact.twig', $context + $global);
+]);

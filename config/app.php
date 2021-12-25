@@ -21,7 +21,7 @@ return [
         // Leonidas\Framework\Theme\Modules\TimberContext::class,
 
         // Theme modules
-        PseudoVendor\PseudoTheme\Modules\AdminAssets::class,
+        PseudoVendor\PseudoTheme\Modules\PublicAssets::class,
         PseudoVendor\PseudoTheme\Modules\TimberEnvironment::class,
 
         // Third-party modules

@@ -1,12 +1,9 @@
 <?php
 
-use Timber\Timber;
+use PseudoVendor\PseudoTheme\PseudoTheme;
 
-/**
- * Render template
- */
-Timber::render('front-page.twig', [
+PseudoTheme::render('front-page.twig', [
 
-    // context args here
+    // data
 
-] + Timber::context());
+]);

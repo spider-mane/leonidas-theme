@@ -1,22 +1,9 @@
 <?php
 
-use Timber\Timber;
+use PseudoVendor\PseudoTheme\PseudoTheme;
 
-/**
- * Get context
- */
-$global = Timber::context();
+PseudoTheme::render('blog-post.twig', [
 
-/**
- * Do things maybe
- */
+    // data
 
-/**
- * Build context
- */
-$context = [];
-
-/**
- * Render template
- */
-Timber::render('blog-post.twig', $context + $global);
+]);

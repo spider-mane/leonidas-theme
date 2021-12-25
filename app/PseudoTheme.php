@@ -4,6 +4,9 @@ namespace PseudoVendor\PseudoTheme;
 
 use Leonidas\Contracts\Extension\WpExtensionInterface;
 use Leonidas\Framework\Exceptions\InvalidCallToThemeMethodException;
+use Leonidas\Framework\Theme\Modules\TimberContext;
+use Timber\Loader;
+use Timber\Timber;
 
 final class PseudoTheme
 {
@@ -34,6 +37,20 @@ final class PseudoTheme
         } else {
             self::throwAlreadyLoadedException(__METHOD__);
         }
+    }
+
+    public static function render(
+        $filenames,
+        array $data = [],
+        $expires = false,
+        string $cacheMode = Loader::CACHE_USE_DEFAULT
+    ) {
+        Timber::render(
+            $filenames,
+            $data + Timber::context(),
+            $expires,
+            $cacheMode
+        );
     }
 
     private static function isLoaded(): bool
