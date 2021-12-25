@@ -2,8 +2,7 @@
 
 use PseudoVendor\PseudoTheme\PseudoTheme;
 
-PseudoTheme::render('archive.twig', [
-
-    // data
-
-]);
+/**
+ * Render template
+ */
+PseudoTheme::render('archive.twig', []);

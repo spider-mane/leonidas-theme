@@ -2,8 +2,7 @@
 
 use PseudoVendor\PseudoTheme\PseudoTheme;
 
-PseudoTheme::render('taxonomy.twig', [
-
-    // data
-
-]);
+/**
+ * Render template
+ */
+PseudoTheme::render('taxonomy.twig', []);

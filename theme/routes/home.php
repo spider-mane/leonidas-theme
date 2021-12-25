@@ -2,8 +2,7 @@
 
 use PseudoVendor\PseudoTheme\PseudoTheme;
 
-PseudoTheme::render('blog.twig', [
-
-    // data
-
-]);
+/**
+ * Render template
+ */
+PseudoTheme::render('blog.twig', []);

@@ -2,8 +2,7 @@
 
 use PseudoVendor\PseudoTheme\PseudoTheme;
 
-PseudoTheme::render('front-page.twig', [
-
-    // data
-
-]);
+/**
+ * Render template
+ */
+PseudoTheme::render('front-page.twig', []);
