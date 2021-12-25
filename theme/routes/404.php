@@ -1,8 +1,8 @@
 <?php
 
-use PseudoVendor\PseudoTheme\PseudoTheme;
+use PseudoVendor\PseudoTheme\Theme;
 
 /**
  * Render template
  */
-PseudoTheme::render('404.twig', []);
+Theme::render('404.twig', []);

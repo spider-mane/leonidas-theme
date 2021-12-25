@@ -1,8 +1,8 @@
 <?php
 
-use PseudoVendor\PseudoTheme\PseudoTheme;
+use PseudoVendor\PseudoTheme\Theme;
 
 /**
  * Render template
  */
-PseudoTheme::render('blog-post.twig', []);
+Theme::render('blog-post.twig', []);

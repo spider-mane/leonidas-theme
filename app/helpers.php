@@ -1,6 +1,6 @@
 <?php
 
-use PseudoVendor\PseudoTheme\PseudoTheme;
+use PseudoVendor\PseudoTheme\Theme;
 
 ################################################################################
 # Container based helpers
@@ -8,7 +8,7 @@ use PseudoVendor\PseudoTheme\PseudoTheme;
 
 function theme($get = null)
 {
-    $container = PseudoTheme::getInstance();
+    $container = Theme::getInstance();
 
     return isset($get) ? $container->get($get) : $container;
 }

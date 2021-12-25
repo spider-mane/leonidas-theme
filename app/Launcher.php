@@ -112,7 +112,7 @@ final class Launcher
 
     private function launchPseudoTheme(): Launcher
     {
-        PseudoTheme::launch($this->extension);
+        Theme::launch($this->extension);
 
         return $this;
     }

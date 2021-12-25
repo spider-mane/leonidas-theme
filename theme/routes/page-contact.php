@@ -1,11 +1,11 @@
 <?php
 
-use PseudoVendor\PseudoTheme\PseudoTheme;
+use PseudoVendor\PseudoTheme\Theme;
 
 /**
  * Render template
  */
-PseudoTheme::render('contact.twig', [
+Theme::render('contact.twig', [
     'form' => [
         'method' => 'post',
         'action' => '',

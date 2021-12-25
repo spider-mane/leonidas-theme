@@ -8,7 +8,7 @@ use Leonidas\Framework\Theme\Modules\TimberContext;
 use Timber\Loader;
 use Timber\Timber;
 
-final class PseudoTheme
+final class Theme
 {
     /**
      * @var WpExtensionInterface
@@ -16,7 +16,7 @@ final class PseudoTheme
     protected $base;
 
     /**
-     * @var PseudoTheme
+     * @var Theme
      */
     private static $instance;
 
