@@ -8,8 +8,10 @@ return [
      *==========================================================================
      *
      * Directory where templates as defined by wordpress are located.
+     *
      */
     'templates' => '/theme/routes',
+
 
     /**
      *==========================================================================
@@ -18,6 +20,7 @@ return [
      *
      * The directory, relative to the root directory where theme assets are
      * located.
+     *
      */
     'assets' => '/assets/dist/theme',
 

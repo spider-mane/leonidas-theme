@@ -20,7 +20,7 @@ return [
      */
     'paths' => [
 
-        '/theme/views'
+        '/views/theme'
     ],
 
 
