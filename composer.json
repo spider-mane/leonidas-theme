@@ -45,6 +45,7 @@
     "fakerphp/faker": "^1.17",
     "filp/whoops": "^2.5",
     "friendsofphp/php-cs-fixer": "^2.15",
+    "illuminate/collections": "^8.77",
     "joshtronic/php-loremipsum": "^1.0",
     "koodimonni/composer-dropin-installer": "^1.3",
     "leonidas/leonidas": "@stable",

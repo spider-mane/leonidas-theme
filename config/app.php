@@ -15,16 +15,14 @@ return [
      */
     'modules' => [
 
-        // Leonidas modules
+        # Leonidas modules
         Leonidas\Framework\Theme\Modules\TemplateRouter::class,
-        // Leonidas\Framework\Theme\Modules\TimberEnvironment::class,
-        // Leonidas\Framework\Theme\Modules\TimberContext::class,
 
-        // Theme modules
+        # Theme modules
         PseudoVendor\PseudoTheme\Modules\PublicAssets::class,
         PseudoVendor\PseudoTheme\Modules\TimberEnvironment::class,
 
-        // Third-party modules
+        # Third-party modules
     ],
 
     /**
