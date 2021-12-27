@@ -15,11 +15,6 @@ final class Launcher
     /**
      * @var string
      */
-    private $base = '';
-
-    /**
-     * @var string
-     */
     private $path;
 
     /**
@@ -65,10 +60,8 @@ final class Launcher
             'slug' => $config('theme.slug'),
             'prefix' => $config('theme.prefix'),
             'description' => $config('theme.description'),
-            'base' => $this->base,
             'path' => $this->path,
             'url' => $this->url,
-            'assets' => $config('theme.assets'),
             'dev' => $config('theme.dev'),
             'type' => new ExtensionType('theme'),
             'container' => $this->container,

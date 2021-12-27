@@ -1,7 +1,5 @@
 <?php
 
-use Timber\Timber;
-
 defined('ABSPATH') || exit;
 
 $root = dirname(__DIR__, 1);
@@ -11,6 +9,3 @@ if (file_exists($autoload = "$root/vendor/autoload.php")) {
 }
 
 require __DIR__ . '/functions.php';
-require __DIR__ . '/constants.php';
-
-// new Timber();
