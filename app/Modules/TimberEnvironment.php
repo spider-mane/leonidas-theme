@@ -35,13 +35,29 @@ class TimberEnvironment extends Abstracts\TimberEnvironmentModule
         foreach ($extra['functions'] as $alias => $original) {
             $alias = is_string($alias) ? $alias : $original;
 
-            $twig->addFunction(new TwigFunction($alias, $original));
+            if (is_array($original) && !is_callable($original)) {
+                $original = $original['@function'];
+                $options = $original;
+                unset($options['@function']);
+            }
+
+            $twig->addFunction(
+                new TwigFunction($alias, $original, $options ?? [])
+            );
         }
 
         foreach ($extra['filters'] as $filter => $function) {
             $filter = is_string($filter) ? $filter : $function;
 
-            $twig->addFilter(new TwigFilter($filter, $function));
+            if (is_array($function) && !is_callable($function)) {
+                $function = $function['@function'];
+                $options = $function;
+                unset($options['@function']);
+            }
+
+            $twig->addFilter(
+                new TwigFilter($filter, $function, $options ?? [])
+            );
         }
 
         return $twig;
