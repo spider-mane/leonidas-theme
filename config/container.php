@@ -57,7 +57,7 @@ return [
      *
      */
     'providers' => [
-        PseudoVendor\PseudoTheme\Providers\League\PhoneNumberUtilServiceProvider::class
+        Leonidas\Framework\Providers\League\PhoneNumberUtilServiceProvider::class
     ],
 
     /**
