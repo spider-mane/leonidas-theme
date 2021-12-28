@@ -1,11 +1,11 @@
-import 'core-js/stable';
+import "core-js/stable";
 import "regenerator-runtime/runtime";
 
-import { state } from './state';
-import { config } from './config';
-import { elements, toggleScroll } from './views/base';
-import * as navbar from "./views/navbar";
-import * as header from "./views/header";
+import { state } from "./state";
+import { config } from "./config";
+import { elements, toggleScroll } from "./views/base";
+import * as navbar from "./components/navbar";
+import * as header from "./components/header";
 
 /**
  *
@@ -16,92 +16,89 @@ window.state = state;
 /**
  *
  */
-if ('grecaptcha' in window) {
+if ("grecaptcha" in window) {
   grecaptcha.ready(() => {
-    grecaptcha.execute(config.reCapcha.key, { action: 'contact' }).then((token) => {
-      elements.forms.reCaptcha.value = token;
-    });
+    grecaptcha
+      .execute(config.reCapcha.key, { action: "contact" })
+      .then((token) => {
+        elements.forms.reCaptcha.value = token;
+      });
   });
 }
 
 /**
  *
  */
-document.addEventListener('scroll', (e) => {
+document.addEventListener("scroll", (e) => {
   if (!state.navbar.open) {
     transformNavbar(e);
   }
-})
+});
 
 /**
  *
  */
-elements.navbar.toggler.addEventListener('click', (e) => {
-
+elements.navbar.toggler.addEventListener("click", (e) => {
   const colorChanged = state.navbar.color.changed;
   const passedThreshold = state.navbar.color.threshold;
 
   if (false === state.navbar.open) {
-
     if (!passedThreshold && !colorChanged) {
-      toggleNavbarColor(true)
-      navbar.fixPosition()
+      toggleNavbarColor(true);
+      navbar.fixPosition();
     }
 
-    toggleScroll('hidden');
-    navbar.showNavItems().toggleToggler('close');
+    toggleScroll("hidden");
+    navbar.showNavItems().toggleToggler("close");
     state.navbar.open = true;
-
   } else {
-
     if (!passedThreshold && colorChanged) {
       toggleNavbarColor(false);
-      navbar.releasePosition()
+      navbar.releasePosition();
     }
 
-    toggleScroll('scroll');
-    navbar.hideNavItems().toggleToggler('open');
+    toggleScroll("scroll");
+    navbar.hideNavItems().toggleToggler("open");
     state.navbar.open = false;
   }
-})
+});
 
 /**
  *
  */
 function toggleNavbarColor(toggle) {
-  navbar.toggleColor()
-  state.navbar.color.changed = toggle
+  navbar.toggleColor();
+  state.navbar.color.changed = toggle;
 }
 
 /**
  *
  */
 function transformNavbar(e) {
-
   const scrollStart = window.scrollY;
-  const startChange = header.bottom - navbar.height / 2;
+  const startChange = header.state.bottom - navbar.height / 2;
 
   //
   if (scrollStart > startChange) {
-    navbar.fixPosition()
+    navbar.fixPosition();
     state.navbar.fixed.set = true;
     state.navbar.fixed.threshold = true;
 
     if (!state.navbar.color.changed) {
-      toggleNavbarColor(true)
-      state.navbar.color.threshold = true
+      toggleNavbarColor(true);
+      state.navbar.color.threshold = true;
     }
   }
 
   //
   if (scrollStart < startChange) {
-    navbar.releasePosition()
+    navbar.releasePosition();
     state.navbar.fixed.set = true;
     state.navbar.fixed.threshold = true;
 
     if (state.navbar.color.changed) {
-      toggleNavbarColor(false)
-      state.navbar.color.threshold = false
+      toggleNavbarColor(false);
+      state.navbar.color.threshold = false;
     }
   }
 

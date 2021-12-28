@@ -1,4 +1,4 @@
-import { elements } from "../views/base";
+// import { elements } from "../views/base";
 
 const selectors = {
   root: "#navbar",
@@ -7,7 +7,7 @@ const selectors = {
   collapse: "#navbar-menu",
   menu: ".navbar-nav",
   items: ".nav-item",
-  logo: ".navbar-brand"
+  logo: ".navbar-brand",
 };
 
 const elements = {
@@ -17,7 +17,7 @@ const elements = {
   collapse: document.querySelector(selectors.collapse),
   menu: document.querySelector(selectors.menu),
   items: document.querySelectorAll(selectors.items),
-  logo: document.querySelector(selectors.logo)
+  logo: document.querySelector(selectors.logo),
 };
 
 const root = {
@@ -27,47 +27,47 @@ const root = {
     animate: "animated fadeInDown fast",
     color: {
       default: "bg-transparent",
-      changed: "bg-color-2-opacity-70"
+      changed: "bg-color-2-opacity-70",
     },
     position: {
       fixed: "fixed-top",
-      default: "absolute-top"
-    }
-  }
+      default: "absolute-top",
+    },
+  },
 };
 
 const menu = {
   class: {
-    display: "align-items-end ml-auto display-2 animated fadeInLeft"
+    display: "align-items-end ml-auto display-2 animated fadeInLeft",
   },
 
   items: {
     class: {
-      animate: "animated fadeInLeft"
-    }
-  }
+      animate: "animated fadeInLeft",
+    },
+  },
 };
 
 const collapse = {
   class: {
-    display: "d-flex"
-  }
+    display: "d-flex",
+  },
 };
 
 const toggler = {
   icons: {
     class: {
       open: "fas fa-bars",
-      close: "fas fa-times"
-    }
-  }
+      close: "fas fa-times",
+    },
+  },
 };
 
 const logo = {
   fontSize: {
     default: elements.logo.style.fontSize,
-    expanded: "1.5rem"
-  }
+    expanded: "1.5rem",
+  },
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -87,12 +87,12 @@ export const state = {
   open: false,
   color: {
     changed: false,
-    threshold: false
+    threshold: false,
   },
   fixed: {
     set: false,
-    threshold: false
-  }
+    threshold: false,
+  },
 };
 
 /**
@@ -146,7 +146,7 @@ export function hideNavItems() {
  */
 export function animateNavItems(animate = true) {
   if (!animate) {
-    Array.from(elements.items).forEach(item => {
+    Array.from(elements.items).forEach((item) => {
       item.style.animationDuration = "initial";
       item.classlist.remove(...menu.items.class.animate.split(" "));
     });
@@ -158,7 +158,7 @@ export function animateNavItems(animate = true) {
 
   Array.from(elements.items)
     .reverse()
-    .forEach(item => {
+    .forEach((item) => {
       i = i * 1.2;
 
       item.style.animationDuration = `${i}s`;

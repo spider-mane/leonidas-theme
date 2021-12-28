@@ -1,11 +1,11 @@
-import { elements } from "../views/base";
+// import { elements } from "../views/base";
 
 const selectors = {
-  root: "#header"
+  root: "#header",
 };
 
 const elements = {
-  root: document.querySelector(selectors.header.root)
+  root: document.querySelector(selectors.header.root),
 };
 
 const header = elements.header;
@@ -20,5 +20,5 @@ const bottom = top + height;
 export const state = {
   height: height,
   top: top,
-  bottom: bottom
+  bottom: bottom,
 };

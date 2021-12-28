@@ -1,0 +1,34 @@
+///
+
+@function asset($asset) {
+  @return url("../../#{$asset}");
+}
+
+@function image($image) {
+  @return asset("images/#{$image}");
+}
+
+///
+@function video($video) {
+  @return asset("videos/#{$video}");
+}
+
+///
+@function audio($audio) {
+  @return asset("audio/#{$audio}");
+}
+
+///
+@function icon($icon) {
+  @return asset("icons/#{$icon}");
+}
+
+///
+@function logo($logo) {
+  @return asset("logos/#{$logo}");
+}
+
+///
+@function unsplash-src($image) {
+  @return url("https://source.unsplash.com/#{$image}");
+}

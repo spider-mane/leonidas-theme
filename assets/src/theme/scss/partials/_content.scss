@@ -30,14 +30,14 @@
 
 //
 .front-page-notes {
-  background-image: image("texture-1909992_1920w.jpg");
+  // background-image: image("texture-1909992_1920w.jpg");
   // background-image: image("graphics-954343_1920w.jpg");
   // background-image: image("colour-1885352_1920w.jpg");
 }
 
 //
 .front-page-closer {
-  background-image: image("binary-1327493_1920w.jpg");
+  // background-image: image("binary-1327493_1920w.jpg");
   min-height: 700px;
   background-position: center;
 
@@ -59,7 +59,8 @@
 
 //
 .space-thing {
-  box-shadow: 0 0 40px 20px inset theme-color("quaternary"), 0 0 20px 10px inset theme-color("quaternary"),
+  box-shadow: 0 0 40px 20px inset theme-color("quaternary"),
+    0 0 20px 10px inset theme-color("quaternary"),
     0 0 10px 5px inset theme-color("quaternary");
   border-radius: 40%;
 

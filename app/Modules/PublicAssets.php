@@ -3,10 +3,13 @@
 namespace PseudoVendor\PseudoTheme\Modules;
 
 use Leonidas\Contracts\Extension\ModuleInterface;
+use Leonidas\Contracts\Ui\Asset\InlineScriptCollectionInterface;
 use Leonidas\Contracts\Ui\Asset\ScriptCollectionInterface;
 use Leonidas\Contracts\Ui\Asset\StyleCollectionInterface;
 use Leonidas\Framework\Modules\AbstractAdminAssetProviderModule;
 use Leonidas\Framework\Modules\AbstractPublicAssetProviderModule;
+use Leonidas\Library\Core\Asset\InlineScriptBuilder;
+use Leonidas\Library\Core\Asset\InlineScriptCollection;
 use Leonidas\Library\Core\Asset\ScriptBuilder;
 use Leonidas\Library\Core\Asset\ScriptCollection;
 use Leonidas\Library\Core\Asset\StyleBuilder;
@@ -19,10 +22,10 @@ final class PublicAssets extends AbstractPublicAssetProviderModule
         return StyleCollection::with(
 
             StyleBuilder::for('pseudo-theme')
-                ->src($this->asset('/styles/styles.css'))
+                ->src($this->asset('/css/styles.css'))
                 ->version($this->version('1.0.0'))
                 ->enqueue(true)
-                ->done()
+                ->done(),
 
         );
     }
@@ -32,11 +35,17 @@ final class PublicAssets extends AbstractPublicAssetProviderModule
         return ScriptCollection::with(
 
             ScriptBuilder::for('pseudo-theme')
-                ->src($this->asset('/scripts/script.js'))
+                ->src($this->asset('/js/script.js'))
                 ->version($this->version('1.0.0'))
                 ->inFooter(true)
                 ->enqueue(true)
-                ->done()
+                ->done(),
+
+            ScriptBuilder::for('google-tag-manager')
+                ->src($this->asset('/lib/google-tag-manager.js'))
+                ->inFooter(false)
+                ->enqueue(true)
+                ->done(),
 
         );
     }
