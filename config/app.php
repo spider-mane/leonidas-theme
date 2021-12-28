@@ -20,6 +20,7 @@ return [
 
         # Theme modules
         PseudoVendor\PseudoTheme\Modules\PublicAssets::class,
+        PseudoVendor\PseudoTheme\Modules\RefreshPages::class,
         PseudoVendor\PseudoTheme\Modules\TimberEnvironment::class,
 
         # Third-party modules
