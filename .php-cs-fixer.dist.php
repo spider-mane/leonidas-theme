@@ -53,7 +53,7 @@ return (new Config(':theme_slug'))
         'phpdoc_var_without_name' => true,
         'single_space_after_construct' => true,
         'ternary_to_null_coalescing' => true,
-        'trailing_comma_in_multiline_array' => true,
+        'trailing_comma_in_multiline' => true,
         'trim_array_spaces' => true,
         'unary_operator_spaces' => true,
     ]);

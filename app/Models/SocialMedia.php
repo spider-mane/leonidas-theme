@@ -44,7 +44,6 @@ class SocialMedia
         $accounts = ThemeData::get('social_media.accounts');
 
         foreach ($accounts as $account => &$data) {
-
             $data['url'] = static::getLink($account) ?: $data['url'] ?? '';
         }
 

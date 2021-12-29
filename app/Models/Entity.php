@@ -2,8 +2,6 @@
 
 namespace PseudoVendor\PseudoTheme\Models;
 
-use PseudoVendor\PseudoTheme\Models\SocialMedia;
-
 class Entity
 {
     /**
@@ -48,7 +46,7 @@ class Entity
         $format = ThemeData::get('entity.option_key_formats.address');
 
         if ($component) {
-            $default =  ThemeData::get("entity.address.{$component}");
+            $default = ThemeData::get("entity.address.{$component}");
 
             return get_option(sprintf($format, $component, $default));
         }
@@ -69,7 +67,6 @@ class Entity
         $format = ThemeData::get('entity.option_key_formats.contact');
 
         if ($thing) {
-
             $default = ThemeData::get("entity.contact.{$thing}", null);
 
             return get_option(sprintf($format, $thing), $default);

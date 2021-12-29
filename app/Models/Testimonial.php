@@ -37,7 +37,6 @@ class Testimonial
         $reviews = [];
 
         foreach ($reviewData as $review) {
-
             $rating = (int) $review[$sourceMap['rating']];
 
             // sorry not sorry? ¯\_(ツ)_/¯

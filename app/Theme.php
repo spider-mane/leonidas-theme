@@ -4,7 +4,6 @@ namespace PseudoVendor\PseudoTheme;
 
 use Leonidas\Contracts\Extension\WpExtensionInterface;
 use Leonidas\Framework\Exceptions\InvalidCallToThemeMethodException;
-use Leonidas\Framework\Theme\Modules\TimberContext;
 use Timber\Loader;
 use Timber\Timber;
 

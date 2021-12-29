@@ -9,15 +9,15 @@ use Twig\TwigFunction;
 class TimberEnvironment extends Abstracts\TimberEnvironmentModule
 {
     public const TWIG_PATHS_CONFIG_KEYS = [
-        'twig.paths', 'timber.twig.paths', 'view.twig.paths'
+        'twig.paths', 'timber.twig.paths', 'view.twig.paths',
     ];
 
     public const TWIG_ENVIRONMENT_CONFIG_KEYS = [
-        'view.timber.twig', 'view.twig', 'twig'
+        'view.timber.twig', 'view.twig', 'twig',
     ];
 
     public const TIMBER_CONTEXT_CONFIG_KEYS = [
-        'view.timber.context', 'view.twig.context', 'twig.context'
+        'view.timber.context', 'view.twig.context', 'twig.context',
     ];
 
     protected function paths(array $paths): array

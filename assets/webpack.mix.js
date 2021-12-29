@@ -16,7 +16,7 @@ mix
 /**
  * Scripts
  */
-mix.js("src/theme/js/index.js", "dist/theme/js/script.js");
+mix.js("src/theme/js/index.js", "dist/theme/js/script.js").extract();
 
 /**
  * Styles
