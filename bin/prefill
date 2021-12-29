@@ -126,9 +126,9 @@ $files = array_merge(
   glob($root . '/boot/development/*.php'),
   glob($root . '/config/*.php'),
   glob($root . '/config/development/*.php'),
-  glob($root . '/src/*.php'),
-  glob($root . '/src/**/*.php'),
-  glob($root . '/src/**/**/*.php'),
+  glob($root . '/app/*.php'),
+  glob($root . '/app/**/*.php'),
+  glob($root . '/app/**/**/*.php'),
   glob($root . '/tests/*.php'),
   glob($root . '/tests/**/*.php'),
   glob($root . '/tests/**/**/*.php'),
@@ -175,11 +175,8 @@ $mergeJsonData = [
 
 // files to rename
 $rename = [
-  'src/PseudoTheme.php' => function ($values) use ($replacements) {
+  'app/PseudoTheme.php' => function ($values) use ($replacements) {
     return ($replacements['PseudoTheme'])($values) . '.php';
-  },
-  'src/Activation/vPseudoVersion.php' => function ($values) use ($replacements) {
-    return 'v' . ($replacements['PseudoVersion'])($values) . '.php';
   },
   '.example.gitattributes' => function () {
     return '.gitattributes';

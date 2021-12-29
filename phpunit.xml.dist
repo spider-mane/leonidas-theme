@@ -14,6 +14,7 @@
   convertErrorsToExceptions="true"
   convertNoticesToExceptions="true"
   convertWarningsToExceptions="true"
+  defaultTestSuite="unit"
   executionOrder="depends,defects"
   forceCoversAnnotation="false"
   printerClass="NunoMaduro\Collision\Adapters\Phpunit\Printer"
@@ -35,10 +36,6 @@
       <directory>tests/Suites/Integration</directory>
     </testsuite>
 
-    <testsuite name="extension">
-      <directory>tests/Suites/Extension</directory>
-    </testsuite>
-
     <testsuite name="functional">
       <directory>tests/Suites/Functional</directory>
     </testsuite>
@@ -50,7 +47,7 @@
 
   <coverage cacheDirectory="build/phpunit/coverage/.cache">
     <include>
-      <directory suffix=".php">src</directory>
+      <directory suffix=".php">app</directory>
     </include>
     <report>
       <html outputDirectory="build/phpunit/coverage/html"/>

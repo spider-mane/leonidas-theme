@@ -3,7 +3,7 @@
   <description>Coding standard for the Pseudo Theme WordPress theme</description>
 
   <!-- File paths -->
-  <file>./src</file>
+  <file>./app</file>
 
   <!-- Args -->
   <arg value="p"/>
