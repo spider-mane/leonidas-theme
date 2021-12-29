@@ -44,8 +44,7 @@
     "composer/installers": "^1.0 || ^2.0",
     "fakerphp/faker": "^1.17",
     "filp/whoops": "^2.5",
-    "friendsofphp/php-cs-fixer": "^2.15",
-    "illuminate/collections": "^8.77",
+    "friendsofphp/php-cs-fixer": "^3.4",
     "joshtronic/php-loremipsum": "^1.0",
     "koodimonni/composer-dropin-installer": "^1.3",
     "leonidas/leonidas": "@stable",
@@ -83,11 +82,13 @@
     }
   },
   "scripts": {
+    "asset": "npm --prefix assets",
     "bench": "vendor/bin/phpbench",
     "check": "vendor/bin/phpcs",
     "collect": "vendor/bin/var-dump-server",
-    "env": "cp -n .env.example .env",
-    "fix": "vendor/bin/php-cs-fixer fix --verbose",
+    "env": "cp -n .env.example .env && bin/build-paths",
+    "fix": "vendor/bin/phpcbf",
+    "fix:pcf": "vendor/bin/php-cs-fixer fix --verbose",
     "hooks": "vendor/bin/captainhook",
     "inspect": "vendor/bin/psalm",
     "link": "bin/symlink-theme",
@@ -100,10 +101,18 @@
     "watch": "vendor/bin/phpunit-watcher watch",
     "wp": "vendor/bin/wp",
     "build": [
+      "@asset run build",
       "@fix",
       "@check",
       "@inspect",
       "@test"
+    ],
+    "test": [
+      "@test:unit",
+      "@test:wpunit",
+      "@test:integration",
+      "@test:functional",
+      "@test:acceptance"
     ],
     "wp:init": [
       "@wp core download",
@@ -122,7 +131,7 @@
   },
   "config": {
     "optimize-autoloader": true,
-    "apcu-autoloader": true,
+    "apcu-autoloader": false,
     "sort-packages": true,
     "process-timeout": 0,
     "allow-plugins": {

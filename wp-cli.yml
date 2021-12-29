@@ -20,4 +20,4 @@ core install:
   skip-email: true
 
 db export:
-  file: build/wp-cli/database.sql
+  - build/wordpress/wpdb.sql

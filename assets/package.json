@@ -1,7 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "bud": "bud",
+    "build": "npm run lint && npm run test && npm run mix:prod",
+    "lint": "",
+    "test": "",
     "mix:dev": "mix",
     "mix:prod": "mix --production",
     "watch": "mix watch",
