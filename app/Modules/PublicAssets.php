@@ -2,9 +2,12 @@
 
 namespace PseudoVendor\PseudoTheme\Modules;
 
+use Leonidas\Contracts\Ui\Asset\InlineScriptCollectionInterface;
 use Leonidas\Contracts\Ui\Asset\ScriptCollectionInterface;
 use Leonidas\Contracts\Ui\Asset\StyleCollectionInterface;
 use Leonidas\Framework\Modules\AbstractPublicAssetProviderModule;
+use Leonidas\Library\Core\Asset\InlineScriptBuilder;
+use Leonidas\Library\Core\Asset\InlineScriptCollection;
 use Leonidas\Library\Core\Asset\ScriptBuilder;
 use Leonidas\Library\Core\Asset\ScriptCollection;
 use Leonidas\Library\Core\Asset\StyleBuilder;
@@ -12,6 +15,9 @@ use Leonidas\Library\Core\Asset\StyleCollection;
 
 final class PublicAssets extends AbstractPublicAssetProviderModule
 {
+    /**
+     * {@inheritDoc}
+     */
     protected function styles(): StyleCollectionInterface
     {
         return StyleCollection::from([
@@ -25,6 +31,9 @@ final class PublicAssets extends AbstractPublicAssetProviderModule
         ]);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     protected function scripts(): ScriptCollectionInterface
     {
         return ScriptCollection::from([
@@ -58,5 +67,33 @@ final class PublicAssets extends AbstractPublicAssetProviderModule
                 ->done(),
 
         ]);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function inlineScripts(): ?InlineScriptCollectionInterface
+    {
+        return InlineScriptCollection::from([
+
+            InlineScriptBuilder::for('google-tag-manager')
+                ->position('before')
+                ->code($this->getGtmIdCode())
+                ->done(),
+
+        ]);
+    }
+
+    /**
+     * Define a js variable whose value is a personal Google Tag Manager id.
+     * This variable will be used by the included google-tag-manager script.
+     *
+     * @return string
+     */
+    protected function getGtmIdCode(): string
+    {
+        $gtmId = $this->getConfig('services.google.tags.id');
+
+        return "googleTagManagerId = '$gtmId'";
     }
 }
