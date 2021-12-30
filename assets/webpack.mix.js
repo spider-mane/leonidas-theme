@@ -6,12 +6,10 @@ const mix = require("laravel-mix");
 mix
   .setPublicPath("dist")
   .setResourceRoot("src")
-  .browserSync("leonidas-theme.test")
+  .browserSync({ proxy: "leonidas-theme.test" })
   .sourceMaps(true, "eval-source-map", "source-map")
   .version()
-  .options({
-    processCssUrls: false,
-  });
+  .options({});
 
 /**
  * Scripts
@@ -21,11 +19,15 @@ mix.js("src/theme/js/index.js", "dist/theme/js/script.js").extract();
 /**
  * Styles
  */
-mix.sass("src/theme/scss/main.scss", "dist/theme/css/styles.css", {
-  sassOptions: {
-    outputStyle: "expanded",
-  },
-});
+mix
+  .sass("src/theme/scss/main.scss", "dist/theme/css/styles.css", {
+    sassOptions: {
+      outputStyle: "expanded",
+    },
+  })
+  .options({
+    processCssUrls: false,
+  });
 
 /**
  * Direct Copies

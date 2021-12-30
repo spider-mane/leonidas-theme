@@ -1,51 +1,37 @@
-// functions
-@import "functions/misc";
-@import "functions/assets";
+// abstracts
+@import "abstracts/functions";
+@import "abstracts/variables";
+@import "abstracts/mixins";
 
-// mixins
-@import "mixins/misc";
-@import "mixins/hero";
-@import "mixins/navigation";
+// vendors
+@import "vendors/animate";
+@import "vendors/aos";
+@import "vendors/bootstrap";
+@import "vendors/glidejs";
+@import "vendors/loaders";
+@import "vendors/magic";
+@import "vendors/rfs";
 
-// variables
-@import "variables/colors";
-@import "variables/typography";
-@import "variables/animations";
-@import "variables/base";
-@import "variables/libraries";
-@import "variables/bootstrap";
-
-// libraries
-// @import "node_modules/aos/src/sass/aos";
-@import "node_modules/animate.css/animate";
-// @import "node_modules/loaders.css/loaders";
-// @import "node_modules/magic.css/dist/magic";
-// @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
-@import "bootstrap";
-@import "node_modules/rfs/scss";
+// base
+@import "base/animate";
+@import "base/colors";
+@import "base/defaults";
+@import "base/font-awesome";
+@import "base/media-queries";
+@import "base/misc";
+@import "base/positioning";
+@import "base/spacing";
+@import "base/typography";
 
 // components
 @import "components/card";
-@import "components/masonry";
-@import "components/hero";
 @import "components/forms";
-@import "components/section";
-@import "components/media-queries";
+@import "components/masonry";
+@import "components/slider";
 
-// utilities
-@import "utilities/misc";
-@import "utilities/animate";
-@import "utilities/font-awesome";
-@import "utilities/colors";
-@import "utilities/positioning";
-@import "utilities/spacing";
-@import "utilities/typography";
-
-// partials
-@import "partials/defaults";
-@import "partials/typography";
-@import "partials/navbar";
-@import "partials/hero";
-@import "partials/footer";
-@import "partials/content";
-@import "partials/media-queries";
+// layout
+@import "layout/content";
+@import "layout/footer";
+@import "layout/hero";
+@import "layout/navbar";
+@import "layout/section";

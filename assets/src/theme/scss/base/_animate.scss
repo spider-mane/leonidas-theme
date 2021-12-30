@@ -1,14 +1,14 @@
-//
 @each $animation in $animations {
+  $animation: "animate__#{$animation}";
 
   .animate-hover-#{$animation}:hover {
-    @extend .animated;
+    @extend .animate__animated;
     @extend .#{$animation};
   }
 
   .animate-child-hover:hover {
     .animated-child-#{$animation} {
-      @extend .animated;
+      @extend .animate__animated;
       @extend .#{$animation};
     }
   }

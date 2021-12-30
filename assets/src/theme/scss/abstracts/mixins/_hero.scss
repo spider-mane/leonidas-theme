@@ -1,0 +1,90 @@
+///
+@mixin page_hero($height, $navbarHeight) {
+  display: flex;
+  position: relative;
+  min-height: $height;
+
+  // &::before {
+  //     position: absolute;
+  //     height: $navbarHeight;
+  //     width: 100%;
+  //     content: '';
+  // }
+
+  // &::after {
+  //     position: absolute;
+  //     bottom: 0;
+  //     width: 100%;
+  //     height: 0;
+  //     content: '';
+  // }
+}
+
+///
+@mixin hero_background($zIndex, $size) {
+  // display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  // background-attachment: fixed;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: $size;
+  z-index: $zIndex;
+}
+
+// media queries
+
+//
+@mixin hero-xs {
+  //
+}
+
+//
+@mixin hero-sm {
+  .hero {
+    &.hero--front {
+      min-height: 70vh;
+    }
+  }
+}
+
+//
+@mixin hero-md {
+  .hero {
+    //
+  }
+}
+
+//
+@mixin hero-lg {
+  .hero {
+    max-height: 70vh;
+    padding-top: $hero-padding-top-md;
+
+    &.hero--front {
+      min-height: 80vh;
+      max-height: 80vh;
+    }
+
+    &.hero--contact {
+      height: auto;
+    }
+  }
+}
+
+//
+@mixin hero-xl {
+}
+
+//
+@mixin hero-portrait {
+  //
+}
+
+//
+@mixin hero-landscape {
+  //
+}

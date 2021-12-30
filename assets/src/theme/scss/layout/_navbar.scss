@@ -1,0 +1,13 @@
+.navbar {
+  height: $navbar-height-xs;
+
+  .navbar-toggler {
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &.navbar--mobile-expanded {
+    //
+  }
+}

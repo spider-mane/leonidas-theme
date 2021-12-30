@@ -1,0 +1,32 @@
+@mixin footer-xs {
+  .footer {
+  }
+}
+
+@mixin footer-sm {
+  .footer {
+    .sm-icons {
+      font-size: 3rem;
+    }
+  }
+}
+
+@mixin footer-md {
+  .footer {
+    //
+  }
+}
+
+@mixin footer-lg {
+  .footer {
+    //
+  }
+}
+
+@mixin footer-xl {
+  .footer {
+    .sm-icons {
+      font-size: 2rem;
+    }
+  }
+}

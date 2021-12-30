@@ -1,9 +1,9 @@
 ///
-
 @function asset($asset) {
   @return url("../../#{$asset}");
 }
 
+///
 @function image($image) {
   @return asset("images/#{$image}");
 }

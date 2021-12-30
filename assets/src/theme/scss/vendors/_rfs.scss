@@ -1,0 +1,8 @@
+// config
+$rfs-base-value: 1rem;
+$rfs-breakpoint: 1200px;
+$rfs-two-dimensional: false;
+$rfs-factor: 10;
+
+// library
+@import "node_modules/rfs/scss";
