@@ -6,6 +6,7 @@
 /build/
 /dist/
 /logs/
+/temp/
 cghooks.lock
 docker-compose.override.yml
 

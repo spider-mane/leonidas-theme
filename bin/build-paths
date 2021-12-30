@@ -3,7 +3,10 @@
 
 $root = dirname(__DIR__);
 
-$paths = json_decode(file_get_contents($root . '/build.json'), true);
+require_once "$root/vendor/autoload.php";
+
+$composer = json_decode(file_get_contents($root . '/composer.json'), true);
+$paths = $composer['extra']['build-paths'];
 
 foreach ($paths as $path => $subs) {
   create_path($root . '/' . $path, $subs);
