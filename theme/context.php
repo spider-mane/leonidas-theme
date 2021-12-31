@@ -8,28 +8,26 @@ use PseudoVendor\PseudoTheme\Models\ThemeData;
 use PseudoVendor\PseudoTheme\Asset;
 use WebTheory\Html\Attributes\Classlist;
 
-/*
-|------------------------------------------------------------------------------
-| Context
-|------------------------------------------------------------------------------
-|
-| Use this fle to define global template values
-|
-| When this file is loaded, the default context defined by Timber will be
-| passed to it, allowing modification of those values.
-|
-| It's best not to directly resolve any of the required values in this file,
-| but within a model class and reference it here
-|
-| Care should be taken when adding values in bulk not to overwrite any
-| predefined values by accident
-*/
+/**
+ *==========================================================================
+ * Context
+ *==========================================================================
+ *
+ * Use this fle to define global template values
+ *
+ * When this file is loaded, the default context defined by Timber will be
+ * passed to it, allowing modification of those values.
+ *
+ * It's best not to directly resolve any of the required values in this file,
+ * but within a model class and reference it here.
+ *
+ * Care should be taken when adding values in bulk not to overwrite any
+ * predefined values by accident.
+ *
+ */
 
 $default = $context;
 
-/**
- * add things
- */
 $context = [
 
     'base' => get_view_slug(),
@@ -78,12 +76,6 @@ $context = [
     ],
 ];
 
-/**
- * remove things
- */
 unset($default['body_class']);
 
-/**
- * return things
- */
 return $context + $default;
