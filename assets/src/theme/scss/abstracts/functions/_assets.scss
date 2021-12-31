@@ -1,34 +1,44 @@
-///
+/// retrieve an asset file
 @function asset($asset) {
-  @return url("../../#{$asset}");
+  @return url('../../#{$asset}');
 }
 
-///
+/// retrieve a font
+@function font($font) {
+  @return asset('fonts/#{$font}');
+}
+
+/// retrieve an image
 @function image($image) {
-  @return asset("images/#{$image}");
+  @return asset('images/#{$image}');
 }
 
-///
-@function video($video) {
-  @return asset("videos/#{$video}");
-}
-
-///
-@function audio($audio) {
-  @return asset("audio/#{$audio}");
-}
-
-///
+/// retrieve an icon
 @function icon($icon) {
-  @return asset("icons/#{$icon}");
+  @return asset('images/icons/#{$icon}');
 }
 
-///
+/// retrieve a logo
 @function logo($logo) {
-  @return asset("logos/#{$logo}");
+  @return asset('images/logos/#{$logo}');
 }
 
-///
+/// retrieve an svg file
+@function svg($svg) {
+  @return asset('images/svg/#{$svg}');
+}
+
+/// retrieve a video file
+@function video($video) {
+  @return asset('videos/#{$video}');
+}
+
+/// retrieve an audio file
+@function audio($audio) {
+  @return asset('audio/#{$audio}');
+}
+
+/// retrieve an image from unsplash source api
 @function unsplash-src($image) {
-  @return url("https://source.unsplash.com/#{$image}");
+  @return url('https://source.unsplash.com/#{$image}');
 }
