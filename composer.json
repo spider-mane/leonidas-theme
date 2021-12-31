@@ -37,7 +37,6 @@
     "webtheory/config": "@stable",
     "webtheory/context": "@stable",
     "webtheory/facade": "@stable",
-    "voku/stringy": "^6.4",
     "webtheory/html": "@stable",
     "webtheory/saveyour": "@stable"
   },
@@ -58,6 +57,7 @@
     "psy/psysh": "^0.10.7",
     "spatie/phpunit-watcher": "^1.12",
     "squizlabs/php_codesniffer": "^3.0",
+    "symfony/thanks": "^1.2",
     "vimeo/psalm": "^4.7",
     "vlucas/phpdotenv": "^5.3",
     "webtheory/exterminate": "@stable",
@@ -83,7 +83,7 @@
     "collect": "vendor/bin/var-dump-server",
     "env": "cp -n .env.example .env && bin/build-paths",
     "fix": "vendor/bin/phpcbf",
-    "fix:pcf": "vendor/bin/php-cs-fixer fix --verbose",
+    "fix:alt": "vendor/bin/php-cs-fixer fix --verbose",
     "hooks": "vendor/bin/captainhook",
     "inspect": "vendor/bin/psalm",
     "link": "bin/symlink-theme",
@@ -103,7 +103,6 @@
       "@test"
     ],
     "setup": [
-      "@install",
       "@env",
       "@asset install",
       "@asset mix:dev",
@@ -125,6 +124,9 @@
       "@wp db clean --yes",
       "@wp core install"
     ],
+    "post-install-cmd": [
+      "@setup"
+    ],
     "post-create-project-cmd": [
       "bin/composer-prefill",
       "@env",
@@ -139,7 +141,8 @@
     "allow-plugins": {
       "composer/installers": true,
       "composer/package-versions-deprecated": true,
-      "koodimonni/composer-dropin-installer": true
+      "koodimonni/composer-dropin-installer": true,
+      "symfony/thanks": true
     }
   },
   "extra": {
