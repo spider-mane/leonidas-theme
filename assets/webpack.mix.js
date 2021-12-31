@@ -1,28 +1,35 @@
-const mix = require("laravel-mix");
+const mix = require('laravel-mix');
 
 /**
  * Settings
  */
 mix
-  .setPublicPath("dist")
-  .setResourceRoot("src")
-  .browserSync({ proxy: "leonidas-theme.test" })
-  .sourceMaps(true, "eval-source-map", "source-map")
+  .setPublicPath('dist')
+  .setResourceRoot('src')
+  .sourceMaps(true, 'eval-source-map', 'source-map')
   .version()
   .options({});
 
 /**
- * Scripts
+ * Browsersync
  */
-mix.js("src/theme/js/index.js", "dist/theme/js/script.js").extract();
+mix.browserSync({proxy: 'leonidas-theme.test'});
 
 /**
- * Styles
+ * Javascript
  */
 mix
-  .sass("src/theme/scss/main.scss", "dist/theme/css/styles.css", {
+  .js('src/theme/js/index.js', 'dist/theme/js/script.js')
+  // .autoload({jquery: ['$', 'window.jQuery']})
+  .extract();
+
+/**
+ * Sass
+ */
+mix
+  .sass('src/theme/scss/main.scss', 'dist/theme/css/styles.css', {
     sassOptions: {
-      outputStyle: "expanded",
+      outputStyle: 'expanded',
     },
   })
   .options({
@@ -30,6 +37,6 @@ mix
   });
 
 /**
- * Direct Copies
+ * Copies
  */
-mix.copy(["src/theme/lib/google-tag-manager.js"], "dist/theme/lib/");
+mix.copy(['src/theme/lib/google-tag-manager.js'], 'dist/theme/lib/');
