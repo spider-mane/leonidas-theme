@@ -1,4 +1,4 @@
-{% extends "base.twig" %}
+{% extends "_base.twig" %}
 {% import "modules/fields.twig" as fields %}
 {% import "modules/icons.twig" as icons %}
 
@@ -50,7 +50,7 @@
 {# begin template #}
 
 {% block header %}
-  {% include "components/header--simple.twig" %}
+  {% include "layout/header--simple.twig" %}
 {% endblock %}
 
 {% block content %}

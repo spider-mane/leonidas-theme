@@ -27,19 +27,19 @@
     {% include "includes/base/google-tag-manager--body.twig" %}
 
     {% block navbar %}
-      {% include('components/navbar.twig') %}
+      {% include('layout/navbar.twig') %}
     {% endblock %}
 
     {% block header %}
-      {% include('components/header.twig') %}
+      {% include('layout/header.twig') %}
     {% endblock %}
 
     {% block main %}
-      {% include('components/main.twig') %}
+      {% include('layout/main.twig') %}
     {% endblock %}
 
     {% block footer %}
-      {% include('components/footer.twig') %}
+      {% include('layout/footer.twig') %}
     {% endblock %}
 
     {{ wp_footer }}
