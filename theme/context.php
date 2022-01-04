@@ -2,10 +2,10 @@
 
 namespace PseudoVendor\PseudoTheme;
 
-use PseudoVendor\PseudoTheme\Models\Entity;
+use PseudoVendor\PseudoTheme\Facades\ThemeAsset;
+use PseudoVendor\PseudoTheme\Models\Client;
 use PseudoVendor\PseudoTheme\Models\SocialMedia;
 use PseudoVendor\PseudoTheme\Models\ThemeData;
-use PseudoVendor\PseudoTheme\Asset;
 use WebTheory\Html\Attributes\Classlist;
 
 /**
@@ -33,7 +33,7 @@ $context = [
     'base' => get_view_slug(),
 
     'favicons' => [
-        'default' => Asset::icon(ThemeData::favicon()),
+        'default' => ThemeAsset::icon(ThemeData::favicon()),
     ],
 
     'body' => [
@@ -57,11 +57,11 @@ $context = [
     'footer' => [
         'class' => new Classlist,
         'social_media' => SocialMedia::for('footer'),
-        'logo' => Asset::logo(ThemeData::logo('footer')),
+        'logo' => ThemeAsset::logo(ThemeData::logo('footer')),
         'links' => ThemeData::menu('footer'),
     ],
 
-    'entity' => Entity::all(),
+    'entity' => Client::all(),
 
     'developer' => [
         'name' => ThemeData::developer('agency'),

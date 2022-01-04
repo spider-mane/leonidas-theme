@@ -22,11 +22,26 @@ return [
      *
      */
     'name' => [
+
         'full' => null,
-
         'short' => null,
-
         'styled' => null
+
+    ],
+
+    /**
+     *==========================================================================
+     * Address
+     *==========================================================================
+     *
+     *
+     */
+    'address' => [
+
+        'street' => null,
+        'city' => null,
+        'state' => null,
+        'zip' => null,
 
     ],
 
@@ -41,15 +56,8 @@ return [
     'contact' => [
 
         'phone' => '123-456-7890',
-
         'email' => 'name@email.com',
 
-        'address' => [
-            'street' => null,
-            'city' => null,
-            'state' => null,
-            'zip' => null,
-        ],
     ],
 
     /**
@@ -60,13 +68,15 @@ return [
      *
      */
     'reviews' => [
+
         'google' => [
             'business_name' => ''
         ],
 
         'yelp' => [
             'business_name' => ''
-        ]
+        ],
+
     ],
 
     /**
@@ -78,6 +88,34 @@ return [
      */
     'fonts' => [
         'primary' => null
+    ],
+
+
+    /**
+     *==========================================================================
+     * Option keys
+     *==========================================================================
+     *
+     *
+     */
+    'option_keys' => [
+
+        null => null
+    ],
+
+
+    /**
+     *==========================================================================
+     * Option key formats
+     *==========================================================================
+     *
+     *
+     */
+    'option_key_formats' => [
+
+        'title' => "{$prefix}-company-%s-name",
+        'contact' => "{$prefix}-company-contact--%s",
+        'social_media' => "{$prefix}-company-info--%s"
     ],
 
 ];

@@ -17,7 +17,7 @@ $config = $container
     ->getConcrete();
 
 # register data
-$container->addShared('data', fn () => new Config("$root/data"));
+$container->addShared('data', fn () => new Config("$root/theme/data"));
 
 # register services from config
 foreach ($config->get('container.services', []) as $service) {
