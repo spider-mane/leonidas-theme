@@ -1,5 +1,7 @@
 <?php
 
+use function Env\env;
+
 return [
 
     /**
@@ -13,6 +15,18 @@ return [
     'module-name' => [
 
         // configuration
+    ],
+
+    /**
+     *==========================================================================
+     * RefreshPages
+     *==========================================================================
+     *
+     *
+     */
+    'refresh' => [
+
+        'show_admin_bar' => env('SHOW_ADMIN_BAR') ?? true,
     ],
 
 ];

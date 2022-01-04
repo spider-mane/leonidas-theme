@@ -5,20 +5,23 @@ namespace PseudoVendor\PseudoTheme\Modules;
 use Closure;
 use Leonidas\Contracts\Extension\ModuleInterface;
 use Leonidas\Framework\Modules\AbstractModule;
+use Leonidas\Traits\Hooks\TargetsAfterSetupThemeHook;
+use Leonidas\Traits\Hooks\TargetsInitHook;
 
 class RefreshPages extends AbstractModule implements ModuleInterface
 {
+    use TargetsAfterSetupThemeHook;
+    use TargetsInitHook;
+
     public function hook(): void
     {
-        add_action(
-            'init',
-            Closure::fromCallable([$this, 'doInitAction'])
-        );
+        $this->targetInitHook();
+        $this->targetAfterSetupThemeHook();
+    }
 
-        add_action(
-            'after_setup_theme',
-            Closure::fromCallable([$this, 'doAfterSetupThemeAction'])
-        );
+    protected function getConfig(string $key)
+    {
+        return parent::getConfig("modules.refresh.{$key}");
     }
 
     protected function doInitAction(): void
@@ -88,7 +91,6 @@ class RefreshPages extends AbstractModule implements ModuleInterface
      */
     protected function disableEmbedsCodeInit()
     {
-
         // Remove the REST API endpoint.
         remove_action('rest_api_init', 'wp_oembed_register_route');
 
@@ -112,17 +114,11 @@ class RefreshPages extends AbstractModule implements ModuleInterface
         remove_filter('pre_oembed_result', 'wp_filter_pre_oembed_result', 10);
     }
 
-    /**
-     *
-     */
     protected function disableEmbedsTinyMcePlugin($plugins)
     {
         return array_diff($plugins, ['wpembed']);
     }
 
-    /**
-     *
-     */
     protected function disableEmbedsRewrites($rules)
     {
         foreach ($rules as $rule => $rewrite) {
@@ -134,9 +130,6 @@ class RefreshPages extends AbstractModule implements ModuleInterface
         return $rules;
     }
 
-    /**
-     * good head is indescribable
-     */
     protected function cleanSiteHeader()
     {
         remove_action('wp_head', 'wp_generator');
@@ -144,9 +137,10 @@ class RefreshPages extends AbstractModule implements ModuleInterface
         remove_action('wp_head', 'rsd_link');
         remove_action('wp_head', 'wp_shortlink_wp_head');
         remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
-        add_filter('the_generator', '__return_false');
-        add_filter('show_admin_bar', '__return_false');
         remove_action('wp_head', 'print_emoji_detection_script', 7);
         remove_action('wp_print_styles', 'print_emoji_styles');
+
+        add_filter('the_generator', '__return_false');
+        add_filter('show_admin_bar', fn () => $this->getConfig('show_admin_bar', true));
     }
 }
