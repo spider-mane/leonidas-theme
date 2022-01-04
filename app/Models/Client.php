@@ -2,7 +2,7 @@
 
 namespace PseudoVendor\PseudoTheme\Models;
 
-class Entity
+class Client
 {
     /**
      *
