@@ -34,13 +34,18 @@ return [
      */
     'services' => [
         [
-            'id' => Leonidas\Library\Admin\Loaders\AdminNoticeCollectionLoaderInterface::class,
-            'provider' => Leonidas\Framework\Providers\AdminNoticeCollectionLoaderProvider::class,
+            'id' => 'theme_assets',
+            'provider' => PseudoVendor\PseudoTheme\Providers\ThemeAssetMapProvider::class,
             'args' => Reflection::map([
-                'prefix' => 'theme.prefix'
+                'base' => 'view.assets',
+                'types' => 'view.asset_types',
             ]),
             'shared' => true,
-            'tags' => ['admin_notice_loader']
+            'tags' => ['theme_asset_map']
+        ],
+        [
+            'id' => 'social_media',
+            'provider' => \PseudoVendor\PseudoTheme\Providers\SocialMediaProvider::class,
         ]
     ],
 

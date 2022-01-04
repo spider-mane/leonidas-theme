@@ -2,34 +2,18 @@
 
 namespace PseudoVendor\PseudoTheme\Models;
 
+use PseudoVendor\PseudoTheme\Theme;
 use WebTheory\Context\Selector;
 
 class SocialMedia
 {
-    /**
-     * @var Selector
-     */
-    protected static $selector;
-
     public static function for(string $context = '')
     {
-        if (!isset(static::$selector)) {
-            static::setSelector();
-        }
-
         if (empty($context)) {
-            return static::$selector->getItems();
+            return static::getSelector()->getItems();
         }
 
-        return static::$selector->getContextItems($context);
-    }
-
-    protected static function setSelector()
-    {
-        $accounts = static::getAccounts();
-        $contexts = ThemeData::get('social_media.contexts');
-
-        static::$selector = new Selector($accounts, $contexts);
+        return static::getSelector()->getContextItems($context);
     }
 
     public static function getLink(string $account)
@@ -48,5 +32,10 @@ class SocialMedia
         }
 
         return $accounts;
+    }
+
+    protected static function getSelector(): Selector
+    {
+        return Theme::getInstance()->get('social_media');
     }
 }

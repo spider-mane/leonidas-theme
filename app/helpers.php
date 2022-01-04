@@ -3,7 +3,7 @@
 use PseudoVendor\PseudoTheme\Theme;
 
 ################################################################################
-# Container based helpers
+# Theme
 ################################################################################
 
 function theme($get = null)
@@ -12,7 +12,6 @@ function theme($get = null)
 
     return isset($get) ? $container->get($get) : $container;
 }
-
 
 function theme_config($key = null, $default = null)
 {
@@ -28,8 +27,9 @@ function theme_config($key = null, $default = null)
 }
 
 
+
 ################################################################################
-# Other
+# View
 ################################################################################
 
 function get_view_slug()

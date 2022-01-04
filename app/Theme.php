@@ -29,15 +29,6 @@ final class Theme
         return static::$instance->base;
     }
 
-    public static function launch(WpExtensionInterface $base): void
-    {
-        if (!self::isLoaded()) {
-            self::construct($base);
-        } else {
-            self::throwAlreadyLoadedException(__METHOD__);
-        }
-    }
-
     public static function render(
         $filenames,
         array $data = [],
@@ -50,6 +41,15 @@ final class Theme
             $expires,
             $cacheMode
         );
+    }
+
+    public static function launch(WpExtensionInterface $base): void
+    {
+        if (!self::isLoaded()) {
+            self::construct($base);
+        } else {
+            self::throwAlreadyLoadedException(__METHOD__);
+        }
     }
 
     private static function isLoaded(): bool
