@@ -28,6 +28,12 @@ final class PublicAssets extends AbstractPublicAssetProviderModule
                 ->enqueue(true)
                 ->done(),
 
+            // 3rd party
+            StyleBuilder::for('font-awesome-cdn')
+                ->src("//use.fontawesome.com/releases/v5.15.0/css/all.css")
+                ->version(false)
+                ->enqueue(true)
+                ->done(),
         ]);
     }
 

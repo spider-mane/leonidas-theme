@@ -1,43 +1,33 @@
 {# basic bootstrap field scaffolding #}
 {% macro bsSimple(input, label, id) %}
-
-  <div class="form-group">
-    <label class="sr-only" for="{{ id }}">{{ label }}</label>
-    {{ input }}
-  </div>
-
+	<div class="mb-3">
+		<label class="visually-hidden" for="{{ id }}">{{ label }}</label>
+		{{ input }}
+	</div>
 {% endmacro %}
 
 {# bootstrap field scaffolding with appended text #}
 {% macro bsAppended(input, label, id, content) %}
-
-  <div class="form-group">
-    <label class="sr-only" for="{{ id }}">{{ label }}</label>
-    <div class="input-group">
-      {{ input }}
-      <div class="input-group-append">
-        <span class="input-group-text">
-          {{ content }}
-        </span>
-      </div>
-    </div>
-  </div>
-
+	<div class="mb-3">
+		<label class="visually-hidden" for="{{ id }}">{{ label }}</label>
+		<div class="input-group">
+			{{ input }}
+			<span class="input-group-text">
+				{{ content }}
+			</span>
+		</div>
+	</div>
 {% endmacro %}
 
 {# bootstrap field scaffolding with prepended text #}
 {% macro bsPrepended(input, label, id, content) %}
-
-  <div class="form-group">
-    <label class="sr-only" for="{{ id }}">{{ label }}</label>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">
-          {{ content }}
-        </span>
-      </div>
-      {{ input }}
-    </div>
-  </div>
-
+	<div class="mb-3">
+		<label class="visually-hidden" for="{{ id }}">{{ label }}</label>
+		<div class="input-group">
+			<span class="input-group-text">
+				{{ content }}
+			</span>
+			{{ input }}
+		</div>
+	</div>
 {% endmacro %}

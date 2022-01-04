@@ -2,12 +2,11 @@
 
 namespace PseudoVendor\PseudoTheme\Asset;
 
-use PseudoVendor\PseudoTheme\Asset;
+use PseudoVendor\PseudoTheme\Facades\ThemeAsset;
 use PseudoVendor\PseudoTheme\Facades\Phone;
 use WebTheory\Html\Attributes\Classlist;
 use WebTheory\Saveyour\Factories\FormFieldFactory;
 use joshtronic\LoremIpsum;
-use Noodlehaus\Parser\Php;
 
 return [
 
@@ -50,15 +49,15 @@ return [
 
         'format_us_phone' => 'phone_format_us',
 
-        'image' => [Asset::class, 'image'],
+        'image' => [ThemeAsset::class, 'image'],
 
-        'video' => [Asset::class, 'video'],
+        'video' => [ThemeAsset::class, 'video'],
 
-        'audio' => [Asset::class, 'audio'],
+        'audio' => [ThemeAsset::class, 'audio'],
 
-        'logo' => [Asset::class, 'logo'],
+        'logo' => [ThemeAsset::class, 'logo'],
 
-        'icon' => [Asset::class, 'icon'],
+        'icon' => [ThemeAsset::class, 'icon'],
 
         'lorem' => static function (int $count, string $what = 'words', bool $tags = false) {
             return (new LoremIpsum)->$what($count, $tags, false);
@@ -80,6 +79,14 @@ return [
 
         'field' => static function (string $type, array $args) {
             return (new FormFieldFactory)->create($type, $args);
+        },
+
+        'prefix' => static function ($prefix, ...$items) {
+            return array_map(fn ($item) => $prefix . $item, $items);
+        },
+
+        'suffix' => static function ($suffix, ...$items) {
+            return array_map(fn ($item) => $item . $suffix, $items);
         },
 
         'dump' => static function (...$values) {
