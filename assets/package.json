@@ -9,9 +9,9 @@
     "watch": "mix watch",
     "watch:poll": "mix watch -- --watch-options-poll=1000",
     "watch:hot": "mix watch --hot",
-    "debug:sass:admin": "sass src/admin/scss/main.scss temp/admin/main.scss",
-    "debug:sass:editor": "sass src/editor/scss/main.scss temp/editor/main.scss",
-    "debug:sass:theme": "sass src/theme/scss/main.scss temp/theme/main.scss"
+    "debug:sass:admin": "sass src/admin/scss/main.scss build/sass/admin/main.scss",
+    "debug:sass:editor": "sass src/editor/scss/main.scss build/sass/editor/main.scss",
+    "debug:sass:theme": "sass src/theme/scss/main.scss build/sass/theme/main.scss"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",

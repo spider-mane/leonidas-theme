@@ -56,7 +56,7 @@ return [
     'contact' => [
 
         'phone' => '123-456-7890',
-        'email' => 'name@email.com',
+        'email' => 'entity@example.com',
 
     ],
 

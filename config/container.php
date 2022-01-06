@@ -14,6 +14,7 @@ return [
      */
     'selection' => 'league',
 
+
     /**
      *==========================================================================
      * Services
@@ -45,16 +46,17 @@ return [
         ],
         [
             'id' => 'social_media',
-            'provider' => \PseudoVendor\PseudoTheme\Providers\SocialMediaProvider::class,
+            'provider' => PseudoVendor\PseudoTheme\Providers\SocialMediaProvider::class,
         ]
     ],
+
 
     /**
      *==========================================================================
      * Providers
      *==========================================================================
      *
-     * Some DI containers support "service providers." These are typically self
+     * Some DI containers support service providers. These are typically self
      * contained classes with all the logic required for inserting an entry into
      * a container according to that container's capabilities. Because all
      * necessary logic is encapsulated within them, library-specific providers
@@ -64,6 +66,7 @@ return [
     'providers' => [
         Leonidas\Framework\Providers\League\PhoneNumberUtilServiceProvider::class
     ],
+
 
     /**
      *==========================================================================

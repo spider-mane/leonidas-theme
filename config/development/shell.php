@@ -8,6 +8,7 @@ return [
      *==========================================================================
      *
      * Define classes to alias in the psysh repl for easier use.
+
      */
     'alias' => [
 

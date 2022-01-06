@@ -14,6 +14,7 @@ return [
      *
      */
     'accounts' => [
+
         'facebook' => [
             'name' => 'Facebook',
             'icon' => 'fa-facebook-square',
@@ -34,6 +35,7 @@ return [
             'name' => 'Github',
             'icon' => 'fa-github'
         ]
+
     ],
 
 
@@ -49,7 +51,10 @@ return [
      *
      */
     'contexts' => [
+
         'navbar' => ['facebook', 'instagram', 'linkedin'],
+
         'footer' => ['facebook', 'instagram', 'twitter', 'linkedin', 'github'],
+
     ],
 ];

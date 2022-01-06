@@ -104,6 +104,9 @@ $replacements = [
   ':vendor_name' => function ($values) {
     return $values['vendor_name'];
   },
+  ':vendor_website' => function ($values) {
+    return $values['vendor_website'];
+  },
   ':vendor_github' => function ($values) {
     return $values['vendor_github'];
   },
@@ -117,7 +120,9 @@ $files = array_merge(
   glob($prefill . '/*'),
   [
     $root . '/.env.example',
+    $root . '/.mailmap',
     $root . '/phpcs.xml.dist',
+    $root . '/style.css',
     $root . '/wp-cli.yml',
   ],
 
@@ -129,12 +134,15 @@ $files = array_merge(
   glob($root . '/app/*.php'),
   glob($root . '/app/**/*.php'),
   glob($root . '/app/**/**/*.php'),
+  glob($root . '/theme/*.php'),
+  glob($root . '/theme/**/*.php'),
+  glob($root . '/theme/**/**/*.php'),
   glob($root . '/tests/*.php'),
   glob($root . '/tests/**/*.php'),
   glob($root . '/tests/**/**/*.php'),
   [
-    $root . '/theme.php',
-  ]
+    $root . '/functions.php',
+  ],
 
   // js boilerplate
 
@@ -175,13 +183,10 @@ $mergeJsonData = [
 
 // files to rename
 $rename = [
-  'app/PseudoTheme.php' => function ($values) use ($replacements) {
-    return ($replacements['PseudoTheme'])($values) . '.php';
-  },
-  '.example.gitattributes' => function () {
+  '.stub.gitattributes' => function () {
     return '.gitattributes';
   },
-  'assets/.example.gitattributes' => function () {
+  'assets/.stub.gitattributes' => function () {
     return '.gitattributes';
   },
 ];

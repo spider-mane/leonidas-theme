@@ -13,9 +13,9 @@ return [
 
         'name' => ':theme_author',
 
-        'agency' => ':theme_vendor',
+        'agency' => ':vendor_name',
 
-        'url' => ':vendor_url',
+        'url' => ':vendor_website',
 
     ],
 

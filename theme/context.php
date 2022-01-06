@@ -1,8 +1,5 @@
 <?php
 
-namespace PseudoVendor\PseudoTheme;
-
-use PseudoVendor\PseudoTheme\Facades\ThemeAsset;
 use PseudoVendor\PseudoTheme\Models\Client;
 use PseudoVendor\PseudoTheme\Models\SocialMedia;
 use PseudoVendor\PseudoTheme\Models\ThemeData;
@@ -26,15 +23,11 @@ use WebTheory\Html\Attributes\Classlist;
  *
  */
 
-$default = $context;
-
-$context = [
+return [
 
     'base' => get_view_slug(),
 
-    'favicons' => [
-        'default' => ThemeAsset::icon(ThemeData::favicon()),
-    ],
+    'favicons' => [],
 
     'body' => [
         'class' => new Classlist($context['body_class']),
@@ -57,7 +50,6 @@ $context = [
     'footer' => [
         'class' => new Classlist,
         'social_media' => SocialMedia::for('footer'),
-        'logo' => ThemeAsset::logo(ThemeData::logo('footer')),
         'links' => ThemeData::menu('footer'),
     ],
 
@@ -68,14 +60,11 @@ $context = [
         'link' => ThemeData::developer('url'),
     ],
 
-    'fonts' => ThemeData::get('assets.fonts'),
+    'fonts' => [],
 
     'meta' => [
         'post' => ThemeData::get('map.post_meta'),
         'term' => ThemeData::get('map.term_meta'),
     ],
-];
 
-unset($default['body_class']);
-
-return $context + $default;
+] + $context;
