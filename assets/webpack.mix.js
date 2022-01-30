@@ -1,32 +1,85 @@
 const mix = require('laravel-mix');
+const yargs = require('yargs');
+const argv = yargs(process.argv.slice(2))
+  .options({
+    openBrowser: {type: 'boolean', default: false},
+  })
+  .parseSync();
+const root = '..';
 
-/**
- * Settings
- */
 mix
+
+  /**
+   *==========================================================================
+   * Output directory
+   *==========================================================================
+   *
+   *
+   *
+   */
   .setPublicPath('dist')
-  .setResourceRoot('src')
+
+  /**
+   *==========================================================================
+   * Sourcemaps
+   *==========================================================================
+   *
+   *
+   *
+   */
   .sourceMaps(true, 'eval-source-map', 'source-map')
+
+  /**
+   *==========================================================================
+   * Versioning
+   *==========================================================================
+   *
+   *
+   *
+   */
   .version()
-  .options({});
 
-/**
- * Browsersync
- */
-mix.browserSync({proxy: 'leonidas-theme.test'});
+  /**
+   *==========================================================================
+   * Browsersync
+   *==========================================================================
+   *
+   *
+   *
+   */
+  .browserSync({
+    proxy: 'leonidas-theme.test',
+    open: argv.open ?? false,
+    logLevel: 'debug',
+    files: [
+      'dist/**/*.js',
+      'dist/**/*.css',
+      '../app/**/*.php',
+      '../theme/**/*.php',
+      '../views/**/*.twig',
+    ],
+  })
 
-/**
- * Javascript
- */
-mix
+  /**
+   *==========================================================================
+   * Javascript
+   *==========================================================================
+   *
+   *
+   *
+   */
   .js('src/theme/js/index.js', 'dist/theme/js/script.js')
   // .autoload({jquery: ['$', 'window.jQuery']})
-  .extract();
+  .extract()
 
-/**
- * Sass
- */
-mix
+  /**
+   *==========================================================================
+   * Sass
+   *==========================================================================
+   *
+   *
+   *
+   */
   .sass('src/theme/scss/main.scss', 'dist/theme/css/styles.css', {
     sassOptions: {
       outputStyle: 'expanded',
@@ -34,9 +87,26 @@ mix
   })
   .options({
     processCssUrls: false,
-  });
+  })
 
-/**
- * Copies
- */
-mix.copy(['src/theme/lib/google-tag-manager.js'], 'dist/theme/lib/');
+  /**
+   *==========================================================================
+   * ImageLoader
+   *==========================================================================
+   *
+   *
+   *
+   */
+  // .options({
+  //   imgLoaderOptions: {},
+  // })
+
+  /**
+   *==========================================================================
+   * Direct Copies
+   *==========================================================================
+   *
+   *
+   *
+   */
+  .copy(['src/theme/lib/google-tag-manager.js'], 'dist/theme/lib/');
