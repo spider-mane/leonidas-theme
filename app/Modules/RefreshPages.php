@@ -19,9 +19,9 @@ class RefreshPages extends AbstractModule implements ModuleInterface
         $this->targetAfterSetupThemeHook();
     }
 
-    protected function getConfig(string $key)
+    protected function getConfig(string $key, $default = null)
     {
-        return parent::getConfig("modules.refresh.{$key}");
+        return parent::getConfig("modules.refresh.{$key}", $default);
     }
 
     protected function doInitAction(): void
@@ -30,7 +30,7 @@ class RefreshPages extends AbstractModule implements ModuleInterface
         $this->disableEmbedsCodeInit();
     }
 
-    protected function doAfterSetupThemeAction()
+    protected function doAfterSetupThemeAction(): void
     {
         $this->cleanSiteHeader();
     }
