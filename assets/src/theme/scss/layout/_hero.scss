@@ -38,67 +38,60 @@
     // @include font-size(1.5rem);
   }
 
-  // hero for front page
+  // page heros
+
+  &.hero--about {
+    .hero__bg-img {
+      background-image: unsplash-src(random/1920x1080);
+    }
+  }
+
   &.hero--front {
     min-height: 100vh;
 
     .hero__title {
-      // animation-duration: 2.5s;
+      animation-duration: 2.5s;
     }
 
     .hero__statement {
       animation-duration: 2s;
-      // animation-delay: 2.5s;
+      animation-delay: 2.5s;
     }
 
     .hero__bg-img {
       background-attachment: fixed;
-      // background-image: image($hero-front-bg-img);
       background-image: unsplash-src(random/1920x1080);
       animation-duration: 25s;
     }
   }
 
-  // hero for services page
-  &.hero--services {
-    .hero__bg-img {
-      // background-image: image($hero-services-bg-img);
-      background-image: unsplash-src(random/1920x1080);
-    }
-  }
-
-  // hero for contact page
   &.hero--contact {
     min-height: 0;
 
     .hero__bg-img {
-      // background-image: image($hero-contact-bg-img);
       background-image: unsplash-src(random/1920x1080);
-      // background-size: 100% auto;
+      background-size: 100% auto;
     }
   }
 
-  // hero for about page
-  &.hero--about {
+  &.hero--services {
     .hero__bg-img {
-      // background-image: image($hero-about-bg-img);
       background-image: unsplash-src(random/1920x1080);
     }
   }
 
   &.hero--privacy-policy {
     min-height: 50vh;
+
     .hero__bg-img {
-      // background-image: image($hero-page-bg-img);
       background-image: unsplash-src(random/1920x1080);
     }
   }
 
-  &.hero-404 {
+  &.hero--404 {
     min-height: 100vh;
 
     .hero__bg-img {
-      // background-image: image($hero-404-bg-img);
       background-image: unsplash-src(random/1920x1080);
     }
   }
