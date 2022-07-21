@@ -3,17 +3,18 @@
 namespace PseudoVendor\PseudoTheme\Modules;
 
 use Leonidas\Contracts\Ui\Asset\InlineScriptCollectionInterface;
+use Leonidas\Contracts\Ui\Asset\InlineStyleCollectionInterface;
 use Leonidas\Contracts\Ui\Asset\ScriptCollectionInterface;
 use Leonidas\Contracts\Ui\Asset\StyleCollectionInterface;
-use Leonidas\Framework\Modules\AbstractPublicAssetProviderModule;
-use Leonidas\Library\Core\Asset\InlineScriptBuilder;
+use Leonidas\Framework\Module\Abstracts\PublicAssetProviderModule;
 use Leonidas\Library\Core\Asset\InlineScriptCollection;
+use Leonidas\Library\Core\Asset\InlineStyleCollection;
 use Leonidas\Library\Core\Asset\ScriptBuilder;
 use Leonidas\Library\Core\Asset\ScriptCollection;
 use Leonidas\Library\Core\Asset\StyleBuilder;
 use Leonidas\Library\Core\Asset\StyleCollection;
 
-final class PublicAssets extends AbstractPublicAssetProviderModule
+final class PublicAssets extends PublicAssetProviderModule
 {
     /**
      * {@inheritDoc}
@@ -30,11 +31,36 @@ final class PublicAssets extends AbstractPublicAssetProviderModule
 
             // 3rd party
             StyleBuilder::for('font-awesome-cdn')
-                ->src("//use.fontawesome.com/releases/v5.15.0/css/all.css")
+                ->src("//use.fontawesome.com/releases/v6.1.1/css/all.css")
                 ->version(false)
                 ->enqueue(true)
                 ->done(),
         ]);
+    }
+
+    protected function inlineStyles(): ?InlineStyleCollectionInterface
+    {
+        return InlineStyleCollection::from([
+
+            // inline styles
+
+        ]);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function activateStyles(): array
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function deactivateStyles(): array
+    {
+        return [];
     }
 
     /**
@@ -66,9 +92,17 @@ final class PublicAssets extends AbstractPublicAssetProviderModule
                 ->done(),
 
             // 3rd Party
-            ScriptBuilder::for('google-tag-manager')
-                ->src($this->asset('/lib/google-tag-manager.js'))
-                ->inFooter(false)
+
+            ScriptBuilder::for('bootstrap')
+                ->src($this->asset('/lib/bootstrap/bootstrap.min.js'))
+                ->dependencies('masonry')
+                ->inFooter(true)
+                ->enqueue(true)
+                ->done(),
+
+            ScriptBuilder::for('fslightbox')
+                ->src($this->asset('/lib/fslightbox.js'))
+                ->inFooter(true)
                 ->enqueue(true)
                 ->done(),
 
@@ -82,24 +116,24 @@ final class PublicAssets extends AbstractPublicAssetProviderModule
     {
         return InlineScriptCollection::from([
 
-            InlineScriptBuilder::for('google-tag-manager')
-                ->position('before')
-                ->code($this->getGtmIdCode())
-                ->done(),
+            // inline scripts
 
         ]);
     }
 
     /**
-     * Define a js variable whose value is a personal Google Tag Manager id.
-     * This variable will be used by the included google-tag-manager script.
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    protected function getGtmIdCode(): string
+    protected function activateScripts(): array
     {
-        $gtmId = $this->getConfig('services.google.tags.id');
+        return [];
+    }
 
-        return "googleTagManagerId = '$gtmId'";
+    /**
+     * {@inheritDoc}
+     */
+    protected function deactivateScripts(): array
+    {
+        return [];
     }
 }

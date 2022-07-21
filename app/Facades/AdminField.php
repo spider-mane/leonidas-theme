@@ -2,7 +2,7 @@
 
 namespace PseudoVendor\PseudoTheme\Facades;
 
-use WebTheory\Leonidas\Fields\Field;
+use Leonidas\Library\Admin\Field\Factory\Field;
 
 class AdminField extends _Facade
 {

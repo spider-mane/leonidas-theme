@@ -1,8 +1,27 @@
-{# font awesome fas icon #}
-{% macro fa(icon, style = 'fas') %}
-  <i class="{{ style }} fa-{{ icon }}"></i>
+{##
+ # Generates a Font Awesome font icon element
+ #}
+{% macro fa(icon, style = 'solid') %}
+  <i class="icon fa-{{ style }} fa-{{ icon }}"></i>
 {% endmacro %}
 
+{##
+ # Generates a Font Awesome "solid" font icon element
+ #}
+{% macro fas(icon) %}
+  {{ _self.fa(icon, 'solid') }}
+{% endmacro %}
+
+{##
+ # Generates a Font Awesome "brand" font icon element
+ #}
+{% macro fab(icon) %}
+  {{ _self.fa(icon, 'brands') }}
+{% endmacro %}
+
+{##
+ # Generates a Material Icon font icon element
+ #}
 {% macro material(icon) %}
-  <i class="material-icons">{{ icon }}</i>
+  <i class="icon material-icons">{{ icon }}</i>
 {% endmacro %}

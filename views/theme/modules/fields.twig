@@ -1,33 +1,109 @@
-{# basic bootstrap field scaffolding #}
-{% macro bsSimple(input, label, id) %}
-	<div class="mb-3">
-		<label class="visually-hidden" for="{{ id }}">{{ label }}</label>
-		{{ input }}
+{##
+ # Creates a basic Bootstrap field scaffold
+ #}
+{% macro bsSimple(input, input_attr = {}, label, errors = [], error_ids = [], attr = {}) %}
+  {% if error_ids %}
+    {% set input_attr = input_attr|merge({'aria-describeby': error_ids|join(' ')}) %}
+  {% endif %}
+
+	<div {{ html_attr(attr) }}>
+		<label class="visually-hidden" for="{{ input_attr.id }}">{{ label }}</label>
+    {{ _self.resolveInput(input, input_attr) }}
+    {{ _self.bsErrors(errors, error_ids) }}
 	</div>
 {% endmacro %}
 
-{# bootstrap field scaffolding with appended text #}
-{% macro bsAppended(input, label, id, content) %}
-	<div class="mb-3">
-		<label class="visually-hidden" for="{{ id }}">{{ label }}</label>
-		<div class="input-group">
-			{{ input }}
-			<span class="input-group-text">
+{##
+ # Creates a Bootstrap field scaffold with appended content
+ #}
+{% macro bsAppended(input, input_attr = {}, label, content, errors = [], error_ids = [], attr = {}) %}
+  {% if error_ids %}
+    {% set input_attr = input_attr|merge({'aria-describeby': error_ids|join(' ')}) %}
+  {% endif %}
+
+	<div {{ html_attr(attr) }}>
+		<label class="visually-hidden" for="{{ input_attr.id }}">{{ label }}</label>
+		<div class="input-group {{ errors ? 'has-validation' }}">
+      {{ _self.resolveInput(input, input_attr) }}
+			<span class="input-group-text text-center">
 				{{ content }}
 			</span>
+      {{ _self.bsErrors(errors, error_ids) }}
 		</div>
 	</div>
 {% endmacro %}
 
-{# bootstrap field scaffolding with prepended text #}
-{% macro bsPrepended(input, label, id, content) %}
-	<div class="mb-3">
+{##
+ # Creates a Bootstrap field scaffold with prepended content
+ #}
+{% macro bsPrepended(input, input_attr, label, content, errors = [], error_ids = [], attr = {}) %}
+  {% if error_ids %}
+    {% set input_attr = input_attr|merge({'aria-describeby': error_ids|join(' ')}) %}
+  {% endif %}
+
+	<div {{ html_attr(attr) }}>
 		<label class="visually-hidden" for="{{ id }}">{{ label }}</label>
-		<div class="input-group">
+		<div class="input-group {{ errors ? 'has-validation' }}">
 			<span class="input-group-text">
 				{{ content }}
 			</span>
-			{{ input }}
+      {{ _self.resolveInput(input, input_attr) }}
+      {{ _self.bsErrors(errors, error_ids) }}
 		</div>
 	</div>
+{% endmacro %}
+
+{##
+ # Creates error message element with Bootstrap error class
+ #}
+{% macro bsErrors(errors, ids = []) %}
+  {% for name, error in errors %}
+    <div id="{{ ids[name] }}" class="invalid-feedback">{{ error }}</div>
+  {% endfor %}
+{% endmacro %}
+
+{##
+ # Controller to determine how to render input data
+ #}
+{% macro resolveInput(input, attr = {}) %}
+  {% if input == 'input' %}
+    {{ _self.input(attr) }}
+  {% elseif input == 'textarea' %}
+    {{ _self.textarea(attr) }}
+  {% elseif input == 'select' %}
+    {{ _self.select(attr) }}
+  {% else %}
+    {{ input }}
+  {% endif %}
+{% endmacro %}
+
+{##
+ # Creates an input element with parsed attributes
+ #}
+{% macro input(attr = {}) %}
+  <input {{ html_attr(attr) }}>
+{% endmacro %}
+
+{##
+ # Creates a textarea element with parsed attributes and text
+ #}
+{% macro textarea(attr = {}) %}
+  {% set value = attr.value %}
+  {% set attr = attr|filter((v, k) => k != 'value') %}
+
+  <textarea {{ html_attr(attr) }}>{{ value }}</textarea>
+{% endmacro %}
+
+{##
+ # Creates a select element with parsed attributes and options
+ #}
+{% macro select(attr = {}) %}
+  {% set options = attr.options %}
+  {% set attr = attr|filter((v, k) => k != 'options') %}
+
+  <select {{ html_attr(attr) }}>
+    {% for value, option in options %}
+      <option value="{{ value }}">{{ option }}</option>
+    {% endfor %}
+  </select>
 {% endmacro %}

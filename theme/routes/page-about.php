@@ -1,8 +1,8 @@
 <?php
 
+use Leonidas\Library\Access\Pages;
 use PseudoVendor\PseudoTheme\Theme;
 
-/**
- * Render page
- */
-Theme::render('about.twig', []);
+Theme::display('about.index', [
+    'page' => Pages::fromQuery()->first(),
+]);

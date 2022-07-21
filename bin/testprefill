@@ -3,11 +3,7 @@
 
 use Faker\Factory;
 
-require_once dirname(__DIR__, 1) . '/vendor/autoload.php';
-
-ini_set('xdebug.var_display_max_depth', 10);
-ini_set('xdebug.var_display_max_children', 256);
-ini_set('xdebug.var_display_max_data', 1024);
+require dirname(__DIR__) . '/tests/bootstrap.php';
 
 ################################################################################
 # Config
@@ -38,18 +34,18 @@ $exclude = array_merge(
 );
 
 $answers = [
-  'authorName' => 'Method Man',
-  'authorEmail' => 'methodman@wutangfinancial.wu',
-  'authorGithub' => 'fake-method-man-420',
+  'authorName' => $faker->name(),
+  'authorEmail' => $faker->email(),
+  'authorGithub' => $faker->slug(random_int(1, 3)),
 
-  'themeName' => 'Tical',
-  'themeSlug' => 'tical',
-  'themePrefix' => 'tcl',
-  'themeVersion' => '4.2.0',
-  'themeWebsite' => 'https://github.com/method-man-420/tical',
-  'themeDescription' => "Here comes the ruckus, the motherf*cking ruckus. Thousands of cut-throats and crumb-snatching f*ckers Straight from the brain, I'll be giving you the pain, anger Coming from the 36th Chamber, bang! Tical, hitting with the Buddha-Fist style. Shotgun slamming in your chestpiece, plow! Frame is blown all over the terrain. Like a man without no arms you can't hang. Time for a change of the guard. You've been arrested for lyric fraud now you barred. For real, check it, I pull strings like B.B. King on guitar I'm the true Fist of the North Star!",
+  'themeName' => ucwords($faker->words(random_int(1, 5), true)),
+  'themeSlug' => $faker->slug(random_int(1, 3)),
+  'themePrefix' => $faker->lexify(),
+  'themeVersion' => $faker->semver(),
+  'themeWebsite' => $faker->url(),
+  'themeDescription' => $faker->sentence(random_int(10, 20)),
 
-  'psr4Namespace' => "MethodMan\\Tical",
+  // 'psr4Namespace' => implode('\\', array_map('ucwords', $faker->words(2))),
 ];
 
 ################################################################################

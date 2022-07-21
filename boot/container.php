@@ -1,45 +1,51 @@
 <?php
 
 use League\Container\Container;
-use WebTheory\Config\Config;
+use Panamax\Adapters\League\LeagueAdapter;
 
 defined('ABSPATH') || exit;
 
-# instantiate container
+$root = dirname(__DIR__, 1);
+
+/**
+ *==========================================================================
+ * Create Container
+ *==========================================================================
+ *
+ * Leonidas is a container-agnostic framework. You can use any container you
+ * want so long as it is an implementation of the psr-11 standard. We've
+ * included an implementation provided by The PHP League to get things going.
+ *
+ * @link https://container.thephpleague.com/
+ * @link https://www.php-fig.org/psr/psr-11/
+ *
+ */
+
 $container = new Container();
 
-# register root directory
-$root = $container->addShared('root', dirname(__DIR__, 1))->getConcrete();
+/**
+ *==========================================================================
+ * Populate Container
+ *==========================================================================
+ *
+ * If you want to define services in your container using it's native api, this
+ * is one of many contexts you can do it from.
+ *
+ */
 
-# register config
-$config = $container
-    ->addShared('config', new Config("$root/config"))
-    ->getConcrete();
+$container->add('example', stdClass::class);
 
-# register data
-$container->addShared('data', fn () => new Config("$root/theme/data"));
+/**
+ *==========================================================================
+ * Return Container
+ *==========================================================================
+ *
+ * If your container implementation of choice is not also an implementation of
+ * Panamax\Contracts\ServiceContainerInterface, package it in an adapter
+ * implementing Panamax\Contracts\ContainerAdapterInterface. Using an adapter
+ * allows Leonidas and third-party libraries to handle much of the heavy lifting
+ * without requiring a specific implementation.
+ *
+ */
 
-# register services from config
-foreach ($config->get('container.services', []) as $service) {
-
-    # extract service values
-    $id       = $service['id'];
-    $provider = $service['provider'];
-    $args     = $service['args'] ?? [];
-    $shared   = $service['shared'] ?? false;
-    $tags     = $service['tags'] ?? [];
-
-    # register and configure service
-    $add = $shared ? 'addShared' : 'add';
-    $service = $container->$add($id, fn () => $provider::provide($args, $container));
-
-    array_map([$service, 'addTag'], $tags);
-}
-
-# register service providers
-foreach ($config->get('container.providers', []) as $provider) {
-    $container->addServiceProvider(new $provider);
-}
-
-# return bootstrapped container
-return $container;
+return new LeagueAdapter($container);

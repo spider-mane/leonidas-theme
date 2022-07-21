@@ -17,5 +17,8 @@ indent_size = 4
 [*.blade.php]
 indent_size = 2
 
+[*.{twig,blade.php,html}]
+# max_line_length = 120
+
 [*.md]
 trim_trailing_whitespace = false

@@ -1,0 +1,16 @@
+{% extends "base.twig" %}
+
+{% set includes = "routes/contact/includes/" %}
+
+{% block header %}
+  {% include("layout/header--simple.twig") %}
+{% endblock %}
+
+{% block layout %}
+  <div class="col-lg">
+    {{ include(includes ~ 'content.twig') }}
+  </div>
+  <div class="col-lg">
+    {{ include(includes ~ 'form.twig') }}
+  </div>
+{% endblock %}

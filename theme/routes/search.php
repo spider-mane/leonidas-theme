@@ -2,7 +2,4 @@
 
 use PseudoVendor\PseudoTheme\Theme;
 
-/**
- * Render page
- */
-Theme::render('search.twig', []);
+Theme::display('search.index', []);

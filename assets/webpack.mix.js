@@ -5,7 +5,15 @@ const argv = yargs(process.argv.slice(2))
     openBrowser: {type: 'boolean', default: false},
   })
   .parseSync();
+
+// configuration constants
 const root = '..';
+const vendor = `${root}/vendor`;
+const src = 'src';
+const dist = 'dist';
+const themeSrc = `${src}/theme`;
+const themeDist = `${dist}/theme`;
+const themeLib = `${themeDist}/lib`;
 
 mix
 
@@ -50,12 +58,15 @@ mix
   .browserSync({
     proxy: 'leonidas-theme.test',
     open: argv.open ?? false,
+    notify: false,
     logLevel: 'debug',
     files: [
       'dist/**/*.js',
       'dist/**/*.css',
       '../app/**/*.php',
+      '../boot/**/*.php',
       '../theme/**/*.php',
+      '../config/**/*.php',
       '../views/**/*.twig',
     ],
   })
@@ -109,4 +120,6 @@ mix
    *
    *
    */
-  .copy(['src/theme/lib/google-tag-manager.js'], 'dist/theme/lib/');
+  .copy(['src/theme/lib/google-tag-manager.js'], themeLib)
+  .copy(['node_modules/bootstrap/dist/js'], `${themeLib}/bootstrap`);
+// .copy('node_modules/fslightbox/index.js', `${themeLib}/fslightbox.js`);

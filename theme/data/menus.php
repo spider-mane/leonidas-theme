@@ -22,5 +22,5 @@ return [
         'privacy-policy' => 'Privacy Policy',
         'terms-of-use' => 'Terms of Use',
         'cookie-policy' => 'Cookie Policy',
-    ]
+    ],
 ];

@@ -17,27 +17,26 @@ return [
 
         'facebook' => [
             'name' => 'Facebook',
-            'icon' => 'fa-facebook-square',
+            'icon' => 'facebook-square',
         ],
         'instagram' => [
             'name' => 'Instagram',
-            'icon' => 'fa-instagram',
+            'icon' => 'instagram',
         ],
         'twitter' => [
             'name' => 'Twitter',
-            'icon' => 'fa-twitter',
+            'icon' => 'twitter',
         ],
         'linkedin' => [
             'name' => 'LinkedIn',
-            'icon' => 'fa-linkedin-in'
+            'icon' => 'linkedin-in',
         ],
         'github' => [
             'name' => 'Github',
-            'icon' => 'fa-github'
-        ]
+            'icon' => 'github',
+        ],
 
     ],
-
 
     /**
      *==========================================================================

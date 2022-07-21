@@ -1,0 +1,11 @@
+abstract_dir: true
+facades: app/Facades
+
+make:
+  hook:
+    path: src/Leonidas/Hooks
+
+  model:
+    contracts: app/Library/Interfaces/Models
+    namespace: app/Library/Models
+    bootstrap: app/Bootstrap/RegisterModelServices.php

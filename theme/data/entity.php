@@ -13,7 +13,6 @@ return [
      */
     'owner' => null,
 
-
     /**
      *==========================================================================
      * Name
@@ -25,7 +24,7 @@ return [
 
         'full' => null,
         'short' => null,
-        'styled' => null
+        'styled' => null,
 
     ],
 
@@ -44,7 +43,6 @@ return [
         'zip' => null,
 
     ],
-
 
     /**
      *==========================================================================
@@ -70,11 +68,11 @@ return [
     'reviews' => [
 
         'google' => [
-            'business_name' => ''
+            'business_name' => '',
         ],
 
         'yelp' => [
-            'business_name' => ''
+            'business_name' => '',
         ],
 
     ],
@@ -87,9 +85,8 @@ return [
      *
      */
     'fonts' => [
-        'primary' => null
+        'primary' => null,
     ],
-
 
     /**
      *==========================================================================
@@ -100,9 +97,8 @@ return [
      */
     'option_keys' => [
 
-        null => null
+        null => null,
     ],
-
 
     /**
      *==========================================================================
@@ -115,7 +111,7 @@ return [
 
         'title' => "{$prefix}-company-%s-name",
         'contact' => "{$prefix}-company-contact--%s",
-        'social_media' => "{$prefix}-company-info--%s"
+        'social_media' => "{$prefix}-company-info--%s",
     ],
 
 ];

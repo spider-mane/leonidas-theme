@@ -2,12 +2,12 @@
 
 namespace PseudoVendor\PseudoTheme\Facades;
 
-use WebTheory\Leonidas\Taxonomy\Factory;
+use Leonidas\Library\System\Model\Taxonomy\TaxonomyFactory;
 
 class Taxonomy extends _Facade
 {
     protected static function _getFacadeAccessor()
     {
-        return Factory::class;
+        return TaxonomyFactory::class;
     }
 }

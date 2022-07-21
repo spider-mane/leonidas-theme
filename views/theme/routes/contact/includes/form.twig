@@ -1,0 +1,94 @@
+{% import "modules/fields.twig" as fields %}
+{% import "modules/icons.twig" as icons %}
+
+{# values used to instruct rendering of fields that cannot be resolved in iteration #}
+{% set definitions = {
+  name: {
+    input: 'input',
+    attributes: {
+      type: 'text',
+      placeholder: "Your Name",
+    },
+    label: 'Your Name',
+    icon: ['user'],
+  },
+  phone: {
+    input: 'input',
+    attributes: {
+      type: 'tel',
+      placeholder: "Phone Number",
+    },
+    label: 'Phone Number',
+    icon: ['mobile-alt'],
+  },
+  email: {
+    input: 'input',
+    attributes: {
+      type: 'email',
+      placeholder: "Email Address",
+    },
+    label: 'Email Address',
+    icon: ['at'],
+  },
+  message: {
+    input: 'textarea',
+    attributes: {
+      placeholder: "How can we help?",
+      rows: 7,
+    },
+    icon: ['building'],
+    scaffold: 'simple',
+  },
+} %}
+
+{# variables needed in case of failed server-side validation #}
+{% if form.errors %}
+  {% set v_stats = form.fields|map((data, name) => form.errors[name] ? 'is-invalid' : 'is-valid') %}
+  {% set err_ids = form.errors|map((errors, field) => errors|map((text, rule) => "#{field}-#{rule}-error")) %}
+{% endif %}
+
+{# common field variables #}
+{% set field_id_base = "form-field--" %}
+{% set field_class = "form-control form-control-lg" %}
+{% set scaffold_attr = {
+  class: "mb-3",
+} %}
+
+{# form element variables #}
+{% set form_class = '' %}
+
+{# create form #}
+<form novalidate id="contact-form" action="{{ form.action }}" method="{{ form.method }}" class="{{ form_class }}">
+  {# outputs hidden fields required for auth and preprocessing such as csrf tokens #}
+  {{ form.checks }}
+
+  {# Iterate over definitions for desired order but filter to account for possible dynamic inclusion of fields #}
+  {% for field, definition in definitions|filter((d, f) => f in form.fields|keys) %}
+    {% set mapped = form.fields[field] %}
+    {% set errors = form.errors[field] %}
+
+    {% set input = definition.input %}
+    {% set label = definition.label %}
+    {% set scaffold = definition.scaffold ?? 'appended' %}
+
+    {% set attributes = definition.attributes|merge({
+      name: mapped.name,
+      value: mapped.value,
+      id: field_id_base ~ field,
+      class: class(definition.attributes.class).add(field_class).add(v_stats[field] ?? ''),
+      required: mapped.required,
+      disabled: mapped.disabled,
+      readonly: mapped.readonly,
+    }) %}
+
+    {% if scaffold == 'appended' %}
+      {% set icon = icons.fa(definition.icon[0], definition.icon[1] ?? 'solid') %}
+
+      {{ fields.bsAppended(input, attributes, label, icon, errors, err_ids[field], scaffold_attr) }}
+    {% elseif scaffold == 'simple' %}
+      {{ fields.bsSimple(input, attributes, label, errors, err_ids[field], scaffold_attr) }}
+    {% endif %}
+  {% endfor %}
+
+  <button class="btn btn-primary" type="submit">Send Message</button>
+</form>

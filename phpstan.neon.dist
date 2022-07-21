@@ -1,0 +1,22 @@
+includes:
+  # - phpstan-baseline.neon
+
+parameters:
+  level: 5
+  tmpDir: build/phpstan
+  reportUnmatchedIgnoredErrors: false
+
+  paths:
+    - app
+    - boot
+    - config
+    - tests
+
+  bootstrapFiles:
+    - boot/constants.php
+
+  ignoreErrors:
+    # - '#^Unsafe usage of new static\(\).$#'
+    # - '#^Expression on left side of \?\? is not nullable.$#'
+    # - '#^Right side of \&\& is always true.$#'
+    # - '#^Dead catch - Throwable is never thrown in the try block.$#'

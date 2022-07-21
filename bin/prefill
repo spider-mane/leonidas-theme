@@ -14,14 +14,15 @@ $prefill = PREFILL_DIRECTORY;
 // allow defaults to be passed to script for testing
 $authorName = $authorName ?? trim(shell_exec('git config user.name'));
 $authorEmail = $authorEmail ?? trim(shell_exec('git config user.email'));
-$themeSlug = $themeSlug ?? strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', basename($root)));;
+$themeSlug = $themeSlug ?? strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', basename($root)));
 $themeName = $themeName ?? ucwords(str_replace(['-', '_'], ' ', basename($root)));
+$themeNamespace = $themeNamespace ?? str_replace('-', '_', $themeSlug);
 
 $authorGithub = $authorGithub ?? '';
 $themePrefix = $themePrefix ?? '';
 $themeDescription = $themeDescription ?? '';
 $themeVersion = $themeVersion ?? '0.1.0';
-$psr4Namespace = $psr4Namespace ?? '';
+$psr4Namespace = $psr4Namespace ?? 'Theme';
 
 $fields = [
   'author_name' => ['Your name', '', $authorName],
@@ -35,6 +36,7 @@ $fields = [
 
   'theme_name' => ['Theme name', '', $themeName],
   'theme_slug' => ['Theme slug (textdomain)', '', $themeSlug],
+  'theme_namespace' => ['Theme namespace', 'Key-like string to namespace values and contexts', $themeNamespace],
   'theme_prefix' => ['Theme prefix', 'Abbreviated shorthand ideally 3-5 characters', $themePrefix],
   'theme_version' => ['Theme version', '', $themeVersion],
   'theme_website' => ['Theme website', '', 'https://github.com/{vendor_github}/{theme_slug}'],
@@ -65,6 +67,9 @@ $replacements = [
   },
 
   // data
+  ':theme_namespace' => function ($values) {
+    return $values['theme_namespace'];
+  },
   ':theme_name' => function ($values) {
     return $values['theme_name'];
   },
@@ -75,6 +80,9 @@ $replacements = [
     return $values['theme_slug'];
   },
   'pseudo-theme' => function ($values) {
+    return $values['theme_slug'];
+  },
+  'leonidas-theme' => function ($values) {
     return $values['theme_slug'];
   },
   ':theme_prefix' => function ($values) {
@@ -252,6 +260,7 @@ echo "\n";
 foreach ($delete as $file) {
   shell_exec("rm -f $root/$file");
 }
+
 // update and relocate boilerplate
 foreach ($files as $file) {
   $contents = file_get_contents($file);
@@ -276,6 +285,7 @@ foreach ($files as $file) {
 
   file_put_contents($file, $contents);
 }
+
 // rename files
 foreach ($rename as $file => $renameFile) {
   $file = realpath("$root/$file");

@@ -1,17 +1,10 @@
 <?php
 
+use Leonidas\Library\Access\Pages;
+use PseudoVendor\PseudoTheme\Facades\Forms;
 use PseudoVendor\PseudoTheme\Theme;
 
-/**
- * Render page
- */
-Theme::render('contact.twig', [
-
-    'form' => [
-        'method' => 'post',
-        'action' => '',
-        'process' => '',
-        'fields' => [],
-    ],
-
+Theme::display('contact.index', [
+    'page' => Pages::fromQuery()->first(),
+    'form' => Forms::build('contact'),
 ]);

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }}>
+  <head>
+    {{ wp_head }}
+
+    {% block head %}
+      <meta charset="{{ site.charset }}">
+      <meta name="description" content="{{ site.description }}">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+      <link rel="icon" href="{{ favicons.default }}" type="image/png">
+      <link rel="icon" href="{{ favicons.i32 }}" type="image/png" sizes="32x32">
+      <link rel="icon" href="{{ favicons.i16 }}" type="image/png" sizes="16x16">
+      <link rel="apple-touch-icon" href="{{ favicons.apple }}" sizes="180x180">
+    {% endblock %}
+  </head>
+
+  <body id="body" class="{{ body.class }}" {{ body.attributes }}>
+    {{ wp_body }}
+
+    {% block body %}
+      {% block navbar %}
+        {% include('layout/navbar.twig') %}
+      {% endblock %}
+
+      {% block header %}
+        {% include('layout/header.twig') %}
+      {% endblock %}
+
+      {% block main %}
+        <main class="section">
+          <div class="container">
+            <div class="row">
+              {% block layout %}
+                <div class="col">
+                  {% block content %}{% endblock %}
+                </div>
+              {% endblock %}
+            </div>
+          </div>
+        </main>
+      {% endblock %}
+
+      {% block footer %}
+        {% include('layout/footer.twig') %}
+      {% endblock %}
+    {% endblock %}
+
+    {{ wp_foot }}
+  </body>
+</html>

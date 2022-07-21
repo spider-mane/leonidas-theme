@@ -1,8 +1,8 @@
 <?php
 
+use Leonidas\Library\Access\Posts;
 use PseudoVendor\PseudoTheme\Theme;
 
-/**
- * Render page
- */
-Theme::render('blog-post.twig', []);
+Theme::display('post.single', [
+    'post' => Posts::fromQuery()->first(),
+]);

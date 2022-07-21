@@ -2,7 +2,4 @@
 
 use PseudoVendor\PseudoTheme\Theme;
 
-/**
- * Render page
- */
-Theme::render('404.twig', []);
+Theme::display('404.index', []);

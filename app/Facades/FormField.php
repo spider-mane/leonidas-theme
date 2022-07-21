@@ -2,7 +2,7 @@
 
 namespace PseudoVendor\PseudoTheme\Facades;
 
-use WebTheory\Saveyour\Factories\FieldFactory;
+use WebTheory\Saveyour\Factory\FieldFactory;
 
 class FormField extends _Facade
 {

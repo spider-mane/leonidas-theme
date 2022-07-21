@@ -1,14 +1,20 @@
 <?php
 
-namespace PseudoVendor\PseudoTheme\Asset;
+use WebTheory\Config\Deferred\Reflection as ConfigReflection;
 
-use PseudoVendor\PseudoTheme\Facades\ThemeAsset;
-use PseudoVendor\PseudoTheme\Facades\Phone;
-use WebTheory\Html\Attributes\Classlist;
-use WebTheory\Saveyour\Factories\FormFieldFactory;
-use joshtronic\LoremIpsum;
+use function PseudoVendor\PseudoTheme\abspath;
 
 return [
+
+    /**
+     *==========================================================================
+     * Root
+     *==========================================================================
+     *
+     *
+     *
+     */
+    'root' => abspath(),
 
     /**
      *==========================================================================
@@ -20,89 +26,52 @@ return [
      */
     'paths' => [
 
-        '/views/theme'
-    ],
+        'views/theme',
 
+    ],
 
     /**
      *==========================================================================
-     * Filters
+     * Options
      *==========================================================================
      *
      *
      *
      */
-    'filters' => [
+    'options' => [
 
-        'url' => 'home_url',
-
-        'us_phone' => [Phone::class, 'formatUs'],
-
-        'phone_link' => [Phone::class, 'getHref'],
+        'autoescape' => false,
+        'cache' => abspath('/storage/cache/views/twig'),
+        'debug' => ConfigReflection::get('app.dev'),
 
     ],
 
-
     /**
      *==========================================================================
-     * Functions
+     * Extensions
      *==========================================================================
      *
      *
      *
      */
-    'functions' => [
+    'extensions' => [
 
-        'image' => [ThemeAsset::class, 'image'],
+        # Leonidas
+        Leonidas\Library\Core\View\Twig\LoremExtension::class,
+        Leonidas\Library\Core\View\Twig\PrettyDebugExtension::class,
+        Leonidas\Library\Core\View\Twig\SkyHooksExtension::class,
+        Leonidas\Library\Core\View\Twig\StringHelperExtension::class,
+        Leonidas\Library\Core\View\Twig\TemplateTagsExtension::class,
 
-        'video' => [ThemeAsset::class, 'video'],
+        # Twig Extra
+        Twig\Extra\Inky\InkyExtension::class,
+        Twig\Extra\Intl\IntlExtension::class,
+        Twig\Extra\Markdown\MarkdownExtension::class,
 
-        'audio' => [ThemeAsset::class, 'audio'],
-
-        'logo' => [ThemeAsset::class, 'logo'],
-
-        'icon' => [ThemeAsset::class, 'icon'],
-
-        'lorem' => static function (int $count, string $what = 'words', bool $tags = false) {
-            return (new LoremIpsum)->$what($count, $tags, false);
-        },
-
-        'spaces' => static function (int $spaces) {
-            return str_repeat('&nbsp;', $spaces);
-        },
-
-        'separator' => static function (int $spaces) {
-            $spaces = str_repeat('&nbsp;', $spaces);
-
-            return $spaces . '|' . $spaces;
-        },
-
-        'class' => static function () {
-            return new Classlist();
-        },
-
-        'field' => static function (string $type, array $args) {
-            return (new FormFieldFactory)->create($type, $args);
-        },
-
-        'prefix' => static function ($prefix, ...$items) {
-            return array_map(fn ($item) => $prefix . $item, $items);
-        },
-
-        'suffix' => static function ($suffix, ...$items) {
-            return array_map(fn ($item) => $item . $suffix, $items);
-        },
-
-        'dump' => static function (...$values) {
-            function_exists('dump') ? dump(...$values) : var_dump(...$values);
-        },
-
-        'dd' => static function (...$values) {
-            function_exists('dd') ? dd(...$values) : exit(var_dump(...$values));
-        },
+        # Theme
+        PseudoVendor\PseudoTheme\View\TwigExtension::class,
 
     ],
-
 
     /**
      *==========================================================================
@@ -117,68 +86,17 @@ return [
         //
     ],
 
-
     /**
      *==========================================================================
-     * Tests
+     * Runtime Loaders
      *==========================================================================
      *
      *
      *
      */
-    'tests' => [
+    'runtime_loaders' => [
 
         //
     ],
-
-
-    /**
-     *==========================================================================
-     * Components
-     *==========================================================================
-     *
-     *
-     *
-     */
-    'components' => [
-
-        //
-    ],
-
-
-    /**
-     *==========================================================================
-     * Extensions
-     *==========================================================================
-     *
-     *
-     *
-     */
-    'extensions' => [
-
-        //
-    ],
-
-
-    /**
-     *==========================================================================
-     * Global Context
-     *==========================================================================
-     *
-     *
-     *
-     */
-    'context' => '/theme/context.php',
-
-
-    /**
-     *==========================================================================
-     * Cache
-     *==========================================================================
-     *
-     *
-     *
-     */
-    'cache' => [],
 
 ];

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<psalm
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="https://getpsalm.org/schema/config"
+  xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+  cacheDirectory="build/psalm"
+  errorLevel="8"
+  resolveFromConfigFile="true"
+>
+  <projectFiles>
+    <directory name="src"/>
+    <directory name="boot"/>
+    <directory name="config"/>
+    <directory name="tests"/>
+  </projectFiles>
+
+  <extraFiles>
+    <directory name="wordpress/wp-admin/includes"/>
+    <directory name="wordpress/wp-includes"/>
+  </extraFiles>
+</psalm>
