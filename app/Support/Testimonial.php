@@ -2,7 +2,7 @@
 
 namespace PseudoVendor\PseudoTheme\Support;
 
-use PseudoVendor\PseudoTheme\Facades\Config;
+use PseudoVendor\PseudoTheme\Access\Config;
 
 class Testimonial
 {

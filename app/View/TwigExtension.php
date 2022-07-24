@@ -3,8 +3,8 @@
 namespace PseudoVendor\PseudoTheme\View;
 
 use Leonidas\Library\Core\View\Twig\Abstracts\AbstractConfigurationExtension;
-use PseudoVendor\PseudoTheme\Facades\Phone;
-use PseudoVendor\PseudoTheme\Facades\ThemeAsset;
+use PseudoVendor\PseudoTheme\Access\Phone;
+use PseudoVendor\PseudoTheme\Access\ThemeAsset;
 use WebTheory\Html\Attributes\Classlist;
 use WebTheory\Html\Html;
 

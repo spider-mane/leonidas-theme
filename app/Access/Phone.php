@@ -1,6 +1,6 @@
 <?php
 
-namespace PseudoVendor\PseudoTheme\Facades;
+namespace PseudoVendor\PseudoTheme\Access;
 
 use Leonidas\Framework\Access\PhoneNumberUtilFacadeTrait;
 use libphonenumber\PhoneNumberUtil;

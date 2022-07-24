@@ -1,6 +1,6 @@
 <?php
 
-namespace PseudoVendor\PseudoTheme\Facades;
+namespace PseudoVendor\PseudoTheme\Access;
 
 /**
  * @method static string audio(string $file)

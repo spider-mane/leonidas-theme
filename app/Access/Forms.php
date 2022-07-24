@@ -1,6 +1,6 @@
 <?php
 
-namespace PseudoVendor\PseudoTheme\Facades;
+namespace PseudoVendor\PseudoTheme\Access;
 
 use Leonidas\Contracts\Http\Form\FormInterface;
 use Leonidas\Contracts\Http\Form\FormRepositoryInterface;

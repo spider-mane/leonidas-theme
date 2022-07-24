@@ -2,7 +2,7 @@
 
 namespace PseudoVendor\PseudoTheme\Support;
 
-use PseudoVendor\PseudoTheme\Facades\Twig;
+use PseudoVendor\PseudoTheme\Access\Twig;
 use PseudoVendor\PseudoTheme\View\Models\Defaults;
 
 class View
