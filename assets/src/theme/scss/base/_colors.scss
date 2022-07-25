@@ -41,13 +41,13 @@
   }
 }
 
-// vendor colors
-@each $vendor, $vendorColor in $vendor-colors {
-  .vendor-#{$vendor} {
-    color: $vendorColor;
+// brand colors
+@each $brand, $brandColor in $brand-colors {
+  .vendor-#{$brand} {
+    color: $brandColor;
   }
 
-  .vendor-#{$vendor}-hover:hover {
-    color: $vendorColor;
+  .vendor-#{$brand}-hover:hover {
+    color: $brandColor;
   }
 }
