@@ -1,17 +1,13 @@
-
 export const config = {
-
-  navbar: {
-
-  },
+  navbar: {},
 
   reCapcha: {
-    key: ''
+    key: '',
   },
 
   google: {
     maps: {
-      key: ''
+      key: '',
     },
   },
-}
+};

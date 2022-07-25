@@ -1,4 +1,3 @@
-
 // positioning
 .absolute-top {
   position: absolute;
@@ -9,7 +8,7 @@
 }
 
 // z-index
-@each $index in 5,10,15,10,25 {
+@each $index in 5, 10, 15, 10, 25 {
   .z-#{$index} {
     z-index: $index;
   }

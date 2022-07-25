@@ -1,11 +1,11 @@
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
-import { state } from "./state";
-import { config } from "./config";
-import { elements, toggleScroll } from "./views/base";
-import * as navbar from "./components/navbar";
-import * as header from "./components/header";
+import {state} from './state';
+import {config} from './config';
+import {elements, toggleScroll} from './views/base';
+import * as navbar from './components/navbar';
+import * as header from './components/header';
 
 /**
  *
@@ -16,20 +16,18 @@ window.state = state;
 /**
  *
  */
-if ("grecaptcha" in window) {
+if ('grecaptcha' in window) {
   grecaptcha.ready(() => {
-    grecaptcha
-      .execute(config.reCapcha.key, { action: "contact" })
-      .then((token) => {
-        elements.forms.reCaptcha.value = token;
-      });
+    grecaptcha.execute(config.reCapcha.key, {action: 'contact'}).then(token => {
+      elements.forms.reCaptcha.value = token;
+    });
   });
 }
 
 /**
  *
  */
-document.addEventListener("scroll", (e) => {
+document.addEventListener('scroll', e => {
   if (!state.navbar.open) {
     transformNavbar(e);
   }
@@ -38,7 +36,7 @@ document.addEventListener("scroll", (e) => {
 /**
  *
  */
-elements.navbar.toggler.addEventListener("click", (e) => {
+elements.navbar.toggler.addEventListener('click', e => {
   const colorChanged = state.navbar.color.changed;
   const passedThreshold = state.navbar.color.threshold;
 
@@ -48,8 +46,8 @@ elements.navbar.toggler.addEventListener("click", (e) => {
       navbar.fixPosition();
     }
 
-    toggleScroll("hidden");
-    navbar.showNavItems().toggleToggler("close");
+    toggleScroll('hidden');
+    navbar.showNavItems().toggleToggler('close');
     state.navbar.open = true;
   } else {
     if (!passedThreshold && colorChanged) {
@@ -57,8 +55,8 @@ elements.navbar.toggler.addEventListener("click", (e) => {
       navbar.releasePosition();
     }
 
-    toggleScroll("scroll");
-    navbar.hideNavItems().toggleToggler("open");
+    toggleScroll('scroll');
+    navbar.hideNavItems().toggleToggler('open');
     state.navbar.open = false;
   }
 });

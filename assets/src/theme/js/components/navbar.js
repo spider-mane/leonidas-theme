@@ -1,13 +1,13 @@
 // import { elements } from "../views/base";
 
 const selectors = {
-  root: "#navbar",
-  toggler: ".navbar-toggler",
-  togglerIcon: "#toggler-icon",
-  collapse: "#navbar-menu",
-  menu: ".navbar-nav",
-  items: ".nav-item",
-  logo: ".navbar-brand",
+  root: '#navbar',
+  toggler: '.navbar-toggler',
+  togglerIcon: '#toggler-icon',
+  collapse: '#navbar-menu',
+  menu: '.navbar-nav',
+  items: '.nav-item',
+  logo: '.navbar-brand',
 };
 
 const elements = {
@@ -23,42 +23,42 @@ const elements = {
 const root = {
   height: elements.root.offsetHeight,
   class: {
-    display: "vh-100 align-items-start bg-color-2-opacity-90",
-    animate: "animated fadeInDown fast",
+    display: 'vh-100 align-items-start bg-color-2-opacity-90',
+    animate: 'animated fadeInDown fast',
     color: {
-      default: "bg-transparent",
-      changed: "bg-color-2-opacity-70",
+      default: 'bg-transparent',
+      changed: 'bg-color-2-opacity-70',
     },
     position: {
-      fixed: "fixed-top",
-      default: "absolute-top",
+      fixed: 'fixed-top',
+      default: 'absolute-top',
     },
   },
 };
 
 const menu = {
   class: {
-    display: "align-items-end ml-auto display-2 animated fadeInLeft",
+    display: 'align-items-end ml-auto display-2 animated fadeInLeft',
   },
 
   items: {
     class: {
-      animate: "animated fadeInLeft",
+      animate: 'animated fadeInLeft',
     },
   },
 };
 
 const collapse = {
   class: {
-    display: "d-flex",
+    display: 'd-flex',
   },
 };
 
 const toggler = {
   icons: {
     class: {
-      open: "fas fa-bars",
-      close: "fas fa-times",
+      open: 'fas fa-bars',
+      close: 'fas fa-times',
     },
   },
 };
@@ -66,7 +66,7 @@ const toggler = {
 const logo = {
   fontSize: {
     default: elements.logo.style.fontSize,
-    expanded: "1.5rem",
+    expanded: '1.5rem',
   },
 };
 
@@ -102,12 +102,12 @@ export function toggleToggler(toggle) {
   const classList = elements.togglerIcon.classList;
   const classes = toggler.icons.class;
 
-  if ("close" === toggle) {
-    classList.remove(...classes.open.split(" "));
-    classList.add(...classes.close.split(" "));
-  } else if ("open" === toggle) {
-    classList.remove(...classes.close.split(" "));
-    classList.add(...classes.open.split(" "));
+  if ('close' === toggle) {
+    classList.remove(...classes.open.split(' '));
+    classList.add(...classes.close.split(' '));
+  } else if ('open' === toggle) {
+    classList.remove(...classes.close.split(' '));
+    classList.add(...classes.open.split(' '));
   }
 
   return this;
@@ -117,12 +117,12 @@ export function toggleToggler(toggle) {
  *
  */
 export function showNavItems() {
-  elements.root.classList.add(...root.class.display.split(" "));
-  elements.collapse.classList.add(...collapse.class.display.split(" "));
-  elements.menu.classList.add(...menu.class.display.split(" "));
+  elements.root.classList.add(...root.class.display.split(' '));
+  elements.collapse.classList.add(...collapse.class.display.split(' '));
+  elements.menu.classList.add(...menu.class.display.split(' '));
 
   elements.logo.style.fontSize = logo.fontSize.expanded;
-  elements.root.style.overflowY = "auto";
+  elements.root.style.overflowY = 'auto';
 
   return this;
 }
@@ -131,12 +131,12 @@ export function showNavItems() {
  *
  */
 export function hideNavItems() {
-  elements.root.classList.remove(...root.class.display.split(" "));
-  elements.collapse.classList.remove(...collapse.class.display.split(" "));
-  elements.menu.classList.remove(...menu.class.display.split(" "));
+  elements.root.classList.remove(...root.class.display.split(' '));
+  elements.collapse.classList.remove(...collapse.class.display.split(' '));
+  elements.menu.classList.remove(...menu.class.display.split(' '));
 
   elements.logo.style.fontSize = logo.fontSize.default;
-  elements.root.style.overflowY = "initial";
+  elements.root.style.overflowY = 'initial';
 
   return this;
 }
@@ -146,9 +146,9 @@ export function hideNavItems() {
  */
 export function animateNavItems(animate = true) {
   if (!animate) {
-    Array.from(elements.items).forEach((item) => {
-      item.style.animationDuration = "initial";
-      item.classlist.remove(...menu.items.class.animate.split(" "));
+    Array.from(elements.items).forEach(item => {
+      item.style.animationDuration = 'initial';
+      item.classlist.remove(...menu.items.class.animate.split(' '));
     });
 
     return this;
@@ -158,11 +158,11 @@ export function animateNavItems(animate = true) {
 
   Array.from(elements.items)
     .reverse()
-    .forEach((item) => {
+    .forEach(item => {
       i = i * 1.2;
 
       item.style.animationDuration = `${i}s`;
-      item.classList.add(...menu.items.class.animate.split(" "));
+      item.classList.add(...menu.items.class.animate.split(' '));
     });
 
   return this;
@@ -204,7 +204,7 @@ export function resetColor() {
 export function fixPosition() {
   const position = root.class.position;
 
-  elements.root.classList.add(...root.class.animate.split(" "));
+  elements.root.classList.add(...root.class.animate.split(' '));
   elements.root.classList.replace(position.default, position.fixed);
 
   return this;
@@ -216,7 +216,7 @@ export function fixPosition() {
 export function releasePosition() {
   const position = root.class.position;
 
-  elements.root.classList.remove(...root.class.animate.split(" "));
+  elements.root.classList.remove(...root.class.animate.split(' '));
   elements.root.classList.replace(position.fixed, position.default);
 
   return this;

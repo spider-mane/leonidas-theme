@@ -1,5 +1,5 @@
-@use "sass:map";
-@use "sass:list";
+@use 'sass:map';
+@use 'sass:list';
 
 ///
 @function remify($px) {
@@ -20,9 +20,9 @@
 }
 
 /// convert a map into a list of nested items
-@function flatten($map, $separator: "comma", $list: ()) {
+@function flatten($map, $separator: 'comma', $list: ()) {
   @each $item, $entry in $map {
-    @if (type-of($entry) == "map" or type-of($entry) == "list") {
+    @if (type-of($entry) == 'map' or type-of($entry) == 'list') {
       $list: flatten($entry, $separator, $list);
     } @else {
       $list: list.append($list, $item, $separator: $separator);

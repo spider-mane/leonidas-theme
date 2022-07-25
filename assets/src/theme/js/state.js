@@ -2,7 +2,6 @@
  *
  */
 export const state = {
-
   navbar: {
     open: false,
     color: {
@@ -12,6 +11,6 @@ export const state = {
     fixed: {
       set: false,
       threshold: false,
-    }
-  }
+    },
+  },
 };

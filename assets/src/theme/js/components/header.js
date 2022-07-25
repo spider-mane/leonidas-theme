@@ -1,7 +1,7 @@
 // import { elements } from "../views/base";
 
 const selectors = {
-  root: "#header",
+  root: '#header',
 };
 
 const elements = {

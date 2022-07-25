@@ -4,15 +4,18 @@ import Rellax from 'rellax';
  *
  */
 const rellaxers = {
-  frontPage: [{
-    // hero background
-    element: elements.frontPage.headerBackground,
-    speed: -8
-  }, {
-    // hero logo
-    element: elements.frontPage.headerLogo,
-    speed: 3
-  }]
+  frontPage: [
+    {
+      // hero background
+      element: elements.frontPage.headerBackground,
+      speed: -8,
+    },
+    {
+      // hero logo
+      element: elements.frontPage.headerLogo,
+      speed: 3,
+    },
+  ],
 };
 
 /**
@@ -38,6 +41,6 @@ export function initParallax() {
   });
 
   rellax = new Rellax(`.${selector}`, {
-    round: false
+    round: false,
   });
 }

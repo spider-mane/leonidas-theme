@@ -3,9 +3,7 @@ import Masonry from 'masonry-layout';
 /**
  * stuffs
  */
-import {
-  elements,
-} from "../config/nodes";
+import {elements} from '../config/nodes';
 
 /**
  * masonry

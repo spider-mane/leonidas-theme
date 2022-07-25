@@ -5,9 +5,7 @@ import Glide from '@glidejs/glide';
 /**
  * stuffs
  */
-import {
-  elements,
-} from "../../config/nodes";
+import {elements} from '../../config/nodes';
 
 /**
  * sliders
@@ -21,9 +19,9 @@ export function initSlider(ImagesLoaded) {
 
   slider = new Glide(slider, {
     type: 'carousel',
-    perView: (count < maxSlides) ? count : maxSlides,
+    perView: count < maxSlides ? count : maxSlides,
     // autoplay: (count <= maxSlides) ? false : 5000
-    autoplay: false
+    autoplay: false,
   });
 
   slider.mount();
@@ -36,7 +34,7 @@ export function initSimpleBar(e) {
   const scrollElements = elements.frontPage.testimonialContent;
 
   const instances = OverlayScrollbars(scrollElements, {
-    className: "os-theme-thin-light",
+    className: 'os-theme-thin-light',
     paddingAbsolute: true,
     overflowBehavior: {
       x: 'hidden',
@@ -44,9 +42,9 @@ export function initSimpleBar(e) {
     },
     scrollbars: {
       visibility: 'auto',
-      autoHide: "leave",
-      autoHideDelay: 300
-    }
+      autoHide: 'leave',
+      autoHideDelay: 300,
+    },
   });
 
   // instances.forEach(instance => {

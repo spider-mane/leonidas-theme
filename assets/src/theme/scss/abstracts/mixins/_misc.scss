@@ -1,9 +1,9 @@
 //
 @mixin border_radius_card_end($end, $radius) {
-  @if $end== "top" {
+  @if $end== 'top' {
     border-top-left-radius: $radius;
     border-top-right-radius: $radius;
-  } @else if $end == "bottom" {
+  } @else if $end == 'bottom' {
     border-bottom-left-radius: $radius;
     border-bottom-right-radius: $radius;
   }
@@ -18,7 +18,7 @@
 ///  use in ::before
 @mixin overlay($background: white) {
   &::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: 0;
@@ -74,7 +74,7 @@
   z-index: 1;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
