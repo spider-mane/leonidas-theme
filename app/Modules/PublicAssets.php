@@ -19,14 +19,15 @@ final class PublicAssets extends PublicAssetProviderModule
             StyleBuilder::for('pseudo-theme')
                 ->src($this->asset('/css/styles.css'))
                 ->version($this->version('1.0.0'))
+                ->dependencies('font-awesome')
                 ->enqueue(true)
                 ->done(),
 
             // 3rd party
-            StyleBuilder::for('font-awesome-cdn')
-                ->src("//use.fontawesome.com/releases/v6.1.1/css/all.css")
+
+            StyleBuilder::for('font-awesome')
+                ->src("//use.fontawesome.com/releases/v6.1.2/css/all.css")
                 ->version(false)
-                ->enqueue(true)
                 ->done(),
         ]);
     }
@@ -66,7 +67,7 @@ final class PublicAssets extends PublicAssetProviderModule
                 ->done(),
 
             ScriptBuilder::for('fslightbox')
-                ->src($this->asset('/lib/fslightbox.js'))
+                ->src($this->asset('/lib/fslightbox/index.js'))
                 ->inFooter(true)
                 ->enqueue(true)
                 ->done(),

@@ -133,6 +133,7 @@ mix
    *
    */
   .copy('node_modules/bootstrap/dist/js', `${themeLib}/bootstrap`)
+  .copy('node_modules/fslightbox/index.js', `${themeLib}/fslightbox`)
 
   /**
    *==========================================================================
