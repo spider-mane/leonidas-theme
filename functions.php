@@ -13,12 +13,9 @@
  * @author :theme_author <:author_email>
  */
 
-use Leonidas\Framework\Theme\Theme;
-use PseudoVendor\PseudoTheme\Launcher;
-
 defined('ABSPATH') || exit;
 
 call_user_func(function () {
     require __DIR__ . '/boot/init.php';
-    Launcher::init(Theme::path(), Theme::url());
+    PseudoVendor\PseudoTheme\Launcher::init();
 });

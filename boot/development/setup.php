@@ -21,7 +21,7 @@ Dotenv::createUnsafeImmutable($root)->load();
 $config = new Config("$root/config/development");
 
 /**
- * Establish that plugin is in a development environment
+ * Establish that theme is in a development environment
  */
 define($dev = 'PSEUDO_CONSTANT_DEVELOPMENT', env($dev) ?? true);
 

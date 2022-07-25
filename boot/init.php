@@ -13,7 +13,8 @@ $root = dirname(__DIR__, 1);
  * autoloader will be included. It won't be included if installed via composer.
  *
  */
-if (file_exists($autoload = "$root/vendor/autoload.php")) {
+
+if (file_exists($autoload = "{$root}/vendor/autoload.php")) {
     require_once $autoload;
 }
 
@@ -25,6 +26,7 @@ if (file_exists($autoload = "$root/vendor/autoload.php")) {
  * Load any files with function declarations.
  *
  */
+
 array_map(function ($path) use ($root) {
     require "{$root}/app/{$path}.php";
 }, ['functions']);
@@ -38,6 +40,7 @@ array_map(function ($path) use ($root) {
  * launcher.
  *
  */
+
 array_map(function ($path) {
     require __DIR__ . "/{$path}.php";
 }, ['constants']);
@@ -50,8 +53,8 @@ array_map(function ($path) {
  * Load scripts to be used in development.
  *
  */
-if (true === constant('PSEUDO_CONSTANT_DEVELOPMENT')) {
 
+if (defined('PSEUDO_CONSTANT_DEVELOPMENT')) {
     // development bootstrapping
     if (file_exists($development = __DIR__ . '/development')) {
         array_map(function ($path) use ($development) {

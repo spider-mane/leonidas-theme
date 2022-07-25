@@ -124,8 +124,8 @@ return [
         Leonidas\Framework\Provider\League\FormRepositoryServiceProvider::class,
         Leonidas\Framework\Provider\League\GuzzleServerRequestServiceProvider::class,
         Leonidas\Framework\Provider\League\PhoneNumberUtilServiceProvider::class,
-        Leonidas\Framework\Provider\League\TwigFlexViewServiceProvider::class,
         Leonidas\Framework\Provider\League\TransientsChannelServiceProvider::class,
+        Leonidas\Framework\Provider\League\TwigFlexViewServiceProvider::class,
 
         # Leonidas site
         Leonidas\Framework\Site\Provider\League\SymfonyMailerServiceProvider::class,
@@ -170,7 +170,7 @@ return [
      * that it can bind container to it.
      *
      */
-    'facade' => PseudoVendor\PseudoTheme\Facades\_Facade::class,
+    'facade' => PseudoVendor\PseudoTheme\Access\_Facade::class,
 
     /**
      *==========================================================================

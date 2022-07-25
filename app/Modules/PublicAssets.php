@@ -2,13 +2,9 @@
 
 namespace PseudoVendor\PseudoTheme\Modules;
 
-use Leonidas\Contracts\Ui\Asset\InlineScriptCollectionInterface;
-use Leonidas\Contracts\Ui\Asset\InlineStyleCollectionInterface;
 use Leonidas\Contracts\Ui\Asset\ScriptCollectionInterface;
 use Leonidas\Contracts\Ui\Asset\StyleCollectionInterface;
 use Leonidas\Framework\Module\Abstracts\PublicAssetProviderModule;
-use Leonidas\Library\Core\Asset\InlineScriptCollection;
-use Leonidas\Library\Core\Asset\InlineStyleCollection;
 use Leonidas\Library\Core\Asset\ScriptBuilder;
 use Leonidas\Library\Core\Asset\ScriptCollection;
 use Leonidas\Library\Core\Asset\StyleBuilder;
@@ -16,9 +12,6 @@ use Leonidas\Library\Core\Asset\StyleCollection;
 
 final class PublicAssets extends PublicAssetProviderModule
 {
-    /**
-     * {@inheritDoc}
-     */
     protected function styles(): StyleCollectionInterface
     {
         return StyleCollection::from([
@@ -38,34 +31,6 @@ final class PublicAssets extends PublicAssetProviderModule
         ]);
     }
 
-    protected function inlineStyles(): ?InlineStyleCollectionInterface
-    {
-        return InlineStyleCollection::from([
-
-            // inline styles
-
-        ]);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function activateStyles(): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function deactivateStyles(): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     protected function scripts(): ScriptCollectionInterface
     {
         return ScriptCollection::from([
@@ -107,33 +72,5 @@ final class PublicAssets extends PublicAssetProviderModule
                 ->done(),
 
         ]);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function inlineScripts(): ?InlineScriptCollectionInterface
-    {
-        return InlineScriptCollection::from([
-
-            // inline scripts
-
-        ]);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function activateScripts(): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function deactivateScripts(): array
-    {
-        return [];
     }
 }

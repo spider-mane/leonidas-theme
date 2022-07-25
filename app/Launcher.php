@@ -4,7 +4,7 @@ namespace PseudoVendor\PseudoTheme;
 
 use Leonidas\Contracts\Extension\ExtensionLoaderInterface;
 use Leonidas\Contracts\Extension\WpExtensionInterface;
-use Leonidas\Framework\ExtensionLoader;
+use Leonidas\Framework\Theme\ThemeLoader;
 
 final class Launcher
 {
@@ -14,9 +14,9 @@ final class Launcher
 
     private static self $instance;
 
-    private function __construct(string $path, string $url)
+    private function __construct()
     {
-        $this->loader = new ExtensionLoader('theme', $path, $url);
+        $this->loader = new ThemeLoader();
         $this->extension = $this->loader->getExtension();
     }
 
@@ -39,15 +39,15 @@ final class Launcher
         return $this;
     }
 
-    public static function init(string $path, string $url): void
+    public static function init(): void
     {
         !isset(self::$instance)
-            ? self::load($path, $url)
+            ? self::load()
             : self::$instance->loader->error();
     }
 
-    private static function load(string $path, string $url): void
+    private static function load(): void
     {
-        (self::$instance = new self($path, $url))->launch();
+        (self::$instance = new self())->launch();
     }
 }
