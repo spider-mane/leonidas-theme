@@ -1,39 +1,55 @@
 build:
+  image: default-bionic
   environment:
+    php: 7.4
     variables:
       XDEBUG_MODE: coverage
   dependencies:
     override:
       - composer install --no-interaction --no-scripts
+    after:
+      - cp -n .env.example .env
+      - php bin/build-paths
   tests:
     override:
+      - command: vendor/bin/phpstan analyze --no-progress --memory-limit 512M
+        idle_timeout: 1200
       - command: vendor/bin/phpunit
         coverage:
           file: build/phpunit/coverage/coverage.clover.xml
           format: clover
-      - php-scrutinizer-run --enable-security-analysis
 
   nodes:
-    php-coding-style:
+    php-analysis:
       tests:
         override:
           - vendor/bin/phpcs
-    php-7.3:
-      environment:
-        php: 7.3
+          - php-scrutinizer-run --enable-security-analysis
     php-7.4:
       environment:
         php: 7.4
     php-8.0:
       environment:
         php: 8.0
+    php-8.1:
+      environment:
+        php: 8.1
+      tests:
+        override:
+          # skipping static analysis because wordpress has code not compatible with php81
+          - command: vendor/bin/phpunit
+            coverage:
+              file: build/phpunit/coverage/coverage.clover.xml
+              format: clover
+
+checks:
+  php: true
 
 filter:
   excluded_paths:
     - tests/
+    - assets/tests/
   dependency_paths:
     - vendor/
+    - wordpress/
     - assets/node_modules/
-
-checks:
-  php: true
