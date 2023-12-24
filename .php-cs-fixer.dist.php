@@ -4,14 +4,13 @@ use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
 $finder = Finder::create()
-    ->in(['app', 'bin', 'boot', 'config', 'tests', 'theme', '.playground'])
-    ->exclude(['theme/assets'])
+    ->in(['app', 'boot', 'config', 'theme', 'tests', '@playground'])
     ->name('*.php')
+    ->append([...glob('*.php'), ...glob('.*.php')])
     ->ignoreDotFiles(true)
-    ->ignoreVCS(true)
-    ->append([basename(__FILE__), 'rector.php', 'wp-config.php']);
+    ->ignoreVCS(true);
 
-return (new Config())
+return (new Config('leonidas'))
     ->setCacheFile(__DIR__ . '/build/php-cs-fixer/.cache')
     ->setFinder($finder)
     ->setRules([
@@ -33,7 +32,7 @@ return (new Config())
             'spacing' => 'one',
         ],
         'fully_qualified_strict_types' => true,
-        'function_typehint_space' => true,
+        'type_declaration_spaces' => true,
         'global_namespace_import' => [
             'import_classes' => true,
         ],
@@ -58,7 +57,7 @@ return (new Config())
         'phpdoc_single_line_var_spacing' => true,
         'phpdoc_var_without_name' => true,
         'single_blank_line_at_eof' => true,
-        'single_space_after_construct' => true,
+        'single_space_around_construct' => true,
         'ternary_to_null_coalescing' => true,
         'trailing_comma_in_multiline' => true,
         'trim_array_spaces' => true,

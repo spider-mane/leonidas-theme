@@ -1,0 +1,12 @@
+// For format details, see https://aka.ms/devcontainer.json.
+{
+  "name": "leonidas-theme",
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+    "../docker-compose.override.yml"
+  ],
+  "service": "app",
+  "workspaceFolder": "/var/www/html",
+  "remoteUser": "leonidas-theme",
+  "shutdownAction": "none"
+}

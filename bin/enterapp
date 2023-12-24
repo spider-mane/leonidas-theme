@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+readonly root="$(dirname $(dirname $(realpath $0)))"
+readonly user="leonidas-theme"
+
+validate_shell_arg() {
+  shells="sh bash zsh"
+  shell=
+
+  for option in $shells; do
+    if [ "$option" = "$1" ]; then
+      shell="$1"
+      break
+    fi
+  done
+
+  if [ -z "$shell" ]; then
+    echo "Argument must be a valid shell. Available options are: ${shells// /, }."
+    exit 1
+  fi
+}
+
+if [ -n "$1" ]; then
+  validate_shell_arg "$1"
+fi
+
+shell="${shell:-zsh}"
+
+docker compose up -d --wait &&
+  docker compose exec -u "$user" app "$shell" -il

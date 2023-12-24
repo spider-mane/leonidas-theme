@@ -7,16 +7,18 @@ parameters:
   reportUnmatchedIgnoredErrors: false
 
   paths:
+    # dist
     - app
     - boot
     - config
+    - theme
+    - functions.php
+    # dev
     - tests
+    - wp-config.php
 
   bootstrapFiles:
-    - boot/constants.php
+    # - boot/constants.php
 
   ignoreErrors:
     # - '#^Unsafe usage of new static\(\).$#'
-    # - '#^Expression on left side of \?\? is not nullable.$#'
-    # - '#^Right side of \&\& is always true.$#'
-    # - '#^Dead catch - Throwable is never thrown in the try block.$#'

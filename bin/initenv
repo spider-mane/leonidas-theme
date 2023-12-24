@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+readonly root="$(dirname $(dirname $(realpath $0)))"
+readonly boilerplate=(
+  .env.example
+  docker-compose.override.example.yml
+  pathagist.example.json
+)
+
+for file in ${boilerplate[@]}; do
+  cp -n "${root}/${file}" "${root}/${file//.example/}"
+done

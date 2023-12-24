@@ -1,0 +1,52 @@
+services:
+  app:
+    build:
+      target: app-interactive
+      args:
+        LANG: "${LANG:-en_US.UTF-8}"
+        TZ:
+        UNMINIMIZE: yes
+        USER: "${USER}"
+        GIT_USER:
+        GIT_EMAIL:
+        GIT_DEFAULT_BRANCH: "master"
+        GIT_INSTALL_GCM: yes
+    environment:
+      TERM: "${TERM}"
+      ZSH_THEME: "powerlevel10k/powerlevel10k"
+    volumes:
+      # Source
+      - ".:/var/www/html"
+      # Credentials
+      - "~/.config/composer/auth.json:/home/leonidas-theme/.config/composer/auth.json"
+      # Misc
+      - "vscode:/home/leonidas-theme/.vscode-server"
+
+  webserver:
+    ports:
+      - "${SERVER_PORT:-80}:${SERVER_PORT:-80}"
+    environment:
+      TERM: "${TERM}"
+    volumes:
+      - ".:/var/www/html:ro"
+
+  database:
+    ports:
+      - "${DB_FORWARD_PORT:-3306}:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      TERM: "${TERM}"
+
+  cache:
+    ports:
+      - "${CACHE_FORWARD_PORT:-6379}:6379"
+    environment:
+      TERM: "${TERM}"
+
+  selenium:
+    environment:
+      TERM: "${TERM}"
+
+volumes:
+  vscode:
+    driver: local

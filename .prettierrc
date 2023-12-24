@@ -1,5 +1,0 @@
-overrides:
-  files: '*.twig'
-  options:
-    plugins: [prettier-plugin-django]
-    twigPrintWidth: 5000

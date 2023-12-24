@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+readonly user="leonidas-theme"
+
+docker compose exec -u "$user" app "$@"
