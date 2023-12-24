@@ -1,7 +1,7 @@
 <?php
 
-use Leonidas\Library\Access\Pages;
-use Leonidas\Library\Access\Posts;
+use Leonidas\Plugin\Access\Pages;
+use Leonidas\Plugin\Access\Posts;
 use PseudoVendor\PseudoTheme\Theme;
 
 Theme::display('home.index', [

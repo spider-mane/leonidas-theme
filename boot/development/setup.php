@@ -1,36 +1,27 @@
 <?php
 
-use Dotenv\Dotenv;
-use WebTheory\Config\Config;
-use WebTheory\Exterminate\Exterminator;
+use WebTheory\Config\Interfaces\ConfigInterface;
 
-use function Env\env;
+use function WebTheory\WpCliUtil\maybe_define_abspath;
 
-$root = dirname(__DIR__, 2);
-
-require_once "$root/vendor/autoload.php";
+require_once __DIR__ . '/init.php';
 
 /**
- * Capture environment variables from .env
+ * @var string $root
+ * @var ConfigInterface $config
  */
-Dotenv::createUnsafeImmutable($root)->load();
 
-/**
- * Get development configuration
- */
-$config = new Config("$root/config/development");
+// load dev boot scripts
+// @phpstan-ignore-next-line
+array_map(function ($script) use ($root, $config) {
+    require_once __DIR__ . "/{$script}.php";
+}, ['constants']);
 
-/**
- * Establish that theme is in a development environment
- */
-define($dev = 'PSEUDO_CONSTANT_DEVELOPMENT', env($dev) ?? true);
+// define abspath
+maybe_define_abspath($root);
 
-/**
- * Initiate debug support
- */
-Exterminator::debug($config->get('debug'));
-
-/**
- * Return development configuration
- */
-return $config;
+// playground entrypoint
+play('setup', [
+    'root' => $root,
+    'config' => $config,
+]);

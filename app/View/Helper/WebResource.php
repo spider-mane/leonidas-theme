@@ -1,8 +1,8 @@
 <?php
 
-namespace PseudoVendor\PseudoTheme\Support;
+namespace PseudoVendor\PseudoTheme\View\Helper;
 
-class Resource
+class WebResource
 {
     public static function unsplash(string $image)
     {

@@ -1,5 +1,11 @@
 <?php
 
-defined('ABSPATH') || exit;
+use Leonidas\Contracts\Extension\WpExtensionInterface;
 
-$root = dirname(__DIR__, 1);
+// phpcs:disable
+defined('ABSPATH') || exit;
+// phpcs:enable
+
+/**
+ * @var WpExtensionInterface $extension
+ */

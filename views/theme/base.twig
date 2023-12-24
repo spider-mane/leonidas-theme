@@ -21,11 +21,11 @@
 
     {% block body %}
       {% block navbar %}
-        {% include('layout/navbar.twig') %}
+        {% include('layout.navbar') %}
       {% endblock %}
 
       {% block header %}
-        {% include('layout/header.twig') %}
+        {% include('layout.header') %}
       {% endblock %}
 
       {% block main %}
@@ -43,7 +43,7 @@
       {% endblock %}
 
       {% block footer %}
-        {% include('layout/footer.twig') %}
+        {% include('layout.footer') %}
       {% endblock %}
     {% endblock %}
 

@@ -2,12 +2,12 @@
 
 namespace PseudoVendor\PseudoTheme\View\Models;
 
-use Leonidas\Library\Access\Users;
 use Leonidas\Library\Core\Util\OutputBuffer;
 use Leonidas\Library\System\Model\Site\Site;
-use PseudoVendor\PseudoTheme\Support\Client;
-use PseudoVendor\PseudoTheme\Support\SocialMedia;
-use PseudoVendor\PseudoTheme\Support\ThemeData;
+use Leonidas\Plugin\Access\Users;
+use PseudoVendor\PseudoTheme\View\Helper\Client;
+use PseudoVendor\PseudoTheme\View\Helper\SocialMedia;
+use PseudoVendor\PseudoTheme\View\Helper\ThemeData;
 use WebTheory\Html\Attributes\Classlist;
 
 class Defaults extends AbstractViewModel
@@ -23,7 +23,7 @@ class Defaults extends AbstractViewModel
 
             // info
             'user' => Users::select(wp_get_current_user()->ID),
-            'entity' => Client::all(),
+            'entity' => Client::data(),
             'developer' => [
                 'name' => ThemeData::developer('agency'),
                 'link' => ThemeData::developer('url'),

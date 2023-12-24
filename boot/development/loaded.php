@@ -1,7 +1,18 @@
 <?php
 
-use WebTheory\WpTest\SkyHooks;
+use WebTheory\WpTest\Skyhooks\SkyHooks;
 
-$root = dirname(__DIR__, 2);
+/**
+ * @var string $root
+ */
 
+// init skyhooks
 SkyHooks::init();
+
+// create playground entrypoints
+play('init', ['root' => $root]);
+
+add_action('leonidas/loaded', fn ($extension) => play('loaded', [
+    'root' => $root,
+    'extension' => $extension,
+]));

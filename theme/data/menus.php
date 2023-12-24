@@ -10,17 +10,26 @@
  * for easy interchangeability
  *
  */
+
 return [
 
     'site' => [
+
         'about' => 'About',
+
         'contact' => 'Contact',
+
         'blog' => 'Blog',
+
     ],
 
     'footer' => [
+
         'privacy-policy' => 'Privacy Policy',
+
         'terms-of-use' => 'Terms of Use',
+
         'cookie-policy' => 'Cookie Policy',
+
     ],
 ];

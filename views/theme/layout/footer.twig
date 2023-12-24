@@ -1,4 +1,4 @@
-{% import "modules/icons.twig" as icons %}
+{% import "modules/icons" as icons %}
 {% set expanded = 'lg' %}
 
 <footer id="footer" class="footer text-white-70 bg-secondary pt-5">
@@ -14,7 +14,11 @@
             {{ entity.owner }}
           </div>
           <div class="mt-2">
-            <a href="{{ entity.phone|phone_link }}">{{ entity.phone|phone_us('classic') }}</a>
+
+            {% if entity.phone is not empty %}
+              <a href="{{ entity.phone|phone_link }}">{{ entity.phone|phone_us('classic') }}</a>
+            {% endif %}
+
             <br>
             <a href="mailto:{{ entity.email }}">{{ entity.email }}</a>
           </div>

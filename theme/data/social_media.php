@@ -19,18 +19,22 @@ return [
             'name' => 'Facebook',
             'icon' => 'facebook-square',
         ],
+
         'instagram' => [
             'name' => 'Instagram',
             'icon' => 'instagram',
         ],
+
         'twitter' => [
             'name' => 'Twitter',
             'icon' => 'twitter',
         ],
+
         'linkedin' => [
             'name' => 'LinkedIn',
             'icon' => 'linkedin-in',
         ],
+
         'github' => [
             'name' => 'Github',
             'icon' => 'github',

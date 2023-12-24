@@ -1,6 +1,6 @@
 <?php
 
-use Leonidas\Library\Access\Posts;
+use Leonidas\Plugin\Access\Posts;
 use PseudoVendor\PseudoTheme\Theme;
 
 Theme::display('post.index', [

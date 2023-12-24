@@ -2,7 +2,7 @@
 
 namespace PseudoVendor\PseudoTheme;
 
-function theme_header(string $header)
+function info(string $header)
 {
     return Theme::instance()->header($header);
 }

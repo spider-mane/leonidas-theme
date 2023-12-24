@@ -1,6 +1,6 @@
 <?php
 
-namespace PseudoVendor\PseudoTheme\Support;
+namespace PseudoVendor\PseudoTheme\View\Helper;
 
 class Copy
 {

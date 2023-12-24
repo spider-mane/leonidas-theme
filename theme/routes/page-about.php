@@ -1,6 +1,6 @@
 <?php
 
-use Leonidas\Library\Access\Pages;
+use Leonidas\Plugin\Access\Pages;
 use PseudoVendor\PseudoTheme\Theme;
 
 Theme::display('about.index', [

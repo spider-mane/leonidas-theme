@@ -1,6 +1,6 @@
 <?php
 
-namespace PseudoVendor\PseudoTheme\Support;
+namespace PseudoVendor\PseudoTheme\View\Helper;
 
 use PseudoVendor\PseudoTheme\Access\Twig;
 use PseudoVendor\PseudoTheme\View\Models\Defaults;
@@ -10,14 +10,14 @@ class View
     public static function render($view, array $data = []): string
     {
         return Twig::render(
-            static::getTemplate($view),
+            static::resolveView($view),
             static::getFullContext($data)
         );
     }
 
-    protected static function getTemplate(string $view): string
+    protected static function resolveView($view): string
     {
-        return 'routes/' . str_replace('.', '/', $view) . '.twig';
+        return 'routes.' . $view;
     }
 
     protected static function getFullContext(array $extra): array

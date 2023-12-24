@@ -1,8 +1,7 @@
 <?php
 
-use WebTheory\Config\Deferred\Reflection as ConfigReflection;
-
 use function PseudoVendor\PseudoTheme\abspath;
+use function WebTheory\Config\reflect;
 
 return [
 
@@ -11,7 +10,7 @@ return [
      * Root
      *==========================================================================
      *
-     *
+     * @link
      *
      */
     'root' => abspath(),
@@ -21,7 +20,7 @@ return [
      * Paths
      *==========================================================================
      *
-     *
+     * @link
      *
      */
     'paths' => [
@@ -32,17 +31,27 @@ return [
 
     /**
      *==========================================================================
+     * Views
+     *==========================================================================
+     *
+     * Relative path where view templates for routes can be found.
+     *
+     */
+    'views' => 'routes/',
+
+    /**
+     *==========================================================================
      * Options
      *==========================================================================
      *
-     *
+     * @link https://twig.symfony.com/doc/3.x/api.html#environment-options
      *
      */
     'options' => [
 
         'autoescape' => false,
-        'cache' => abspath('/storage/cache/views/twig'),
-        'debug' => ConfigReflection::get('app.dev'),
+        'cache' => abspath('/var/cache/views/twig'),
+        'debug' => reflect('app.dev'),
 
     ],
 
@@ -51,7 +60,7 @@ return [
      * Extensions
      *==========================================================================
      *
-     *
+     * @link https://twig.symfony.com/doc/3.x/api.html#using-extensions
      *
      */
     'extensions' => [
@@ -71,6 +80,8 @@ return [
         # Theme
         PseudoVendor\PseudoTheme\View\TwigExtension::class,
 
+        # Third-Party
+
     ],
 
     /**
@@ -78,12 +89,13 @@ return [
      * Globals
      *==========================================================================
      *
-     *
+     * @link https://twig.symfony.com/doc/3.x/advanced.html#globals
      *
      */
     'globals' => [
 
         //
+
     ],
 
     /**
@@ -91,12 +103,14 @@ return [
      * Runtime Loaders
      *==========================================================================
      *
-     *
+     * @link https://twig.symfony.com/doc/3.x/api.html#loaders
      *
      */
     'runtime_loaders' => [
 
-        //
+        // Twig\RuntimeLoader\ContainerRuntimeLoader::class,
+        // Twig\RuntimeLoader\FactoryRuntimeLoader::class,
+
     ],
 
 ];
