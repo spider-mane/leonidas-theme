@@ -2,13 +2,13 @@
 
 namespace PseudoVendor\PseudoTheme;
 
-use Leonidas\Contracts\Extension\ExtensionLoaderInterface;
 use Leonidas\Contracts\Extension\WpExtensionInterface;
+use Leonidas\Framework\Exception\ThemeInitiationException;
 use Leonidas\Framework\Theme\ThemeLoader;
 
 final class Launcher
 {
-    private ExtensionLoaderInterface $loader;
+    private ThemeLoader $loader;
 
     private WpExtensionInterface $extension;
 
@@ -22,17 +22,17 @@ final class Launcher
 
     private function launch(): void
     {
-        $this->initiate()->boot();
+        $this->initiateTheme()->bootExtension();
     }
 
-    private function initiate(): self
+    private function initiateTheme(): self
     {
         Theme::init($this->extension);
 
         return $this;
     }
 
-    private function boot(): self
+    private function bootExtension(): self
     {
         $this->loader->bootstrap();
 
@@ -41,13 +41,19 @@ final class Launcher
 
     public static function init(): void
     {
-        !isset(self::$instance)
-            ? self::load()
-            : self::$instance->loader->error();
+        !isset(self::$instance) ? self::load() : self::error(__METHOD__);
     }
 
     private static function load(): void
     {
         (self::$instance = new self())->launch();
+    }
+
+    private static function error(string $method): void
+    {
+        throw new ThemeInitiationException(
+            static::$instance->extension,
+            $method
+        );
     }
 }
