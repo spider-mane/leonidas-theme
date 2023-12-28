@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Support;
 
-abstract class WpUnitTestCase extends TestCase
+abstract class HybridTestCase extends TestCase
 {
     protected function setUp(): void
     {

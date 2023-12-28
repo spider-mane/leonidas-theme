@@ -28,8 +28,8 @@
       <directory>tests/Suites/Unit</directory>
     </testsuite>
 
-    <testsuite name="wpunit">
-      <directory>tests/Suites/WpUnit</directory>
+    <testsuite name="hybrid">
+      <directory>tests/Suites/Hybrid</directory>
     </testsuite>
 
     <testsuite name="integration">
