@@ -31,6 +31,7 @@
     "guzzlehttp/psr7": "^2.1",
     "league/container": "^4.2",
     "panamax/panamax": "dev-master",
+    "performing/twig-components": "^0.5.3",
     "psr/container": "^1.1 || ^2.0",
     "respect/validation": "^2.2",
     "symfony/asset": "^5.4 || ^6.0",
