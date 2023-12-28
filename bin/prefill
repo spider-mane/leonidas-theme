@@ -19,6 +19,16 @@ use WebTheory\Erector\Transformation\TextReplacer;
 
 $root = dirname(__DIR__, 1);
 
+################################################################################
+# Setup
+################################################################################
+
+if (!isset($__prefill__)) {
+  if (!shell_exec("composer run setup -d {$root} --ansi")) {
+    exit;
+  }
+}
+
 require_once $root . '/tests/bootstrap.php';
 
 ################################################################################

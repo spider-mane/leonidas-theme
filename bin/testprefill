@@ -17,6 +17,7 @@ $faker = Factory::create();
 $exclude = array_merge(
   [
     '@playground',
+    // '.env',
     '.idea',
     '.project',
     '.vscode',
@@ -32,6 +33,7 @@ $exclude = array_merge(
     'pathagist.json',
     'docker-compose.override.yml',
   ],
+  glob("var/**"),
   glob("*.code-workspace"),
   glob("**/*.code-workspace"),
 );
@@ -52,29 +54,42 @@ $answers = [
 ];
 
 ################################################################################
-# Run
+# Setup
 ################################################################################
 $exclude = array_map(fn ($file) => "{$root}/{$file}", $exclude);
+
+__testprefill_setup_directory($testDir);
+__testprefill_copy_files($root, $testDir, $exclude);
+
+################################################################################
+# Run
+################################################################################
 // $answers = implode('\n', $answers);
 
-if (file_exists($testDir)) {
-  shell_exec("rm -rf {$testDir}");
-}
-
-mkdir($testDir, 0777, true);
-__testprefill_copy_files($root, $testDir, $exclude);
 chdir($testDir);
+
+shell_exec(implode(" && ", [
+  "bin/initenv",
+  "composer dumpautoload",
+]));
 
 (function ($__prefill__, $__answers__) {
   extract($__answers__);
-  shell_exec('composer dumpautoload');
-
-  require_once $__prefill__;
+  require $__prefill__;
 })($prefill, $answers);
 
 ################################################################################
 # Functions
 ################################################################################
+function __testprefill_setup_directory(string $testDir): void
+{
+  if (file_exists($testDir)) {
+    shell_exec("rm -rf {$testDir}");
+  }
+
+  mkdir($testDir, 0777, true);
+}
+
 function __testprefill_copy_files(string $dir, string $copyDir, array $exclude = [], string $sub = null): void
 {
   $currentDir = $sub ?? $dir;
@@ -95,6 +110,6 @@ function __testprefill_copy_files(string $dir, string $copyDir, array $exclude =
       continue;
     }
 
-    copy($file, $copy);
+    shell_exec("cp {$file} {$copy}");
   }
 };
