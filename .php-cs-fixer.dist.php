@@ -10,7 +10,7 @@ $finder = Finder::create()
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
-return (new Config('leonidas'))
+return (new Config('pseudo-theme'))
     ->setCacheFile(__DIR__ . '/build/php-cs-fixer/.cache')
     ->setFinder($finder)
     ->setRules([
